@@ -14,31 +14,47 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 relative">
-      <header className="bg-transparent p-4 absolute top-0 left-0">
+    {/* Add a top bar here */}
+    <div className="bg-[#5777D0] text-white text-center h-[110px]">
+      {/* <span>Welcome to Fursphere! Join our community!</span> */}
+      <Image src="/main.png" alt="Logo" width={300} height={200} priority />
+    </div>
+      {/* <header className="bg-transparent p-4 absolute top-0 left-0">
         <div className="flex items-center">
-          <Image src="/logo.png" alt="Logo" width={50} height={50} priority />
+        
         </div>
-      </header>
-      <main className="flex items-center justify-center min-h-screen flex-col ">
-      <div className="flex flex-col items-center mb-12 relative">
-          <span className={styles.text}>Join our Discord！</span>
-          <a href="https://discord.gg/pa2B2yre" target="_blank" rel="noopener noreferrer" className="flex items-center mt-4">
-            <span className={styles.clickText}>Click here!</span>
-            <svg className={styles.arrow} viewBox="0 0 200 50">
-              <path d="M0,25 L175,25" stroke="white" strokeWidth="5" fill="none" markerEnd="url(#arrowhead)" />
-              <defs>
-                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-                  <polygon points="0 0, 10 3.5, 0 7" fill="white" />
-                </marker>
-              </defs>
-            </svg>
-            <Image src="/discord-logo.png" alt="Join our Discord" width={150} height={150} />
+      </header> */}
+
+      <main className="flex justify-between min-h-screen">
+
+      <div className="flex flex-col items-center w-1/2">
+         
+          <a href="https://discord.gg/pa2B2yre" target="_blank" rel="noopener noreferrer" className="flex items-center mt-4 mb-4">
+                  <Image src="/discord-logo.png" alt="Join our Discord" width={150} height={150} />
           </a>
-        </div>
-        <div className="flex flex-col items-center">
-          <Image src="/discord.png" alt="Screenshot" width={850} height={420} />
-        </div>
+          <div className="flex flex-col items-center">
+            <Image src="/app.png" alt="Screenshot" width={350} height={300} />
+          </div>
+      
+      </div>
+
+      <div className="flex flex-col items-center w-1/2">
+          <a href="https://discord.gg/PR4pWHCZ" target="_blank" rel="noopener noreferrer" className="flex items-center mt-4 mb-4">
+                  <Image src="/appstore.svg" alt="Join our Discord" width={150} height={150} />
+          </a>
+          <div className="flex flex-col items-center">
+            <Image src="/discord.png" alt="Screenshot" width={325} height={300} />
+          </div>
+        
+      </div>
+      {/* <span className={styles.text}>Join our Discord！</span> */}
       </main>
+
+      <div className="flex items-center justify-center">
+        <span className={styles.text}>Join Us!</span>
+      </div>
+      
+      
     </div>
   );
 };
