@@ -30,8 +30,8 @@ const Home = () => {
       <div className="flex flex-col items-center w-1/2">
          
           <a href="https://discord.gg/pa2B2yre" target="_blank" rel="noopener noreferrer" className="flex items-center mt-4 mb-4">
-                  <Image src="/discord-logo.png" alt="Join our Discord" width={150} height={150} />
-          </a>
+                  <Image src="/appstore.svg" alt="Join our Discord" width={150} height={150} />
+          </a> 
           <div className="flex flex-col items-center">
             <Image src="/app.png" alt="Screenshot" width={350} height={300} />
           </div>
@@ -40,7 +40,7 @@ const Home = () => {
 
       <div className="flex flex-col items-center w-1/2">
           <a href="https://discord.gg/PR4pWHCZ" target="_blank" rel="noopener noreferrer" className="flex items-center mt-4 mb-4">
-                  <Image src="/appstore.svg" alt="Join our Discord" width={150} height={150} />
+                  <Image src="/discord-logo.png" alt="Join our Discord" width={150} height={150} />
           </a>
           <div className="flex flex-col items-center">
             <Image src="/discord.png" alt="Screenshot" width={325} height={300} />
