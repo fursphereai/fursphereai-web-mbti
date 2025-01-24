@@ -73,7 +73,7 @@ const Home = () => {
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-Ubuntu text-[#505D90] w-3/4 leading-snug">
             A pet concierge that<br />
-            {`manages your pets`} <br /> 
+            manages your pets&apos; <br /> 
             <span className="font-balooExtraBold text-5xl md:text-6xl lg:text-7xl text-[#5777D0]">HEALTH</span>
           </h1>
           
