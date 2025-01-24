@@ -6,7 +6,7 @@ import styles from './Home.module.css';
 import Link from "next/link";
 
 const Home = () => {
-  const [avatarUrl, setAvatarUrl] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState(''); 
 
   useEffect(() => {
     const avatarPath = 'widget-avatars/rJ5W3JR1ALahUS4QSt7MhVatf89Vn9LSSY1dUzaRQQ8/lURE0N8GGwPSIoS_wZ4AwK99qHJFsa7PVsTTJ6TUkgmhwVn7d5HLVbC3yw8Ts-xHjwWkUelmtOzVvqWJbw0';
@@ -73,7 +73,7 @@ const Home = () => {
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-Ubuntu text-[#505D90] w-3/4 leading-snug">
             A pet concierge that<br />
-            manages your pets&apos; <br /> 
+            manages your pets <br /> 
             <span className="font-balooExtraBold text-5xl md:text-6xl lg:text-7xl text-[#5777D0]">HEALTH</span>
           </h1>
           
