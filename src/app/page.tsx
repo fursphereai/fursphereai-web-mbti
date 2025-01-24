@@ -58,7 +58,7 @@ const Home = () => {
             loop
             muted
             style={{
-              clipPath: 'inset(1% 1% 1% 1%)', 
+              clipPath: "inset(1% 1% 1% 1%)", 
             }}
           >
             <source src="/video/landing.mp4" type="video/mp4" />
@@ -187,7 +187,7 @@ const Home = () => {
             loop
             muted
             style={{
-              clipPath: 'inset(1% 1% 1% 1%)', 
+              clipPath: "inset(1% 1% 1% 1%)", 
             }}
           >
             <source src="/video/page2.mp4" type="video/mp4" />
@@ -251,7 +251,7 @@ const Home = () => {
             loop
             muted
             style={{
-              clipPath: 'inset(1% 1% 1% 1%)', 
+              clipPath: "inset(1% 1% 1% 1%)", 
             }}
           >
             <source src="/video/page3.mp4" type="video/mp4" />
