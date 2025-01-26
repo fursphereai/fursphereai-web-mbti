@@ -39,7 +39,7 @@ const Home = () => {
       const video = video1Ref.current;
       if (video) {
         console.log("Playing video every 20 seconds...");
-        video.play(); // 播放视频
+        video?.play(); // 播放视频
         setTimeout(() => {
           video.pause(); // 播放完成后暂停，停留在最后一帧
           console.log("Paused video on the last frame.");
@@ -91,7 +91,7 @@ const Home = () => {
     const video = videoRefs[index].current;
     if (video) {
       console.log(`Mouse entered video ${index + 1}, playing...`);
-      video.play();
+      video?.play();
     }
   };
 
