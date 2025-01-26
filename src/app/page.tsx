@@ -25,8 +25,12 @@ const Home = () => {
     setAvatarUrl(`/api/proxy/${encodeURIComponent(avatarPath)}`);
   }, []);
 
-  const video1Ref = useRef(null); // 第一个视频引用
-  const videoRefs = [useRef(null), useRef(null), useRef(null)]; // 多个视频引用
+  const video1Ref = useRef<HTMLVideoElement | null>(null);
+  const videoRefs = [
+    useRef<HTMLVideoElement | null>(null),
+    useRef<HTMLVideoElement | null>(null),
+    useRef<HTMLVideoElement | null>(null),
+  ];
   const hasPlayed = useRef([false, false, false]); // 标记每个视频是否已滚动触发过播放
 
 
