@@ -87,7 +87,7 @@ const Home = () => {
     };
   }, []);
 
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = (index: number) => {
     const video = videoRefs[index].current;
     if (video) {
       console.log(`Mouse entered video ${index + 1}, playing...`);
