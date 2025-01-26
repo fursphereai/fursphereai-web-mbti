@@ -62,7 +62,7 @@ const Home = () => {
           console.log(`Video ${index + 1} intersection ratio:`, entry.intersectionRatio);
           if (entry.isIntersecting && entry.intersectionRatio >= 0.99 && !hasPlayed.current[index]) {
             console.log(`Playing video ${index + 1} due to scroll...`);
-            video.play();
+            video?.play();
             hasPlayed.current[index] = true; // 标记视频已滚动触发播放
           }
         },
