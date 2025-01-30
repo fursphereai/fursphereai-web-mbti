@@ -98,43 +98,45 @@ const Home = () => {
  
 
   return (
-    <div className = "bg-[#FFFFFF] ">
+    <div className = "relative aspect-[1440/3742] bg-[#FFFFFF] ">
     {/* Add a top bar here */}
     
-    <header className="flex  fixed  justify-between items-center px-8 py-4 bg-[#FFFFFF] border-b border-[#E8EBF6] w-full max-w-screen-2xl z-10 left-1/2 transform -translate-x-1/2 sm:overflow-visible overflow-x-auto">
+    <header className="flex fixed  items-center h-[90px] bg-[#FFFFFF] border-b border-[#E8EBF6] w-full max-w-screen-2xl z-10 left-1/2 transform -translate-x-1/2 sm:overflow-visible overflow-x-auto">
         {/* 左侧 Logo 和标题 */}
-        <div className="flex items-center space-x-4">
-          <Image src="/logo.svg" alt="FurSphere Logo" width={200} height={200} />
+        <div className=" absolute w-[210px] h-[64px] left-[75px] ">
+          <Image src="/logo.svg" alt="FurSphere Logo"  layout="responsive"  width = "210" height= "64" />
         </div>
        
 
         {/* 右侧导航菜单 */}
-        <nav className="flex justify-center items-center space-x-20 w-2/4">
-          <Link href="#home" className="text-gray-600 hover:text-blue-700">
+        <nav className="absolute right-[283.14px] flex flex-row justify-end items-center gap-x-[20px] ">
+          <Link href="#home" className="text-[16px] px-3 py-2 md:py-2 text-[#1A1D1F] hover:text-blue-700">
             Home
           </Link>
-          <Link href="#product" className="text-gray-600 hover:text-blue-700">
+          <Link href="#product" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
             Partnership
           </Link>
-          <Link href="#about" className="text-gray-600 hover:text-blue-700">
+          <Link href="#about" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
             About
           </Link>
-          <button className="px-8 py-2 bg-custom-gradient text-white rounded-full hover:bg-blue-600 transition duration-10 hover:brightness-75">
-            Sign up
-          </button>
         </nav>
+
+        {/* 右侧按钮 */}
+        
+        <button className=" absolute w-[149px] h-[48px] right-[80px] text-[16px] bg-custom-gradient text-white rounded-full  transition duration-10 hover:brightness-75">
+            Sign up
+        </button>
+       
+
     </header>
       
 
       <main>
         {/* 第一页 */}
-      <section className="flex flex-col md:flex-row justify-center max-w-screen-2xl bg-[#ffffff] mx-auto">
+      <section className="relative  bg-black flex flex-col md:flex-row max-w-[1440px] aspect-[1440/640] max-w-screen-2xl bg-[#ffffff] mx-auto">
         {/* 左侧内容 */}
-        <div className="flex flex-col mt-20  items-center w-1/2">
+        <div className="flex flex-col bg-black mt-20 ml-[4.30%] items-center w-1/2 aspect-[1440/640] object-cover">
         
-
-        
-         
           <video
             className="w-full "
             ref = {video1Ref}
@@ -153,7 +155,7 @@ const Home = () => {
         
 
        {/* 右侧内容 */}
-       <div className="flex flex-col mt-60 ml-20 items-start w-1/2 h-100 text-left space-y-10">
+       <div className="flex flex-col   items-start  text-left w-[31.04%] space-y-10">
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-Ubuntu text-[#505D90] w-3/4 leading-snug">
             A pet concierge that<br />
@@ -243,7 +245,7 @@ const Home = () => {
 
       {/* 第二页 */}
 
-      <section className="flex flex-row justify-center max-w-screen-2xl mx-auto bg-[#ffffff]">
+      <section className="flex flex-row justify-center max-w-screen-2xl aspect-[1440/640] mx-auto bg-[#ffffff]">
        {/* 左侧内容 */}
        <div className="flex flex-col mt-20 ml-20 items-start w-1/2 h-100 text-left space-y-10">
 

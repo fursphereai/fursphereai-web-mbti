@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "cors": "^2.8.5",
     "next": "14.2.4",
     "node-fetch": "^3.3.2",
