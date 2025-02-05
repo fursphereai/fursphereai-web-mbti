@@ -94,51 +94,120 @@ const Home = () => {
       video?.play();
     }
   };
+  
+  const [menuOpen, setMenuOpen] = useState(false); // 控制菜单状态
 
+  const toggleMenu = () => {
+    console.log('Menu toggled');
+    setMenuOpen(!menuOpen); // 切换菜单
+  
+  }
+  const closeMenu = () => setMenuOpen(false); // 关闭菜单
  
 
   return (
     <div className = "relative aspect-[1440/3742] bg-[#FFFFFF] ">
     {/* Add a top bar here */}
-    
-    <header className="flex fixed  items-center h-[90px] bg-[#FFFFFF] border-b border-[#E8EBF6] w-full max-w-screen-2xl z-10 left-1/2 transform -translate-x-1/2 sm:overflow-visible overflow-x-auto">
-        {/* 左侧 Logo 和标题 */}
-        <div className=" absolute w-[210px] h-[64px] left-[75px] ">
-          <Image src="/logo.svg" alt="FurSphere Logo"  layout="responsive"  width = "210" height= "64" />
-        </div>
-       
+ 
+    <header className="flex items-center fixed top-0  h-[90px] bg-[#FFFFFF]  border-b border-[#E8EBF6] w-full max-w-screen-[1440px]  z-10 sm:overflow-visible overflow-x-auto">
+     
+      
+        <button
+          className="sm:hidden flex items-center justify-center w-10 h-10 bg-black"
+          onClick={toggleMenu}
+        >
+          {/* <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-blue-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg> */}
+        </button>
 
-        {/* 右侧导航菜单 */}
-        <nav className="absolute right-[283.14px] flex flex-row justify-end items-center gap-x-[20px] ">
+
+        <nav
+        className={`${
+          menuOpen ? 'block' : 'hidden'
+        } sm:hidden flex flex-col items-start w-full absolute left-0 top-[90px] bg-white border border-[#E8EBF6] p-4 gap-y-2 z-10`}
+      >
+        <Link href="#home" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
+          Home
+        </Link>
+        <Link href="#MBTI" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
+          MBTI
+        </Link>
+        <Link href="#Partnership" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
+          Partnership
+        </Link>
+        <Link href="#about" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
+          About
+        </Link>
+      </nav>
+        <nav className="hidden sm:flex flex-row justify-end items-center gap-x-[20px] absolute right-[283.14px]">
           <Link href="#home" className="text-[16px] px-3 py-2 md:py-2 text-[#1A1D1F] hover:text-blue-700">
             Home
           </Link>
-          <Link href="#product" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
+          <Link href="#MBTI" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
+            MBTI
+          </Link>
+          <Link href="#Partnership" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
             Partnership
           </Link>
           <Link href="#about" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
             About
           </Link>
         </nav>
-
-        {/* 右侧按钮 */}
         
-        <button className=" absolute w-[149px] h-[48px] right-[80px] text-[16px] bg-custom-gradient text-white rounded-full  transition duration-10 hover:brightness-75">
-            Sign up
-        </button>
-       
+          <div className=" absolute w-[210px] h-[64px] left-[75px] ">
+            <Image src="/logo.svg" alt="FurSphere Logo"  layout="responsive"  width = "210" height= "64" />
+          </div>
+          
+        
 
+          {/* 右侧导航菜单
+          <nav className= " hidden  sm: absolute right-[283.14px] flex flex-row justify-end items-center gap-x-[20px] ">
+            <Link href="#home" className="text-[16px] px-3 py-2 md:py-2 text-[#1A1D1F] hover:text-blue-700">
+              Home
+            </Link>
+            <Link href="#MBTI" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
+              MBTI
+            </Link>
+            <Link href="#Partnership" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
+              Partnership
+            </Link>
+            <Link href="#about" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
+              About
+            </Link>
+          </nav> */}
+
+          {/* 右侧按钮 */}
+          
+          <button className=" absolute w-[149px] h-[48px] right-[80px] text-[16px] bg-custom-gradient text-white rounded-full  transition duration-10 hover:brightness-75">
+              Sign up
+          </button>
+    
+  
     </header>
+ 
+   
       
 
-      <main>
+      <main className = 'bg-[#FFFFFF]'> 
         {/* 第一页 */}
-      <section className="relative  bg-black flex flex-col md:flex-row max-w-[1440px] aspect-[1440/640] max-w-screen-2xl bg-[#ffffff] mx-auto">
+      <section className="relative  mt-[90px]  flex flex-col md:flex-row max-w-[1440px] aspect-[1440/640] bg-[#ffffff] mx-auto">
         {/* 左侧内容 */}
-        <div className="flex flex-col bg-black mt-20 ml-[4.30%] items-center w-1/2 aspect-[1440/640] object-cover">
+        <div className="flex flex-col  bg-black  items-center  w-1/2  aspect-[1440/640] object-cover">
         
           <video
-            className="w-full "
+            className="w-full max-w-[700px] aspect-[700/630] "
             ref = {video1Ref}
             autoPlay 
             loop = {false}
@@ -155,28 +224,30 @@ const Home = () => {
         
 
        {/* 右侧内容 */}
-       <div className="flex flex-col   items-start  text-left w-[31.04%] space-y-10">
-
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-Ubuntu text-[#505D90] w-3/4 leading-snug">
+       <div className="flex flex-col  text-left items-start  gap-y-[32px] w-1/2">
+          
+          <h1 className="text-[3.33vw] font-Ubuntu text-[#505D90] max-w-[447px]  leading-[5vw] mt-[12vh] ml-[5vw]">
             A pet concierge that<br />
             manages your pets <br /> 
-            <span className="font-balooExtraBold text-5xl md:text-6xl lg:text-7xl text-[#5777D0]">HEALTH</span>
+            <span className="font-balooExtraBold text-[4.44vw] text-[#5777D0]">HEALTH</span>
           </h1>
           
 
-          <div className="flex flex-row items-center space-x-8 lg:space-y-0 lg:space-x-4 ">
+          <div className="flex flex-row bg-black items-center w-[30.76vw] space-x-[1.555vw] ml-[5vw] ">
           
-          <div className="flex items-center px-0 py-0 bg-gray-100 rounded-full shadow-md  max-w-lg h-16">
+           {/* 左 */}
+          <div className="flex items-center bg-black bg-gray-100 rounded-full shadow-md  w-[22.3vw] aspect-[321/50] max-w-[321px] ">
           <input
             type="email"
             placeholder="Enter your email"
-            className="flex-1 bg-transparent  outline-none text-gray-600 placeholder-gray-400 px-4"
+            className="flex-1 bg-transparent text-[0.9027vw]  outline-none text-gray-600 placeholder-gray-400 px-4"
           />
           <button 
-            className="bg-custom-gradient text-white font-bold px-6 py-2 rounded-full shadow-md transition duration-10 hover:brightness-75 h-full"
+            className="bg-custom-gradient text-white font-bold w-[9.17vw] aspect-[132/50] max-w-[132px] ml-[-9.17vw] rounded-full shadow-md transition duration-10 hover:brightness-75 h-full"
             onClick={handleOpenPopup}>
-            Subscribe
+            <span className="text-[1.111vw] max-w-[79px]">Subscribe</span>
           </button>
+
           {/* 弹窗 */}
           {isPopupOpen && (
             <div
@@ -206,37 +277,38 @@ const Home = () => {
           )}
           </div>
 
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-600">or join</span>
+              {/* 右 */}
+              <span className=" text-[0.9027vw] max-w-[38px] text-gray-600 whitespace-nowrap">or join</span>
+
               <Link href = 'https://discord.gg/676cBXbZhW'>
               <Image
                 src="/discord-icon.svg"
                 alt="Discord Icon"
-                width={75}
-                height={75}
-                className="transition duration-10 hover:brightness-75"
+                width={50}
+                height={50}
+                className="w-[3.472vw] max-w-[50px] h-auto transition duration-10 hover:brightness-75"
               />
               </Link>
-            </div>
+        
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-[2vw]  ml-[5vw]">
            {/* <Link> */}
               <Image
                 src="/apple-logo.svg"
                 alt="Apple"
-                width={230}
-                height={230}
-                className="transition duration-10 hover:brightness-75"
+                width={201}
+                height={59}
+                className="w-[20vw] max-w-[201px] h-auto transition duration-10 hover:brightness-75"
               />
             {/* </Link> */}
             {/* <Link> */}
               <Image
                 src="/google-logo.svg"
                 alt="Google"
-                width={230}
-                height={230}
-                className="transition duration-10 hover:brightness-75"
+                width={201}
+                height={59}
+                className="w-[20vw] max-w-[201px] h-auto transition duration-10 hover:brightness-75"
               />
             {/* </Link> */}
           </div>
