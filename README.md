@@ -1,42 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Overview
+This is a project bootstrapped with Next.js, providing a basic development environment and structure.
 
-## Getting Started
+Getting Started
+1. Clone the repository
+To get started, clone the repository to your local machine:
 
-- After cloning, install dependencies:
+bash
+Copy
+Edit
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+2. Install dependencies
+Install the necessary dependencies using:
 
-```bash
+bash
+Copy
+Edit
 npm install
-```
+# or with yarn
+yarn install
+3. Run the development server
+Start the development server with:
 
-- Run the development server:
-
-```bash
+bash
+Copy
+Edit
 npm run dev
-# or
+# or with yarn
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Once the server is running, open your browser and navigate to http://localhost:3000 to view the application.
 
-- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Making Changes and Pushing to the Main Branch
+1. Check the current status
+Check which files have been modified:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+bash
+Copy
+Edit
+git status
+2. Stage your changes
+Add all modified files to the staging area:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+bash
+Copy
+Edit
+git add .
+3. Commit your changes
+Commit your changes with a meaningful message:
 
-## Learn More
+bash
+Copy
+Edit
+git commit -m "Describe your changes here"
+4. Pull the latest changes from the main branch
+Before pushing, ensure your local branch is up to date with the remote main branch:
 
-To learn more about Next.js, take a look at the following resources:
+bash
+Copy
+Edit
+git pull origin main
+5. Push your changes to the main branch
+Push your changes directly to the main branch:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+bash
+Copy
+Edit
+git push origin main
