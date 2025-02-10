@@ -59,11 +59,28 @@ return (
 
         {/* 右侧内容 */}
         <div className="flex flex-col  text-left items-start  gap-y-[32px] w-1/2">
-            
-            <h1 className="text-[3.33vw] font-Ubuntu text-[#505D90] max-w-[447px]  leading-[5vw] mt-[12vh] ml-[5vw]">
+
+            <h1 className="text-[3.33vw]
+                font-Ubuntu
+                font-light
+                text-[#505D90]
+                max-w-[447px]
+                leading-[5vw]
+                mt-[12vh]
+                ml-[5vw]">
                 A pet concierge that<br />
-                manages your pets <br /> 
-                <span className="font-balooExtraBold text-[4.44vw] text-[#5777D0]">HEALTH</span>
+                manages your pets' <br />
+
+                <span className="font-balooExtraBold
+                text-[4.44vw]
+                bg-gradient-to-t
+                from-[#AFBFE9]
+                via-[#5777D0]
+                to-[#AFBFE9]
+                bg-clip-text
+                text-transparent
+                ">
+                HEALTH</span>
             </h1>
             
 
