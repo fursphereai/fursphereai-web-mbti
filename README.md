@@ -1,5 +1,5 @@
 
-# Project Name
+# Fursphere - Dev
 
 ## Overview
 This is a project bootstrapped with [Next.js](https://nextjs.org/), providing a basic development environment and structure.
