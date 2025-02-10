@@ -17,8 +17,6 @@ bash
 Copy
 Edit
 npm install
-# or with yarn
-yarn install
 3. Run the development server
 Start the development server with:
 
@@ -26,8 +24,6 @@ bash
 Copy
 Edit
 npm run dev
-# or with yarn
-yarn dev
 Once the server is running, open your browser and navigate to http://localhost:3000 to view the application.
 
 Making Changes and Pushing to the Main Branch
