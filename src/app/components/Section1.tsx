@@ -36,9 +36,21 @@ const handleClosePopup = () => {
 };
 
 return (
-    <section className="relative  mt-[90px]  flex flex-col md:flex-row max-w-[1440px] aspect-[1440/640] bg-[#ffffff] mx-auto">
+    <section className="relative
+    mt-[90px]
+    flex flex-col md:flex-row
+    max-w-[1440px]
+    aspect-[1440/640]
+    bg-[#ffffff]
+    mx-auto">
+
             {/* 左侧内容 */}
-            <div className="flex flex-col  bg-black  items-center  w-1/2  aspect-[1440/640] object-cover">
+            <div className="flex flex-col
+            bg-[#ffffff]
+            items-center
+            w-1/2
+            aspect-[1440/640]
+            object-cover">
             
             <video
                 className="w-full max-w-[700px] aspect-[700/630] "
@@ -59,10 +71,9 @@ return (
 
         {/* 右侧内容 */}
         <div className="flex flex-col  text-left items-start  gap-y-[32px] w-1/2">
-
+          {/* Ubuntu not works*/}
             <h1 className="text-[3.33vw]
                 font-Ubuntu
-                font-light
                 text-[#505D90]
                 max-w-[447px]
                 leading-[5vw]
@@ -84,19 +95,48 @@ return (
             </h1>
             
 
-            <div className="flex flex-row bg-black items-center w-[30.76vw] space-x-[1.555vw] ml-[5vw] ">
+            <div className="flex flex-row
+             items-center
+             w-[30.76vw]
+             space-x-[1.555vw] ml-[5vw] ">
             
             {/* 左 */}
-            <div className="flex items-center bg-black bg-gray-100 rounded-full shadow-md  w-[22.3vw] aspect-[321/50] max-w-[321px] ">
+            <div className="flex items-center
+             bg-[#E8EBF6]
+             rounded-full
+             shadow-md
+             w-[22.3vw]
+             aspect-[321/50]
+             max-w-[321px] ">
+
             <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 bg-transparent text-[0.9027vw]  outline-none text-gray-600 placeholder-gray-400 px-4"
+                className="flex-1 bg-transparent text-[0.9027vw]
+                outline-none t
+                ext-gray-600
+                placeholder-gray-400
+                px-4"
             />
             <button 
-                className="bg-custom-gradient text-white font-bold w-[9.17vw] aspect-[132/50] max-w-[132px] ml-[-9.17vw] rounded-full shadow-md transition duration-10 hover:brightness-75 h-full"
+                className="bg-custom-gradient
+                 text-white
+                 font-bold
+                 w-[9.17vw]
+                 aspect-[132/50]
+                 max-w-[132px]
+                 ml-[-9.17vw]
+                 rounded-full
+                 shadow-md
+                 flex items-center justify-center
+                 transition
+                 duration-10
+                 hover:brightness-75
+                 h-full"
                 onClick={handleOpenPopup}>
-                <span className="text-[1.111vw] max-w-[79px]">Subscribe</span>
+                <span className="text-[1.111vw]
+                max-w-[79px]">
+                Subscribe</span>
             </button>
 
             {/* 弹窗 */}
@@ -129,7 +169,11 @@ return (
             </div>
 
                 {/* 右 */}
-                <span className=" text-[0.9027vw] max-w-[38px] text-gray-600 whitespace-nowrap">or join</span>
+                <span className=" text-[0.9027vw]
+                max-w-[38px]
+                text-[#A4AAC2]
+                whitespace-nowrap">
+                 or join</span>
 
                 <Link href = 'https://discord.gg/676cBXbZhW'>
                 <Image
