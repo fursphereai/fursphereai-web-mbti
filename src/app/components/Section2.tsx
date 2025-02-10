@@ -2,7 +2,7 @@
 import React,{ useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from "next/link";
-
+//testing
 const Section2 = () => {
 
 const videoRefs = useRef<HTMLVideoElement | null>(null);
