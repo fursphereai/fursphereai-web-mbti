@@ -1,22 +1,17 @@
 "use client";
 
 import React,{ useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import styles from './Home.module.css'; 
-import Link from "next/link";
+import Header from './components/Header';
+import Section1 from './components/section1';
+import Section2 from './components/Section2';
+import Section3 from './components/Section3';
+import Section4 from './components/Section4';
+import Section5 from './components/Section5';
+import Section6 from './components/Section6';
 
 const Home = () => {
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false); 
-  // 打开弹窗
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
 
-  // 关闭弹窗
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
-  };
 
   const [avatarUrl, setAvatarUrl] = useState(''); 
 
@@ -25,567 +20,57 @@ const Home = () => {
     setAvatarUrl(`/api/proxy/${encodeURIComponent(avatarPath)}`);
   }, []);
 
-  const video1Ref = useRef<HTMLVideoElement | null>(null);
-  const videoRefs = [
-    useRef<HTMLVideoElement | null>(null),
-    useRef<HTMLVideoElement | null>(null),
-    useRef<HTMLVideoElement | null>(null),
-  ];
-  const hasPlayed = useRef([false, false, false]); // 标记每个视频是否已滚动触发过播放
 
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const video = video1Ref.current;
-      if (video) {
-        console.log("Playing video every 20 seconds...");
-        video?.play(); // 播放视频
-        setTimeout(() => {
-          video.pause(); // 播放完成后暂停，停留在最后一帧
-          console.log("Paused video on the last frame.");
-        }, video.duration * 1000); // 根据视频时长暂停
-      }
-    }, 10000); // 每隔 20 秒触发一次
-
-    // 清理定时器
-    return () => clearInterval(interval);
-  }, []);
+  // const hasPlayed = useRef([false, false, false]); 
 
 
-  // 监听滚动触发播放
-  useEffect(() => {
-    const observers = videoRefs.map((videoRef, index) => {
-      const video = videoRef.current;
+  // useEffect(() => {
+  //   const observers = videoRefs.map((videoRef, index) => {
+  //     const video = videoRef.current;
 
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          console.log(`Video ${index + 1} intersection ratio:`, entry.intersectionRatio);
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.99 && !hasPlayed.current[index]) {
-            console.log(`Playing video ${index + 1} due to scroll...`);
-            video?.play();
-            hasPlayed.current[index] = true; // 标记视频已滚动触发播放
-          }
-        },
-        { threshold: 0.99 } // 接近 100% 可见时触发
-      );
+  //     const observer = new IntersectionObserver(
+  //       ([entry]) => {
+  //         console.log(`Video ${index + 1} intersection ratio:`, entry.intersectionRatio);
+  //         if (entry.isIntersecting && entry.intersectionRatio >= 0.99 && !hasPlayed.current[index]) {
+  //           console.log(`Playing video ${index + 1} due to scroll...`);
+  //           video?.play();
+  //           hasPlayed.current[index] = true; 
+  //         }
+  //       },
+  //       { threshold: 0.99 } 
+  //     );
 
-      if (video) {
-        observer.observe(video);
-      }
+  //     if (video) {
+  //       observer.observe(video);
+  //     }
 
-      return observer;
-    });
+  //     return observer;
+  //   });
 
-    // 清理观察器
-    return () => {
-      observers.forEach((observer, index) => {
-        const video = videoRefs[index].current;
-        if (video) {
-          observer.unobserve(video);
-        }
-      });
-    };
-  }, []);
 
-  const handleMouseEnter = (index: number) => {
-    const video = videoRefs[index].current;
-    if (video) {
-      console.log(`Mouse entered video ${index + 1}, playing...`);
-      video?.play();
-    }
-  };
-  
-  const [menuOpen, setMenuOpen] = useState(false); // 控制菜单状态
+  //   return () => {
+  //     observers.forEach((observer, index) => {
+  //       const video = videoRefs[index].current;
+  //       if (video) {
+  //         observer.unobserve(video);
+  //       }
+  //     });
+  //   };
+  // }, []);
 
-  const toggleMenu = () => {
-    console.log('Menu toggled');
-    setMenuOpen(!menuOpen); // 切换菜单
-  
-  }
-  const closeMenu = () => setMenuOpen(false); // 关闭菜单
- 
 
   return (
     <div className = "relative aspect-[1440/3742] bg-[#FFFFFF] ">
-    {/* Add a top bar here */}
- 
-    <header className="flex items-center fixed top-0  h-[90px] bg-[#FFFFFF]  border-b border-[#E8EBF6] w-full max-w-screen-[1440px]  z-10 sm:overflow-visible overflow-x-auto">
-     
-      
-        <button
-          className="sm:hidden flex items-center justify-center w-10 h-10 bg-black"
-          onClick={toggleMenu}
-        >
-          {/* <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-blue-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg> */}
-        </button>
-
-
-        <nav
-        className={`${
-          menuOpen ? 'block' : 'hidden'
-        } sm:hidden flex flex-col items-start w-full absolute left-0 top-[90px] bg-white border border-[#E8EBF6] p-4 gap-y-2 z-10`}
-      >
-        <Link href="#home" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-          Home
-        </Link>
-        <Link href="#MBTI" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-          MBTI
-        </Link>
-        <Link href="#Partnership" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-          Partnership
-        </Link>
-        <Link href="#about" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-          About
-        </Link>
-      </nav>
-        <nav className="hidden sm:flex flex-row justify-end items-center gap-x-[20px] absolute right-[283.14px]">
-          <Link href="#home" className="text-[16px] px-3 py-2 md:py-2 text-[#1A1D1F] hover:text-blue-700">
-            Home
-          </Link>
-          <Link href="#MBTI" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-            MBTI
-          </Link>
-          <Link href="#Partnership" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-            Partnership
-          </Link>
-          <Link href="#about" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-            About
-          </Link>
-        </nav>
-        
-          <div className=" absolute w-[210px] h-[64px] left-[75px] ">
-            <Image src="/logo.svg" alt="FurSphere Logo"  layout="responsive"  width = "210" height= "64" />
-          </div>
-          
-        
-
-          {/* 右侧导航菜单
-          <nav className= " hidden  sm: absolute right-[283.14px] flex flex-row justify-end items-center gap-x-[20px] ">
-            <Link href="#home" className="text-[16px] px-3 py-2 md:py-2 text-[#1A1D1F] hover:text-blue-700">
-              Home
-            </Link>
-            <Link href="#MBTI" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-              MBTI
-            </Link>
-            <Link href="#Partnership" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-              Partnership
-            </Link>
-            <Link href="#about" className="text-[16px] px-3 py-2 text-[#1A1D1F] hover:text-blue-700">
-              About
-            </Link>
-          </nav> */}
-
-          {/* 右侧按钮 */}
-          
-          <button className=" absolute w-[149px] h-[48px] right-[80px] text-[16px] bg-custom-gradient text-white rounded-full  transition duration-10 hover:brightness-75">
-              Sign up
-          </button>
-    
-  
-    </header>
- 
-   
-      
-
+      <Header/>
       <main className = 'bg-[#FFFFFF]'> 
-        {/* 第一页 */}
-      <section className="relative  mt-[90px]  flex flex-col md:flex-row max-w-[1440px] aspect-[1440/640] bg-[#ffffff] mx-auto">
-        {/* 左侧内容 */}
-        <div className="flex flex-col  bg-black  items-center  w-1/2  aspect-[1440/640] object-cover">
-        
-          <video
-            className="w-full max-w-[700px] aspect-[700/630] "
-            ref = {video1Ref}
-            autoPlay 
-            loop = {false}
-            muted
-            style={{
-              clipPath: "inset(1% 1% 1% 1%)", 
-            }}
-          >
-            <source src="/video/landing.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-         
-        </div>
-        
-
-       {/* 右侧内容 */}
-       <div className="flex flex-col  text-left items-start  gap-y-[32px] w-1/2">
-          
-          <h1 className="text-[3.33vw] font-Ubuntu text-[#505D90] max-w-[447px]  leading-[5vw] mt-[12vh] ml-[5vw]">
-            A pet concierge that<br />
-            manages your pets <br /> 
-            <span className="font-balooExtraBold text-[4.44vw] text-[#5777D0]">HEALTH</span>
-          </h1>
-          
-
-          <div className="flex flex-row bg-black items-center w-[30.76vw] space-x-[1.555vw] ml-[5vw] ">
-          
-           {/* 左 */}
-          <div className="flex items-center bg-black bg-gray-100 rounded-full shadow-md  w-[22.3vw] aspect-[321/50] max-w-[321px] ">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="flex-1 bg-transparent text-[0.9027vw]  outline-none text-gray-600 placeholder-gray-400 px-4"
-          />
-          <button 
-            className="bg-custom-gradient text-white font-bold w-[9.17vw] aspect-[132/50] max-w-[132px] ml-[-9.17vw] rounded-full shadow-md transition duration-10 hover:brightness-75 h-full"
-            onClick={handleOpenPopup}>
-            <span className="text-[1.111vw] max-w-[79px]">Subscribe</span>
-          </button>
-
-          {/* 弹窗 */}
-          {isPopupOpen && (
-            <div
-              className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 
-                transition-opacity duration-300 ease-in-out ${
-                  isPopupOpen ? "opacity-100" : "opacity-0"
-                }`}
-            >
-              <div
-                className={`bg-white rounded-3xl p-8 shadow-lg max-w-md w-full transform transition-transform duration-300 ease-in-out 
-                  ${isPopupOpen ? "scale-100" : "scale-90"}`}
-              >
-                <h2 className="text-xl font-semibold mb-4">Success!</h2>
-                <p className="text-gray-600 mb-6">
-                  Please check your email address for additional instructions
-                </p>
-                <div className="flex justify-end">
-                  <button
-                    onClick={handleClosePopup}
-                    className="px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-500"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-          </div>
-
-              {/* 右 */}
-              <span className=" text-[0.9027vw] max-w-[38px] text-gray-600 whitespace-nowrap">or join</span>
-
-              <Link href = 'https://discord.gg/676cBXbZhW'>
-              <Image
-                src="/discord-icon.svg"
-                alt="Discord Icon"
-                width={50}
-                height={50}
-                className="w-[3.472vw] max-w-[50px] h-auto transition duration-10 hover:brightness-75"
-              />
-              </Link>
-        
-          </div>
-          
-          <div className="flex items-center space-x-[2vw]  ml-[5vw]">
-           {/* <Link> */}
-              <Image
-                src="/apple-logo.svg"
-                alt="Apple"
-                width={201}
-                height={59}
-                className="w-[20vw] max-w-[201px] h-auto transition duration-10 hover:brightness-75"
-              />
-            {/* </Link> */}
-            {/* <Link> */}
-              <Image
-                src="/google-logo.svg"
-                alt="Google"
-                width={201}
-                height={59}
-                className="w-[20vw] max-w-[201px] h-auto transition duration-10 hover:brightness-75"
-              />
-            {/* </Link> */}
-          </div>
-        </div>
-        </section>
-
-      {/* 第二页 */}
-
-      <section className="flex flex-row justify-center max-w-screen-2xl aspect-[1440/640] mx-auto bg-[#ffffff]">
-       {/* 左侧内容 */}
-       <div className="flex flex-col mt-20 ml-20 items-start w-1/2 h-100 text-left space-y-10">
-
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-Ubuntu text-[#505D90] w-3/4 leading-snug">
-           Compare prices across<br />
-           <span className="text-4xl md:text-5xl lg:text-6xl font-Ubuntu text-[#5777D0]">10+</span> stores best pet  <br />
-           supplies.
-          </h1>
-          
-
-    
-          
-          <div className="flex items-center bg-gray-100 rounded-full shadow-md  max-w-lg w-40 h-16">
-          <button className="bg-custom-gradient text-white font-bold px-6 py-2 rounded-full shadow-md transition duration-10 hover:brightness-75 w-full h-full">
-            Sign Up
-          </button>
-          </div>
-
-            
-        </div>
-          
-      {/* 右侧内容 */}
-      <div className="flex flex-col  items-center w-full lg:w-1/2">
-        
-
-        <div className="w-full ">
-         
-          <video
-            className="w-full rounded-[200px] "
-            ref={videoRefs[0]}
-            autoPlay
-            loop = {false}
-            muted
-            onMouseEnter={() => handleMouseEnter(0)} 
-            style={{
-              clipPath: "inset(1% 1% 1% 1%)", 
-            }}
-          >
-            <source src="/video/page1.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-         
-        </div>
-        </div>
-      </section>
-      
-      {/* 第三页 */}
-
-      <section className="flex flex-row justify-center  max-w-screen-2xl mx-auto bg-[#ffffff]">
-
-          
-      {/* 左侧内容 */}
-      <div className="flex flex-col  items-center w-full lg:w-1/2">
-        
-
-        <div className="w-full ">
-         
-          <video
-            className="w-full rounded-[200px]"
-            ref={videoRefs[1]}
-            autoPlay
-            loop = {false}
-            muted
-            onMouseEnter={() => handleMouseEnter(1)}
-            style={{
-              clipPath: "inset(1% 1% 1% 1%)", 
-            }}
-          >
-            <source src="/video/page2.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-         
-        </div>
-        </div>
-        {/* 右侧内容 */}
-       <div className="flex flex-col mt-20 ml-20 items-start w-1/2 space-y-10">
-
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-Ubuntu text-[#505D90] w-full leading-snug">
-        Help you know <span className="text-4xl md:text-5xl lg:text-6xl text-[#5777D0]">everything</span> <br />
-        about your pet, even when<br />
-        not at home.
-        </h1>
-
-
-        <div className="flex items-center bg-gray-100 rounded-full shadow-md  max-w-lg w-40 h-16">
-        <button className=" bg-custom-gradient text-white font-bold px-6 py-2 rounded-full shadow-md transition duration-10 hover:brightness-75 w-full h-full">
-          Subscribe
-        </button>
-        </div>
-
-          
-        </div>
-      </section>
-
-      {/* 第四页 */}
-
-      <section className="flex flex-row justify-center max-w-screen-2xl mx-auto bg-[#ffffff]">
-       {/* 左侧内容 */}
-       <div className="flex flex-col mt-20 ml-20 items-start w-1/2  text-left space-y-10">
-
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-Ubuntu text-[#505D90] w-full leading-snug">
-          Convert medical records <br />into <span className="text-4xl md:text-5xl lg:text-6xl text-[#5777D0]">pet parent-friendly</span>  <br /> 
-          terms for easier  <br />understanding.
-          </h1>
-          
-
-    
-          <Link href  = 'https://discord.gg/676cBXbZhW'>
-          <div className="flex items-center bg-gray-100 rounded-full shadow-md  max-w-lg w-40 h-16">
-          <button className="bg-custom-gradient text-white font-bold px-6 py-2 rounded-full shadow-md transition duration-10 hover:brightness-75 w-full h-full">
-            Join Discord
-          </button>
-          </div>
-          </Link>
-
-            
-        </div>
-          
-      {/* 右侧内容 */}
-      <div className="flex flex-col  items-center w-full lg:w-1/2">
-        
-
-        <div className="w-full ">
-         
-          <video
-            className="w-full rounded-[200px]"
-            ref={videoRefs[2]}
-            autoPlay
-            loop = {false}
-            muted
-            onMouseEnter={() => handleMouseEnter(2)}
-            style={{
-              clipPath: "inset(1% 1% 1% 1%)", 
-            }}
-          >
-            <source src="/video/page3.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-         
-        </div>
-        </div>
-      </section>
-
-       {/* 第五页 */}
-
-      <section className="flex mt-20 justify-center  max-w-screen-2xl mx-auto bg-[#ffffff]">
-      <div className="relative w-full h-full">
-        <img
-          src="/page5.svg"
-          alt="Example"
-          className="w-full h-full object-cover rounded-lg"
-        />
-       
-        <div className="absolute top-32 left-40">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-Ubuntu text-[#3E3E3E] w-full leading-snug">
-           FurSphere gives you an <br />
-           all-in-one <span className="text-4xl md:text-5xl lg:text-6xl text-[#5777D0]">AI pet care</span> <br/>
-           <span className="text-4xl md:text-5xl lg:text-6xl text-[#5777D0]">companion</span> <br />
-           anytime, anywhere
-          </h1>
-        </div>
-        
-      </div>
-      
-      </section>
-       {/* 第六页 */}
-
-       <section className="flex justify-center max-w-screen-2xl mx-auto bg-[#ffffff]">
-       <div className="relative w-full h-full mt-20 mb-20">
-        <img
-          src="/page6.svg"
-          alt="Example"
-          className="w-full h-full object-cover rounded-lg"
-        />
-       
-        <div className="absolute top-12 left-20">
-        <div className="flex flex-row items-center space-x-8 lg:space-y-0 lg:space-x-4 ">
-          
-          <div className="flex items-center px-0 py-0 bg-gray-100 rounded-full shadow-md  max-w-lg h-16">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="flex-1 bg-transparent  outline-none text-gray-600 placeholder-gray-400 px-4"
-          />
-          <button className="bg-custom-gradient text-white font-bold px-6 py-2 rounded-full shadow-md transition duration-10 hover:brightness-75 h-full">
-            Subscribe
-          </button>
-          </div>
-
-            <div className="flex items-center space-x-4">
-              <span className="text-white">or join</span>
-              <Link href= "https://discord.gg/676cBXbZhW">
-              <Image
-                src="/discord-icon.svg"
-                alt="Discord Icon"
-                width={75}
-                height={75}
-                className = "transition duration-10 hover:brightness-75"
-              />
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="absolute top-[80px] right-[350px]">
-        <h1 className=" font-Inter text-white text-[14px] leading-[14px] tracking-[-0.04em]">
-         Company
-          </h1>
-        </div>
-
-        <div className="absolute top-[120px] right-[328px]">
-        <h1 className="font-Inter text-white text-[14px] leading-[14px] tracking-[-0.04em] leading-normal">
-           Terms of Use <br />
-           Support <br />
-           Privacy Policy <br />
-          </h1>
-        </div>
-
-        <div className="absolute top-[80px] right-[100px]">
-        <h1 className=" font-Inter text-white text-[14px] leading-[14px] tracking-[-0.04em]">
-         Contact
-          </h1>
-        </div>
-
-        <div className="absolute top-[120px] right-[96px]">
-        <h1 className="font-Inter text-white text-[14px] leading-[14px] tracking-[-0.04em] leading-normal">
-        <a
-          href="https://linkedin.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:underline"
-        >
-          Linkedin
-        </a>
-           <br />
-           Youtube <br />
-          </h1>
-        </div>
-        
-        <div className="absolute bottom-24 left-20">
-        <Image
-                src="/bottomlogo.svg"
-                alt="Bottom Logo"
-                width={200}
-                height={200}
-        />
-        </div>
-
-
-        <div className="absolute bottom-20 left-24">
-        <h1 className=" font-Inter text-white text-[14px] leading-[14px] tracking-[-0.04em]">
-         Copyright © 2025 FurSphere. All rights reserved.
-          </h1>
-        </div>
-
-        <div className="absolute bottom-12 right-20">
-        <h1 className=" font-balooExtraBold text-white text-[96px] leading-[96px] tracking-[-0.04em]">
-           Start Caring More.
-          </h1>
-        </div>
-
-      </div>
-      
-      </section>
-
+      <Section1/>
+      <Section2/>
+      <Section3/>
+      <Section4/>
+      <Section5/>
+      <Section6/>
       </main>
-      
-      
     </div>
   );
 };

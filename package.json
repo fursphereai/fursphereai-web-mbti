@@ -13,7 +13,6 @@
   },
   "license": "ISC",
   "author": "",
-  "type": "module",
   "main": "postcss.config.js",
   "scripts": {
     "dev": "next dev",
@@ -26,6 +25,7 @@
     "cors": "^2.8.5",
     "next": "^15.1.6",
     "node-fetch": "^3.3.2",
+    "pg": "^8.13.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
