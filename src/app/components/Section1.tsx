@@ -151,7 +151,12 @@ return (
                     className={`bg-white rounded-3xl p-8 shadow-lg max-w-md w-full transform transition-transform duration-300 ease-in-out 
                     ${isPopupOpen ? "scale-100" : "scale-90"}`}
                 >
-                    <h2 className="text-xl font-semibold mb-4">Success!</h2>
+                    <h2 className="text-xl
+                     font-semibold
+                     text-[#505D90]
+                     mb-4">
+                     Success!</h2>
+
                     <p className="text-gray-600 mb-6">
                     Please check your email address for additional instructions
                     </p>
