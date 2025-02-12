@@ -38,6 +38,7 @@ const handleClosePopup = () => {
 return (
     <section className="relative
     mt-[90px]
+    items-center
     flex flex-col md:flex-row
     max-w-[1440px]
     aspect-[1440/640]
@@ -70,17 +71,26 @@ return (
             
 
         {/* 右侧内容 */}
-        <div className="flex flex-col  text-left items-start  gap-y-[32px] w-1/2">
-          {/* Ubuntu not works*/}
+        <div className="relative
+        items-center
+        flex flex-col
+        text-left
+        gap-y-[32px]
+        md:w-1/2
+        md:items-start
+        w-full">
+
+
             <h1 className="text-[3.33vw]
                 font-UbuntuLight
                 text-[#505D90]
                 max-w-[447px]
                 leading-[5vw]
+                tracking-[-0.04em]
                 mt-[12vh]
                 ml-[5vw]">
                 A pet concierge that<br />
-                manages your pets' <br />
+                manages your pets’ <br />
 
                 <span className="font-balooExtraBold
                 text-[4.44vw]
@@ -101,7 +111,7 @@ return (
              space-x-[1.555vw] ml-[5vw] ">
             
             {/* 左 */}
-            <div className="flex items-center
+            <div className=" flex items-center
              bg-[#E8EBF6]
              rounded-full
              shadow-md
@@ -113,8 +123,8 @@ return (
                 type="email"
                 placeholder="Enter your email"
                 className="flex-1 bg-transparent text-[0.9027vw]
-                outline-none t
-                ext-gray-600
+                outline-none
+                text-gray-600
                 placeholder-gray-400
                 px-4"
             />
@@ -174,7 +184,8 @@ return (
             </div>
 
                 {/* 右 */}
-                <span className=" text-[0.9027vw]
+                <span className=" relative
+                text-[0.9027vw]
                 max-w-[38px]
                 text-[#A4AAC2]
                 whitespace-nowrap">
@@ -192,7 +203,7 @@ return (
             
             </div>
             
-            <div className="flex items-center space-x-[2vw]  ml-[5vw]">
+            <div className=" flex items-center space-x-[2vw]  ml-[5vw]">
             {/* <Link> */}
                 <Image
                     src="/apple-logo.svg"
