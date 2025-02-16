@@ -5,26 +5,48 @@ import Link from "next/link";
 
 const Section1 = () => {
 
-const video1Ref = useRef<HTMLVideoElement | null>(null);
-const [isPopupOpen, setIsPopupOpen] = useState(false); 
+    const video1Ref = useRef<HTMLVideoElement | null>(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-useEffect(() => {
-    const interval = setInterval(() => {
-      const video = video1Ref.current;
-      if (video) {
-        console.log("Playing video every 20 seconds...");
-        video?.play(); // 播放视频
+    const textSequence = ["HEALTH", "FOOD", "DAILY LIVES"];
+    const [displayText, setDisplayText] = useState(textSequence[0]);
+    const [fade, setFade] = useState(true);
+
+    useEffect(() => {
+        // Video playback control
+        const videoInterval = setInterval(() => {
+            const video = video1Ref.current;
+            if (video) {
+                console.log("Playing video every 20 seconds...");
+                video.play();
+
         setTimeout(() => {
-          video.pause(); 
-          console.log("Paused video on the last frame.");
-        }, video.duration * 1000); 
+            video.pause();
+            console.log("Paused video on the last frame.");
+            }, video.duration * 1000);
       }
-    }, 10000); // 每隔 20 秒触发一次
+    }, 20000); // Play video every 20 seconds
 
- 
-    return () => clearInterval(interval);
+    // Text cycling logic (every 5 seconds)
+    let textIndex = 0;
+    const textInterval = setInterval(() => {
+        setFade(false); // Start fade-out effect
+          setTimeout(() => {
+                textIndex = (textIndex + 1) % textSequence.length;
+                setDisplayText(textSequence[textIndex]);
+                setFade(true); // Start fade-in effect
+                }, 2000);// Adjust the transition time here
+            },3000);// Faster cycle: 4s visible + 1.5s transition
+
+
+    // Cleanup intervals on unmount
+    return () => {
+      clearInterval(videoInterval);
+      clearInterval(textInterval);
+    };
   }, []);
-  
+
+
  // 打开弹窗
 const handleOpenPopup = () => {
   setIsPopupOpen(true);
@@ -36,31 +58,32 @@ const handleClosePopup = () => {
 };
 
 return (
-    <section className="relative
+    <section className="
     mt-[90px]
     items-center
     flex flex-col md:flex-row
     max-w-[1440px]
     aspect-[1440/640]
     bg-[#ffffff]
-    mx-auto">
+    mx-auto
+    ">
 
             {/* 左侧内容 */}
             <div className="flex flex-col
-            bg-[#ffffff]
+            bg-black
             items-center
             w-1/2
             aspect-[1440/640]
             object-cover">
             
             <video
-                className="w-full max-w-[700px] aspect-[700/630] "
+                className="relative w-full max-w-[700px] aspect-[700/630]"
                 ref = {video1Ref}
-                autoPlay 
+                autoPlay
                 loop = {false}
                 muted
                 style={{
-                clipPath: "inset(1% 1% 1% 1%)", 
+                clipPath: "inset(1% 1% 1% 1%)",
                 }}
             >
                 <source src="/video/landing.mp4" type="video/mp4" />
@@ -71,7 +94,7 @@ return (
             
 
         {/* 右侧内容 */}
-        <div className="relative
+        <div className="
         items-center
         flex flex-col
         text-left
@@ -81,13 +104,14 @@ return (
         w-full">
 
 
-            <h1 className="text-[3.33vw]
+            <h1 className="
+                text-[3.33vw]
                 font-UbuntuLight
                 text-[#505D90]
                 max-w-[447px]
                 leading-[5vw]
                 tracking-[-0.04em]
-                mt-[12vh]
+                mt-[3vh]
                 ml-[5vw]">
                 A pet concierge that<br />
                 manages your pets’ <br />
@@ -101,14 +125,15 @@ return (
                 bg-clip-text
                 text-transparent
                 ">
-                HEALTH</span>
+                {displayText} </span>
             </h1>
             
 
             <div className="flex flex-row
              items-center
              w-[30.76vw]
-             space-x-[1.555vw] ml-[5vw] ">
+             space-x-[1.555vw]
+              ml-[10vw] ">
             
             {/* 左 */}
             <div className=" flex items-center
@@ -203,14 +228,15 @@ return (
             
             </div>
             
-            <div className=" flex items-center space-x-[2vw]  ml-[5vw]">
+            <div className="flex items-center space-x-[2vw]  ml-[5vw]">
             {/* <Link> */}
                 <Image
                     src="/apple-logo.svg"
                     alt="Apple"
                     width={201}
-                    height={59}
-                    className="w-[20vw] max-w-[201px] h-auto transition duration-10 hover:brightness-75"
+                    height={59.21}
+                    className="h-auto transition duration-300 hover:brightness-75
+                               sm:w-[15.5vw] md:w-[14.5vw] lg:w-[13.5vw]"
                 />
                 {/* </Link> */}
                 {/* <Link> */}
@@ -218,8 +244,9 @@ return (
                     src="/google-logo.svg"
                     alt="Google"
                     width={201}
-                    height={59}
-                    className="w-[20vw] max-w-[201px] h-auto transition duration-10 hover:brightness-75"
+                    height={59.21}
+                    className=" h-auto transition duration-300 hover:brightness-75,
+                               sm:w-[15.5vw]  md:w-[14.5vw] lg:w-[13.5vw]"
                 />
                 {/* </Link> */}
             </div>
