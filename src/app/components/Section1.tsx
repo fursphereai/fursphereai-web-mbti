@@ -58,7 +58,7 @@ return (
             
 
         {/* 右侧内容 */}
-        <div className="flex flex-col  text-left items-start  gap-y-[32px] w-1/2">
+        <div className="flex flex-col bg-black text-left items-start  gap-y-[32px] w-1/2">
             
             <h1 className="text-[3.33vw] font-Ubuntu text-[#505D90] max-w-[447px]  leading-[5vw] mt-[12vh] ml-[5vw]">
                 A pet concierge that<br />
