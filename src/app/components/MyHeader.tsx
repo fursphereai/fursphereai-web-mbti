@@ -56,7 +56,7 @@ const Header = () => {
       About
     </Link>
   </nav>
-    <nav className="hidden sm:flex flex-row justify-end items-center gap-x-[20px] absolute right-[283.14px]">
+    <nav className="hidden sm:flex flex-col md:flex-row justify-end items-center gap-x-[20px] absolute right-[283.14px]">
       <Link href="#home" className="text-[16px] px-3 py-2 md:py-2 text-[#1A1D1F] hover:text-blue-700">
         Home
       </Link>
