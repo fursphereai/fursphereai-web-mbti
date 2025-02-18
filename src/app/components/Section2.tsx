@@ -1,71 +1,52 @@
+import React, { useRef } from "react";
 
-import React,{ useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import Link from "next/link";
-//testing
 const Section2 = () => {
+    const videoRefs = useRef<HTMLVideoElement | null>(null);
 
-const videoRefs = useRef<HTMLVideoElement | null>(null);
+    const handleMouseEnter = () => {
+        if (videoRefs.current) {
+            videoRefs.current.play();
+        }
+    };
 
+    return (
+        <section className="flex flex-col lg:flex-row justify-between items-center max-w-screen-2xl mx-auto bg-[#ffffff] px-6 md:px-12 lg:px-20 py-12 gap-x-16">
+            {/* Left Side - Text Content */}
+            <div className="flex flex-col items-start w-full lg:w-[45%] text-left space-y-6 min-w-0">
+                <h1 className="text-[clamp(24px,5vw,48px)] font-Ubuntu text-[#505D90] leading-snug">
+                    Compare prices across <br />
+                    <span className="text-[clamp(28px,6vw,56px)] font-Ubuntu text-[#5777D0]">
+                        10+
+                    </span>{" "}
+                    stores best pet <br />
+                    supplies.
+                </h1>
 
-const handleMouseEnter = (index: number) => {
-    const video = videoRefs.current;
-    if (video) {
-      console.log(`Mouse entered video ${index + 1}, playing...`);
-      video?.play();
-    }
+                <div className="flex justify-start w-full">
+                    <button className="signup-button">Sign up</button>
+                </div>
+            </div>
+
+            {/* Right Side - Video with Adjusted Position */}
+            <div className="flex justify-center lg:justify-end w-full lg:w-[55%] min-w-0 mt-100 lg:mt-0 relative ml-12 sm:ml-16 lg:ml-0">
+              
+                <video
+                    className="w-full h-full rounded-[10vw] object-cover"
+                    ref={videoRefs}
+                    autoPlay
+                    loop
+                    muted
+                    onMouseEnter={handleMouseEnter}
+                    style={{
+                        clipPath: "inset(1% 1% 1% 1%)",
+                    }}
+                >
+                    <source src="/video/page1.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+    );
 };
 
-
-return (
-    <section className="flex flex-row justify-center max-w-screen-2xl aspect-[1440/640] mx-auto bg-[#ffffff]">
-       {/* 左侧内容 */}
-       <div className="flex flex-col mt-20 ml-20 items-start w-1/2 h-100 text-left space-y-10">
-
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-Ubuntu text-[#505D90] w-3/4 leading-snug">
-           Compare prices across<br />
-           <span className="text-4xl md:text-5xl lg:text-6xl font-Ubuntu text-[#5777D0]">10+</span> stores best pet  <br />
-           supplies.
-          </h1>
-          
-
-    
-          
-          <div className="flex items-center bg-gray-100 rounded-full shadow-md  max-w-lg w-40 h-16">
-          <button className="bg-custom-gradient text-white font-bold px-6 py-2 rounded-full shadow-md transition duration-10 hover:brightness-75 w-full h-full">
-            Sign Up
-          </button>
-          </div>
-
-            
-        </div>
-          
-      {/* 右侧内容 */}
-      <div className="flex flex-col  items-center w-full lg:w-1/2">
-        
-
-        <div className="w-full ">
-         
-          <video
-            className="w-full rounded-[200px] "
-            ref={videoRefs}
-            autoPlay
-            loop = {false}
-            muted
-            onMouseEnter={() => handleMouseEnter(0)} 
-            style={{
-              clipPath: "inset(1% 1% 1% 1%)", 
-            }}
-          >
-            <source src="/video/page1.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-         
-        </div>
-        </div>
-     </section>
-)
-}
-
- export default Section2;
-
+export default Section2;
