@@ -17,6 +17,7 @@ module.exports = {
         balooExtraBold: ['"Baloo 2 ExtraBold"', "sans-serif"],
         Inter: ['"Inter"', "sans-serif"],
         Ubuntu: ['"Ubuntu"', "sans-serif"],
+        UbuntuLight: ['"Ubuntu Light"', "sans-serif"],
       },
     },
   },

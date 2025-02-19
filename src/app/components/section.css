@@ -1,0 +1,177 @@
+/* Section 2 - Container */
+.section {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center;
+    justify-content: center; */
+    max-width: 1440px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1440 / 640;
+}
+
+.section-5 {
+    display: flex;
+    flex-direction: row;
+    background-color: #E8EBF6;
+    max-width: 1240px;
+    width: 95%;
+    margin-left: 2.5%;
+    border-radius: 25px;
+    height: auto;
+    aspect-ratio: 1240 / 465;
+}
+
+.section-6 {
+    display: flex;
+    flex-direction: row;
+    background-color: #5777D0;
+    max-width: 1240px;
+    width: 95%;
+    margin-left: 2.5%;
+    border-radius: 25px;
+    height: auto;
+    aspect-ratio: 1240 / 465;
+}
+
+
+
+/* Left Side - Text Content */
+.section-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 34.9%;
+    margin-left: 8.7%;
+    margin-top: 8.5%;
+    max-width: 503px;
+
+}
+
+
+.section-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 50%;
+    margin-left: 3.88%;
+    margin-top: 8.5%;
+    max-width: 630px;
+
+
+
+}
+
+.section-text {
+   
+    color: #505D90;
+    font-family: 'Ubuntu', sans-serif;
+
+}
+/*  min-w-0 mt-100 lg:mt-0 relative ml-12 sm:ml-16 lg:ml-0 */
+.section-vedio {
+    display: flex;
+    justify-content: center;
+    width: 43.75%;
+    margin-left: 10%;
+}
+
+.section-image {
+    display: flex;
+    justify-content: center;
+    width: 52.75%;
+    margin-left: 18.12%;
+}
+
+
+
+.section-vedio-left {
+    display: flex;
+    justify-content: center;
+    width: 43.75%;
+    margin-left: 3%;
+}
+
+.signup-button {
+    background: linear-gradient(135deg, #5676CF, #AFBFE9);
+    color: white;
+    font-weight: 700;
+    font-size: clamp(8px, 1.5vw, 16px);
+    border-radius: 24px;
+    aspect-ratio: 149 / 48;
+    margin-top: 8%;
+    border: none;
+    transition: filter 0.3s ease;
+}
+
+
+
+.highlight {
+    font-size: 48px;
+    color: #5777D0;
+}
+
+
+
+.signup-button:hover {
+    filter: brightness(0.85);
+}
+
+
+
+.video-element {
+    width: 100%;
+    border-radius: 0px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .section {
+        flex-direction: column;
+        justify-content: space-between;
+       
+    }
+    .section-5 {
+        flex-direction: column;
+        justify-content: space-between;
+       
+    }
+
+    .section-left {
+        width: 69.7%;
+    }
+    .section-right {
+        width: 80%;
+        order : 1;
+        margin-left: 9.5%;
+        align-items: flex-end;
+        text-align: flex-end;
+    }
+
+    .section-text {
+        font-size: 24px;
+    }
+
+    .signup-button {
+        width: 74.5px;
+        height: 30px;
+        margin-top: 20px;
+        max-width : 149px;
+    }
+    
+    .section-vedio {
+        
+        width: 87.5%;
+        margin-right: 0px;
+    }
+    .section-vedio-left {
+        
+        width: 87.5%;
+        margin-left: 0px;
+        order: 2;
+    }
+
+}

@@ -1,42 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+# Fursphere - Dev
+
+## Overview
+This is a project bootstrapped with [Next.js](https://nextjs.org/), providing a basic development environment and structure.
+
+---
 
 ## Getting Started
 
-- After cloning, install dependencies:
+### 1. Clone the repository
+To get started, clone the repository to your local machine:
+```bash
+git clone https://github.com/fursphereai/fursphereai-web.git
+cd your-repo-name
+```
 
+### 2. Install dependencies
+Install the necessary dependencies using:
 ```bash
 npm install
 ```
 
-- Run the development server:
-
+### 3. Run the development server
+Start the development server with:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Once the server is running, open your browser and navigate to [http://localhost:3000](http://localhost:3000) to view the application.
+
+---
+
+## Making Changes and Pushing to the Main Branch
+
+### 1. Check the current status
+Check which files have been modified:
+```bash
+git status
 ```
 
-- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Stage your changes
+Add all modified files to the staging area:
+```bash
+git add .
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Commit your changes
+Commit your changes with a meaningful message:
+```bash
+git commit -m "Describe your changes here"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 4. Pull the latest changes from the main branch
+Before pushing, ensure your local branch is up to date with the remote main branch:
+```bash
+git pull origin main
+```
 
-## Learn More
+### 5. Push your changes to the main branch
+Push your changes directly to the main branch:
+```bash
+git push origin main
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes
+- Ensure you have [Node.js](https://nodejs.org/) and [Git](https://git-scm.com/) installed on your system.
+- For a better development experience, use a code editor like [VSCode](https://code.visualstudio.com/).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
