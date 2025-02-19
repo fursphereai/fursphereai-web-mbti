@@ -16,11 +16,11 @@ const Section4 = () => {
   return (
     <section className="section">
       {/* 左侧内容 */}
-      <div className="section-left">
-        <h1 className="section-text md:text-[3vw] max-text-[48px] md:leading-[4vw]">
+      <div className="section-left md:ml-[48px] lg:ml-[97px]">
+        <h1 className="section-text text-[24px] md:text-[36px] lg:text-[48px] max-text-[48px] md:leading-[4vw]">
           Convert medical records <br />
           into 
-          <span className="md:text-[3vw] max-text-[48px] font-Ubuntu text-[#5777D0]">
+          <span className="text-[24px] md:text-[36px] lg:text-[48px] max-text-[48px] font-Ubuntu text-[#5777D0]">
           {" "}pet parent-friendly
           </span> <br />
           terms for easier understanding.

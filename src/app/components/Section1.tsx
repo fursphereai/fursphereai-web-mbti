@@ -70,6 +70,7 @@ return (
     items-center
     flex flex-col md:flex-row
     max-w-[1440px]
+    max-h-[640px]
     aspect-[1440/640]
     bg-[#ffffff]
     mx-auto
@@ -119,7 +120,7 @@ return (
                 text-[#505D90]
                 w-[69.7vw]
                 md:w-[31.0vw]
-                max-w-[447px]
+                max-w-[480px]
                 text-center md:text-left
                 leading-[28.8px]
                 md:leading-[5vw]

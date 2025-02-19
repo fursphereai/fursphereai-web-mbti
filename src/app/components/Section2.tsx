@@ -13,10 +13,10 @@ const Section2 = () => {
     return (
         <section className="section">
             {/* Left Side - Text Content */}
-            <div className="section-left">
-                <h1 className="section-text md:text-[3vw] max-text-[48px] md:leading-[4vw]">
+            <div className="section-left  md:ml-[48px] lg:ml-[97px]">
+                <h1 className="section-text text-[24px] md:text-[36px] lg:text-[48px] max-text-[48px] md:leading-[4vw]">
                     Compare prices across <br />
-                    <span className="md:text-[3vw] max-text-[48px] font-Ubuntu text-[#5777D0]">
+                    <span className="text-[24px] md:text-[36px] lg:text-[48px] max-text-[48px] font-Ubuntu text-[#5777D0]">
                     10+
                     </span> stores best pet <br />
                     supplies.

@@ -36,9 +36,9 @@ const Section3 = () => {
 
       {/* Text Content (Appears first on mobile, right on desktop) */}
       <div className="section-right">
-        <h1 className="section-text text-right md:text-left md:text-[3vw] max-text-[48px] md:leading-[4vw]">
+        <h1 className="section-text text-right md:text-left text-[24px] md:text-[36px] lg:text-[48px] max-text-[48px] md:leading-[4vw]">
           Help you know{" "}
-          <span className="md:text-[3vw] max-text-[48px] font-Ubuntu text-[#5777D0]">
+          <span className="text-[24px] md:text-[36px] lg:text-[48px] max-text-[48px] font-Ubuntu text-[#5777D0]">
             everything
           </span>{" "}
           <br />
