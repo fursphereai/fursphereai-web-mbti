@@ -57,16 +57,11 @@ const handleOpenPopup = () => {
 const handleClosePopup = () => {
   setIsPopupOpen(false);
 };
-// mt-[5.2vh] md:mt-[9.2vh]
-// items-center
-// flex flex-col md:flex-row
-// max-w-[1440px]
-// aspect-[1440/640]
-// bg-[#ffffff]
-// mx-auto
+
 return (
     <section className="
-    mt-[5.2vh] md:mt-[9.2vh]
+
+    mt-[70px] sm:mt-[80px] md:mt-[100px]
     items-center
     flex flex-col md:flex-row
     max-w-[1440px]
@@ -105,34 +100,28 @@ return (
 
         {/* 右侧内容 */}
         <div className="
+      
         items-center
         flex flex-col
         text-left
-        gap-y-[32px]
+        gap-y-[20px] lg:gap-y-[32px]
         w-full md:w-1/2
         md:items-start">
 
 
             <h1 className="
-                text-[24px]
-                md:text-[3.33vw]
+                text-[24px] md:text-[36px] lg:text-[48px]
                 font-UbuntuLight
                 text-[#505D90]
-                w-[69.7vw]
-                md:w-[31.0vw]
-                max-w-[480px]
+                lg:w-[447px] max-w-[480px]
                 text-center md:text-left
-                leading-[28.8px]
-                md:leading-[5vw]
+                md:leading-[48.8px] lg:leading-[57.6px]
                 tracking-[-0.04em]
-                mt-[3vh]
-                md:ml-[5vw]">
+                md:ml-[45px] lg:ml-[80px]">
                 A pet concierge that<br />
                 manages your pets’ <br />
-
                 <span className="font-balooExtraBold
-                text-[32px]
-                md:text-[4.44vw]
+                text-[32px] md:text-[48px] lg:text-[64px]
                 bg-gradient-to-t
                 from-[#AFBFE9]
                 via-[#5777D0]
@@ -144,18 +133,20 @@ return (
             </h1>
             
 
-            <div className="flex flex-row
+            <div className="
+          
+            flex flex-row
             items-center
-            w-[250.76px] md:w-[30.76vw]
-            space-x-[10px] md:space-x-[1.555vw]
-            md:ml-[5vw] ">
+            w-[250.76px] md:w-[443px]
+            space-x-[10px] md:space-x-[9px] lg:space-x-[12px]
+            md:ml-[45px] lg:ml-[80px] ">
             
             {/* 左 */}
             <div className=" flex items-center
              bg-[#E8EBF6]
              rounded-full
              shadow-md
-             w-[179.76px] md:w-[22.3vw]
+             w-[260px] md:w-[260px] lg:w-[321px]
              aspect-[321/50]
              max-w-[321px] ">
 
@@ -163,7 +154,7 @@ return (
                 type="email"
                 placeholder="Enter your email"
                 className="flex-1 bg-transparent 
-                text-[9.33px] md:text-[0.9027vw]
+                text-[9.33px] md:text-[13px]
                 outline-none
                 text-gray-600
                 placeholder-gray-400
@@ -173,7 +164,7 @@ return (
                 className="bg-custom-gradient
                  text-white
                  font-[700]
-                 w-[73.92] md:w-[9.17vw]
+                 w-[73.92px] md:w-[100px] lg:w-[132px]
                  aspect-[132/50]
                  max-w-[132px]
                  ml-[-9.17vw]
@@ -186,8 +177,8 @@ return (
                  h-full"
                 onClick={handleOpenPopup}>
                 <span className="
-                text-[9.33px] md:text-[1.111vw]
-                max-w-[79px]">
+                text-[9.33px] md:text-[13px] lg:text-[16px]
+                max-w-[132px]">
                 Subscribe</span>
             </button>
 
@@ -227,7 +218,7 @@ return (
 
                 {/* 右 */}
                 <span className=" relative
-                text-[8px] md:text-[0.9027vw]
+                text-[8px] md:text-[11px] lg:text-[13px]
                 max-w-[38px]
                 text-[#A4AAC2]
                 whitespace-nowrap">
@@ -239,13 +230,18 @@ return (
                     alt="Discord Icon"
                     width={50}
                     height={50}
-                    className="w-[28px] md:w-[3.472vw] max-w-[50px] h-auto transition duration-10 hover:brightness-75"
+                    className="w-[28px] md:w-[41px] lg:w-[50px] max-w-[50px] h-auto transition duration-10 hover:brightness-75"
                 />
                 </Link>
             
             </div>
             
-            <div className="flex items-center space-x-[2vw] md:ml-[5vw]">
+            <div className="
+            flex 
+            items-center 
+            space-x-[25px] lg:space-x-[31px]
+            md:w-[300px] lg:w-[433px] 
+            md:ml-[45px] lg:ml-[80px]">
             {/* <Link> */}
                 <Image
                     src="/apple-logo.svg"
@@ -253,7 +249,7 @@ return (
                     width={201}
                     height={59.21}
                     className="h-auto transition duration-300 hover:brightness-75
-                               w-[116px] md:w-[14.5vw] lg:w-[13.5vw]"
+                               w-[116px] md:w-[160px] lg:w-[201px]"
                 />
                 {/* </Link> */}
                 {/* <Link> */}
@@ -263,7 +259,7 @@ return (
                     width={201}
                     height={59.21}
                     className=" h-auto transition duration-300 hover:brightness-75,
-                                w-[116px]  md:w-[14.5vw] lg:w-[13.5vw]"
+                                w-[116px] md:w-[160px] lg:w-[201px]"
                 />
                 {/* </Link> */}
             </div>

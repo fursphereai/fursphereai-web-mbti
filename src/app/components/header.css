@@ -9,18 +9,22 @@
     z-index: 10;
     width: 100%;
     overflow-x: auto;
+    border-top: 0px;
+   
   }
 
 .header-container{
     display: flex;
     align-items: center;
     justify-content: space-between; 
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top:1%;
-    padding-bottom:1%;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top:10px;
+    padding-bottom:10px;
     width: 100%;
     max-width: 1440px;
+    height: 100px;
+
 }
 
 .header-right{
@@ -29,7 +33,7 @@
   
   .menu-toggle {
     display:none;
-    width: 74.5px;
+    width: 35px;
     height: 24px;
     border: none;
     position: relative;
@@ -77,9 +81,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
     position: relative;
-    margin-right: 30px;
+    margin-right: 50px;
   }
   
   .nav-link {
@@ -114,14 +118,29 @@
   .signup-button:hover {
     filter: brightness(0.75);
   }
-  
-  @media screen and (max-width: 768px) {
+
+  @media screen and (max-width: 960px) {
     .nav-desktop {
       display: none; 
     }
     .menu-toggle {
         display:block;
+
     }
+    .header-signup-button {
+      width: 111.75px;
+      height: 45px;
+      font-size: 12px;
+    }
+    .logo-container{
+      width:180px;
+      height:54px;
+    }
+  }
+
+
+  @media screen and (max-width: 768px) {
+ 
     .header-signup-button {
         width: 74.5px;
         height: 30px;
@@ -131,5 +150,66 @@
         width:120px;
         height:36px;
     }
+    .header-container{
+        height:70px;
   }
+}
+
+@media screen and (max-width: 530px) {
+ 
+  .header-signup-button {
+      width: 74.5px;
+      height: 30px;
+      font-size: 8px;
+  }
+  .logo-container{
+      width:120px;
+      height:36px;
+  }
+  .header-container{
+      height:50px;
+      padding-left: 30px;
+      padding-right: 30px;
+
+}
+}
+
+@media screen and (max-width: 360px) {
+ 
+  .header-signup-button {
+      width: 59.6px;
+      height: 24px;
+      font-size: 6.4px;
+  }
+  .logo-container{
+      width:96px;
+      height:28.8px;
+  }
+  .header-container{
+      height:40px;
+      padding-left: 30px;
+      padding-right: 30px;
+  }
+  .menu-icon {
+    width: 20px;
+    height: 20px;
+    top: 8px;
+  }
+}
+
+@media screen and (max-width: 290px) {
+ 
+ 
+  .logo-container{
+      display: none;
+  }
+  
+}
+
+
+
+
+
+  
+  
   
