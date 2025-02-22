@@ -50,7 +50,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ step }) => {
         </div>
 
          <p className=" 
-           absolute right-[-24px]
+           ml-[24px]
            text-[#27355D] 
            text-[14px]">
            {step} / 19
