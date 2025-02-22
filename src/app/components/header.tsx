@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import './header.css'; 
+import {useLoggin} from '../context/LogginContext'
+
+
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+   const { loggin, setLoggin } = useLoggin();
+
+   useEffect(() => {
+    setLoggin(false) ;
+  })
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen); 
   };
-
+  
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -26,7 +34,7 @@ const Header = () => {
         <div className="header-right">
             <nav className="nav-desktop">
                 <Link href="#home" className="nav-link">Home</Link>
-                <Link href="#MBTI" className="nav-link">MBTI</Link>
+                <Link href= {`/mbti`} className="nav-link">MBTI</Link>
                 <Link href="#Partnership" className="nav-link">Partnership</Link>
                 <Link href="#about" className="nav-link">About</Link>
             </nav>

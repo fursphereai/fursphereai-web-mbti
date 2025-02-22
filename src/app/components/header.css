@@ -10,7 +10,6 @@
     width: 100%;
     overflow-x: auto;
     border-top: 0px;
-   
   }
 
 .header-container{
@@ -20,7 +19,7 @@
     padding-left: 80px;
     padding-right: 80px;
     padding-top:10px;
-    padding-bottom:10px;
+    padding-bottom:0px;
     width: 100%;
     max-width: 1440px;
     height: 100px;

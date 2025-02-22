@@ -9,6 +9,7 @@ const nextConfig = {
       {
         source: '/api/proxy/:path*',
         destination: 'https://cdn.discordapp.com/:path*',
+       
       },
     ];
   },
