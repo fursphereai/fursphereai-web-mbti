@@ -1,5 +1,6 @@
 'use client'; 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface SurveyData {
   user_info: {
@@ -50,36 +51,78 @@ interface BasicInfoScreenProps {
     updateAnswer: (category: keyof SurveyData, subCategory: any | null, field: string, value: string) => void;
 }
 
+const Page3: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, setStep, surveyData, updateAnswer }) => {
+  const [selectedGender, setSelectedGender] = useState<'boy' | 'girl' | null>(null);
 
+  useEffect(() => {
+    console.log('Current Survey Data:', surveyData);
+  }, [surveyData]);
 
+  const handleGenderSelect = (gender: 'boy' | 'girl') => {
+    setSelectedGender(gender);
+    updateAnswer('pet_info', null, 'PetGender', gender);
+  };
 
-
-const Page3: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, setStep, surveyData, updateAnswer  }) => {
-  
   return (
-    <div className=" mx-auto">
-
-     
-      <div className="bg-gray-100 p-6 rounded-b-lg text-center">
-
-        <h2 className="text-lg font-semibold">Page3</h2>
+    <div className="w-full h-[720px] bg-white relative overflow-hidden">
+      {/* Main Content */}
+      <div className="absolute top-[157px] left-[calc(50%-270px)] w-[540px]">
+        <div className="what-gender-is text-black text-[18px] font-normal">What gender is your cat?</div>
+        
+        <div className="relative h-[44px] mt-5">
+          <button 
+            className={`absolute left-0 w-[260px] h-[44px] rounded-[22px] border border-[#717680] flex items-center justify-center gap-[10px] transition-all
+              ${selectedGender === 'boy' ? 'bg-[#5777D0] text-white border-[#5777D0]' : 'bg-white text-[#5777D0]'}`}
+            onClick={() => handleGenderSelect('boy')}
+          >
+            <div className={selectedGender === 'boy' ? 'brightness-0 invert' : ''}>
+              <Image 
+                src="/boy.svg" 
+                alt="Boy icon" 
+                width={24} 
+                height={24}
+                className="w-6 h-6"
+              />
+            </div>
+            <span className="font-semibold text-[16px]">Boy</span>
+          </button>
           
+          <button 
+            className={`absolute left-[280px] w-[260px] h-[44px] rounded-[22px] border border-[#717680] flex items-center justify-center gap-[10px] transition-all
+              ${selectedGender === 'girl' ? 'bg-[#FFC542] text-white border-[#FFC542]' : 'bg-white text-[#FFC542]'}`}
+            onClick={() => handleGenderSelect('girl')}
+          >
+            <div className={selectedGender === 'girl' ? 'brightness-0 invert' : ''}>
+              <Image 
+                src="/girl.svg" 
+                alt="Girl icon" 
+                width={24} 
+                height={24}
+                className="w-6 h-6"
+              />
+            </div>
+            <span className="font-semibold text-[16px]">Girl</span>
+          </button>
+        </div>
+      </div>
 
-         
+      {/* Navigation Buttons */}
+      <div className="absolute top-[463px] left-[calc(50%-270px)] w-[540px] h-[44px] flex justify-between">
         <button 
-          className="px-4 py-2 bg-gray-500 text-white rounded-lg"
+          className="w-[132px] h-[44px] rounded-[22px] bg-[#D1D7EF] text-white flex items-center justify-center hover:opacity-90 transition-all"
           onClick={handleBack}
         >
-          Back
+          <span className="font-semibold">Previous</span>
         </button>
         <button 
-          className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg"
+          className={`w-[132px] h-[44px] rounded-[22px] text-white flex items-center justify-center hover:opacity-90 transition-all
+            ${selectedGender ? 'bg-[#5777D0]' : 'bg-[#C3C3C3]'}`}
           onClick={handleNext}
         >
-          Next
+          <span className="font-semibold">Next</span>
         </button>
+      </div>
     </div>
-  </div>
   );
 };
 
