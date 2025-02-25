@@ -206,7 +206,9 @@ const handleNext3 = () => {
   return (
     
     <div className="p-4">
-      <Header/>
+    
+      <Header isFixed={false} />
+  
       <ProgressBar step={step}/>
       {step === 0 && loggin === false && <StartScreen handleNext={handleNext} step={step} setStep={setStep} />}
       {step === 0 &&  loggin === true && <StartScreen2 handleNext2={handleNext2} handleNext3={handleNext3}  step={step} setStep={setStep} />}

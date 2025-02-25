@@ -2,14 +2,14 @@
 .header {
     display: flex;
     justify-content: center; 
-    position: fixed;
+
     top: 0;
     background-color: #ffffff;
     border-bottom: 1px solid #E8EBF6;
     z-index: 10;
     width: 100%;
     overflow-x: auto;
-    border-top: 0px;
+    
   }
 
 .header-container{

@@ -11,15 +11,14 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ step }) => {
   const progress = (step / 19) * 100;
   return (
     <div className="
-    flex 
-    items-center
-    w-full 
     h-[70px]
-    bg-[#EEF1FA] 
-    mt-[100px]">
+    bg-[#EEF1FA]">
+      <div className="relative flex flex-row items-center justify-center max-w-[1440px] h-full mx-auto ">
         <button className="
-            mr-[198.5px]
-            text-[#C3C3C3] 
+            absolute
+            left-1/2
+            -translate-x-[606.5px]
+            text-[#C3C3C3]
             text-[14px]"
             >Exit
         </button>
@@ -27,10 +26,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ step }) => {
         <p className="
           text-[#27355D] 
           text-[14px]
-          mr-[34px]
         ">Progress</p>
 
-        <div className=" bg-[#D1D7EF] w-[740px] h-[10px] rounded-full">
+        <div className=" mx-[24px] bg-[#D1D7EF] w-[740px] h-[10px] rounded-full">
             
             <div
                 className=" ml-[0px] h-full bg-[#5777D0] rounded-full "
@@ -50,12 +48,11 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ step }) => {
         </div>
 
          <p className=" 
-           ml-[24px]
            text-[#27355D] 
            text-[14px]">
            {step} / 19
          </p> 
-    
+    </div>
     </div>
   );
 };
