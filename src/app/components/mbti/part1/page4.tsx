@@ -56,6 +56,7 @@ interface BasicInfoScreenProps {
 const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, setStep, surveyData, updateAnswer }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedAge, setSelectedAge] = useState<string>('');
+  const [tempAge, setTempAge] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState('');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -89,6 +90,12 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
   useEffect(() => {
     console.log('Current Survey Data:', surveyData);
   }, [surveyData]);
+
+  useEffect(() => {
+    if (isDropdownOpen) {
+      setTempAge(selectedAge);
+    }
+  }, [isDropdownOpen]);
 
   const getMatchingIndex = (searchTerm: string, options: string[]) => {
     // 过滤掉不需要的选项
@@ -146,7 +153,9 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
               <div className="md:hidden mt-[20px] pl-5">
                 <div 
                   className="w-[180px] h-[44px] rounded-[22px] border border-[#717680] px-4 py-[11px] flex items-center justify-between cursor-pointer"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  onClick={() => {
+                    setIsDropdownOpen(!isDropdownOpen);
+                  }}
                 >
                   <span className={`text-[16px] font-inter ${selectedAge ? 'text-[#151B38]' : 'text-[#C3C3C3]'}`}>
                     {selectedAge || 'Age'}
@@ -164,20 +173,50 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
                 {isDropdownOpen && (
                   <>
                     <div 
-                      className="fixed inset-0 bg-black bg-opacity-50 z-40"
+                      className="fixed inset-0 bg-black bg-opacity-50 z-40 overflow-hidden"
                       onClick={() => setIsDropdownOpen(false)}
                     />
                     <div className="fixed bottom-0 left-0 right-0 bg-white z-50 rounded-t-[22px] shadow-[0_-4px_10px_rgba(0,0,0,0.1)]">
                       <div className="flex justify-between items-center px-5 py-3">
                         <button 
                           className="text-[#717680] text-[16px]" 
-                          onClick={() => setIsDropdownOpen(false)}
+                          onClick={() => {
+                            setIsDropdownOpen(false);
+                          }}
                         >
                           Cancel
                         </button>
                         <button 
                           className="text-[#5777D0] font-semibold text-[16px]" 
-                          onClick={() => setIsDropdownOpen(false)}
+                          onClick={() => {
+                            const container = document.querySelector('.snap-mandatory');
+                            if (container) {
+                              const containerRect = container.getBoundingClientRect();
+                              const centerY = containerRect.top + (containerRect.height / 2);
+                              const options = container.getElementsByClassName('age-option');
+                              
+                              let closestOption = null;
+                              let minDistance = Infinity;
+                              
+                              Array.from(options).forEach(option => {
+                                const rect = option.getBoundingClientRect();
+                                const distance = Math.abs(rect.top + (rect.height / 2) - centerY);
+                                if (distance < minDistance) {
+                                  minDistance = distance;
+                                  closestOption = option;
+                                }
+                              });
+                              
+                              if (closestOption) {
+                                const selectedValue = closestOption.getAttribute('data-age');
+                                if (selectedValue) {
+                                  setSelectedAge(selectedValue);
+                                  updateAnswer('pet_info', null, 'PetAge', selectedValue);
+                                }
+                              }
+                            }
+                            setIsDropdownOpen(false);
+                          }}
                         >
                           Save
                         </button>
@@ -194,15 +233,39 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
                             paddingTop: '128px',
                             paddingBottom: '128px'
                           }}
+                          onScroll={(e) => {
+                            const target = e.target as HTMLDivElement;
+                            const containerRect = target.getBoundingClientRect();
+                            const centerY = containerRect.top + (containerRect.height / 2);
+                            const options = target.getElementsByClassName('age-option');
+                            
+                            let closestOption = null;
+                            let minDistance = Infinity;
+                            
+                            Array.from(options).forEach(option => {
+                              const rect = option.getBoundingClientRect();
+                              const distance = Math.abs(rect.top + (rect.height / 2) - centerY);
+                              if (distance < minDistance) {
+                                minDistance = distance;
+                                closestOption = option;
+                              }
+                            });
+                            
+                            if (closestOption) {
+                              const tempValue = closestOption.getAttribute('data-age');
+                              if (tempValue) {
+                                setTempAge(tempValue);
+                              }
+                            }
+                          }}
                         >
                           {ageOptions.map((age) => (
                             <div
                               key={age}
-                              className="h-[44px] flex items-center justify-center snap-center cursor-pointer text-[20px] text-[#151B38]"
-                              onClick={() => {
-                                handleAgeSelect(age);
-                                setIsDropdownOpen(false);
-                              }}
+                              data-age={age}
+                              className={`age-option h-[44px] flex items-center justify-center snap-center text-[20px] ${
+                                tempAge === age ? 'text-[#5777D0] font-semibold' : 'text-[#151B38]'
+                              }`}
                             >
                               {age}
                             </div>
@@ -299,26 +362,26 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
 
             {/* Navigation Buttons */}
             <div className="fixed left-5 right-5 bottom-[40px] md:absolute md:top-[393px] md:left-0 md:right-0 flex justify-between">
-              <button 
+        <button 
                 className="w-[44px] h-[44px] rounded-[22px] bg-[#D1D7EF] flex items-center justify-center md:w-[132px] md:p-0"
-                onClick={handleBack}
-              >
+          onClick={handleBack}
+        >
                 <span className="hidden md:inline text-white font-semibold">Previous</span>
                 <span className="md:hidden text-white">❮</span>
-              </button>
-              <button 
+        </button>
+        <button 
                 className={`w-[44px] h-[44px] rounded-[22px] flex items-center justify-center md:w-[132px] md:p-0
                   ${selectedAge ? 'bg-[#5777D0]' : 'bg-[#C3C3C3]'}`}
-                onClick={handleNext}
-              >
+          onClick={handleNext}
+        >
                 <span className="hidden md:inline text-white font-semibold">Next</span>
                 <span className="md:hidden text-white">❯</span>
-              </button>
+        </button>
             </div>
           </div>
         </div>
-      </div>
     </div>
+  </div>
   );
 };
 
