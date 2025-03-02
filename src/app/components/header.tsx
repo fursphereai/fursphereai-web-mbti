@@ -6,7 +6,7 @@ import {useLoggin} from '../context/LogginContext'
 
 
 
-const Header = () => {
+const Header = ({ isFixed = true }: { isFixed?: boolean }) => {
   const [menuOpen, setMenuOpen] = useState(false);
    const { loggin, setLoggin } = useLoggin();
 
@@ -21,7 +21,7 @@ const Header = () => {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="header">
+    <header className={`header ${isFixed ? 'fixed' : ''}`}>
       <div className="header-container">
         
         <button className="menu-toggle" onClick={toggleMenu}>

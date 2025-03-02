@@ -11,7 +11,7 @@ This is a project bootstrapped with [Next.js](https://nextjs.org/), providing a 
 ### 1. Clone the repository
 To get started, clone the repository to your local machine:
 ```bash
-git clone https://github.com/fursphereai/fursphereai-web.git
+git clone https://github.com/fursphereai/fursphereai-web-mbti.git
 cd your-repo-name
 ```
 

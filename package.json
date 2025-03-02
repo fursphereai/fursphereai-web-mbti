@@ -24,7 +24,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "next": "^15.1.6",
+    "next": "^15.1.7",
     "node-fetch": "^3.3.2",
     "pg": "^8.13.1",
     "react": "^19.0.0",

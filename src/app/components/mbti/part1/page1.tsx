@@ -1,6 +1,7 @@
 'use client'; 
 import React, { useEffect, useState } from 'react';
 import ProgressBar from '../ProgressBar';
+import Image from 'next/image';
 
 interface SurveyData {
   user_info: {
@@ -59,13 +60,55 @@ interface BasicInfoScreenProps {
 const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, setStep, surveyData, updateAnswer  }) => {
   
   return (
-    <div className="mx-auto">
+    <div className=" bg-[#F5F5F5] h-screen ">
+      
+      <div className="flex flex-col  mx-auto max-w-[1440px] max-h-[720px] items-center h-full ">
+        <label className="
+                  mt-[40px]
+                  text-[14px]
+                  text-[#C3C3C3]
+                  font-[400]
+                  font-[Inter]
+                      ">This test has two parts.
+        </label>
 
-     
-      <div className="bg-gray-100 p-6 rounded-b-lg text-center">
+        <label className="
+                  mt-[20px]
+                  text-[20px]
+                  text-[#5777D0]
+                  font-[600]
+                  font-[Inter]
+                      ">Part 1
+        </label>
 
-        <h2 className="text-lg font-semibold">Page1</h2>
-          <div className="text-left mt-4 space-y-2">
+        <label className="
+                  text-[32px]
+                  text-[#27355D]
+                  font-[600]
+                  font-[Inter]
+                      ">Basic Info
+        </label>
+
+        <Image
+          src="/cat_dog.svg"
+          alt="pet" 
+          width={320}
+          height={320}
+          className="w-[320px] h-[320px]  mt-[-33px]"
+        />
+
+        <label className="
+                  w-[540px]
+                  text-[14px]
+                  text-[#27355D]
+                  font-[400]
+                  font-[Inter]
+                      ">Your pet’s species, breed, age, and gender, which play a crucial role in shaping their personality.
+        </label>
+    
+
+       
+          {/* <div className="text-left mt-4 space-y-2">
             <p>My pet is a</p>
               <input
               type="text"
@@ -74,23 +117,42 @@ const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               onChange={(e) => updateAnswer('pet_info', null, 'PetSpecies', e.target.value)}
               className="border p-2 w-full mt-2"
               />
+          </div> */}
+          <div className=" flex flex-col justify-end h-full ">
+          <button 
+            className="
+            flex flex-row items-center justify-center
+            w-[150px] h-[44px]
+            rounded-[22px]
+            mb-[156px]
+            bg-[#5777D0] 
+            text-[16px]
+            text-white"
+            onClick={handleNext}
+            >
+              Let’s go
+              <svg 
+                className="ml-2" 
+                width="16" 
+                height="32" 
+                viewBox="0 0 16 32" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path 
+                  fillRule="evenodd" 
+                  clipRule="evenodd" 
+                  d="M13.5432 16.948L6.00057 24.4907L4.11523 22.6054L10.7152 16.0054L4.11523 9.40535L6.00057 7.52002L13.5432 15.0627C13.7932 15.3127 13.9336 15.6518 13.9336 16.0054C13.9336 16.3589 13.7932 16.698 13.5432 16.948Z" 
+                  fill="currentColor"
+                />
+              </svg>
+          </button>
           </div>
 
-         
-        <button 
-          className="px-4 py-2 bg-gray-500 text-white rounded-lg"
-          onClick={handleBack}
-        >
-          Back
-        </button>
-        <button 
-          className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg"
-          onClick={handleNext}
-        >
-          Next
-        </button>
+      </div>
+      
     </div>
-  </div>
+ 
   );
 };
 
