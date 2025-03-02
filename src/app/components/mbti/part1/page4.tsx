@@ -59,6 +59,7 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
   const [tempAge, setTempAge] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState('');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const currentOptionRef = useRef<string>('');
 
   const ageOptions = [
     'Not Sure',
@@ -153,9 +154,7 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
               <div className="md:hidden mt-[20px] pl-5">
                 <div 
                   className="w-[180px] h-[44px] rounded-[22px] border border-[#717680] px-4 py-[11px] flex items-center justify-between cursor-pointer"
-                  onClick={() => {
-                    setIsDropdownOpen(!isDropdownOpen);
-                  }}
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
                   <span className={`text-[16px] font-inter ${selectedAge ? 'text-[#151B38]' : 'text-[#C3C3C3]'}`}>
                     {selectedAge || 'Age'}
@@ -169,7 +168,6 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
                   />
                 </div>
 
-                {/* 底部弹出的选择器 */}
                 {isDropdownOpen && (
                   <>
                     <div 
@@ -180,40 +178,16 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
                       <div className="flex justify-between items-center px-5 py-3">
                         <button 
                           className="text-[#717680] text-[16px]" 
-                          onClick={() => {
-                            setIsDropdownOpen(false);
-                          }}
+                          onClick={() => setIsDropdownOpen(false)}
                         >
                           Cancel
                         </button>
                         <button 
                           className="text-[#5777D0] font-semibold text-[16px]" 
                           onClick={() => {
-                            const container = document.querySelector('.snap-mandatory');
-                            if (container) {
-                              const containerRect = container.getBoundingClientRect();
-                              const centerY = containerRect.top + (containerRect.height / 2);
-                              const options = container.getElementsByClassName('age-option');
-                              
-                              let closestOption = null;
-                              let minDistance = Infinity;
-                              
-                              Array.from(options).forEach(option => {
-                                const rect = option.getBoundingClientRect();
-                                const distance = Math.abs(rect.top + (rect.height / 2) - centerY);
-                                if (distance < minDistance) {
-                                  minDistance = distance;
-                                  closestOption = option;
-                                }
-                              });
-                              
-                              if (closestOption) {
-                                const selectedValue = closestOption.getAttribute('data-age');
-                                if (selectedValue) {
-                                  setSelectedAge(selectedValue);
-                                  updateAnswer('pet_info', null, 'PetAge', selectedValue);
-                                }
-                              }
+                            if (currentOptionRef.current) {
+                              setSelectedAge(currentOptionRef.current);
+                              updateAnswer('pet_info', null, 'PetAge', currentOptionRef.current);
                             }
                             setIsDropdownOpen(false);
                           }}
@@ -235,26 +209,16 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
                           }}
                           onScroll={(e) => {
                             const target = e.target as HTMLDivElement;
+                            const elements = target.getElementsByClassName('age-option');
                             const containerRect = target.getBoundingClientRect();
-                            const centerY = containerRect.top + (containerRect.height / 2);
-                            const options = target.getElementsByClassName('age-option');
-                            
-                            let closestOption = null;
-                            let minDistance = Infinity;
-                            
-                            Array.from(options).forEach(option => {
-                              const rect = option.getBoundingClientRect();
-                              const distance = Math.abs(rect.top + (rect.height / 2) - centerY);
-                              if (distance < minDistance) {
-                                minDistance = distance;
-                                closestOption = option;
-                              }
-                            });
-                            
-                            if (closestOption) {
-                              const tempValue = closestOption.getAttribute('data-age');
-                              if (tempValue) {
-                                setTempAge(tempValue);
+                            const centerY = containerRect.top + containerRect.height / 2;
+
+                            for (let i = 0; i < elements.length; i++) {
+                              const element = elements[i] as HTMLElement;
+                              const rect = element.getBoundingClientRect();
+                              if (Math.abs(rect.top + rect.height/2 - centerY) < rect.height/2) {
+                                currentOptionRef.current = element.dataset.age || '';
+                                break;
                               }
                             }
                           }}
@@ -264,7 +228,7 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
                               key={age}
                               data-age={age}
                               className={`age-option h-[44px] flex items-center justify-center snap-center text-[20px] ${
-                                tempAge === age ? 'text-[#5777D0] font-semibold' : 'text-[#151B38]'
+                                currentOptionRef.current === age ? 'text-[#5777D0] font-semibold' : 'text-[#151B38]'
                               }`}
                             >
                               {age}
