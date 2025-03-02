@@ -133,191 +133,192 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
   };
   
   return (
-    <div className="w-full h-[calc(100vh-116px)] bg-white">
-      <div className="w-[360px] h-full md:w-full md:h-full bg-white relative mx-auto">
-        {/* Main Content */}
-        <div className="w-full h-full px-5 md:absolute md:top-[87px] md:left-[calc(50%-270px)] md:w-[540px] flex flex-col">
-          <div className="flex-1">
-            <div className="text-[16px] md:text-[18px] text-[#101828] font-inter tracking-[-0.4px]">
-              How old is your pet?
-            </div>
-            
-            {/* 移动端显示原生选择器 */}
-            <div className="md:hidden mt-[39px]">
-              <div 
-                className="w-[180px] h-[44px] rounded-[22px] border border-[#717680] px-4 flex items-center justify-between cursor-pointer"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              >
-                <span className={`text-[16px] font-inter ${selectedAge ? 'text-[#151B38]' : 'text-[#C3C3C3]'}`}>
-                  {selectedAge || 'Age'}
-                </span>
-                <Image 
-                  src="/Vector 2.svg"
-                  alt="dropdown arrow"
-                  width={12}
-                  height={9}
-                  className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
-                />
+    <div className="w-full h-[calc(100vh-116px)] bg-white overflow-hidden">
+      <div className="w-[360px] h-full md:w-full bg-white mx-auto relative">
+        <div className="w-full h-full md:absolute md:left-[calc(50%-270px)] md:w-[540px]">
+          <div className="w-full h-full flex flex-col">
+            <div className="flex-1">
+              <div className="text-[16px] md:text-[18px] text-[#101828] font-inter tracking-[-0.4px] mt-[40px] md:mt-[87px] pl-5 md:pl-0">
+                How old is your pet?
               </div>
-
-              {/* 底部弹出的选择器 */}
-              {isDropdownOpen && (
-                <>
-                  <div 
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40"
-                    onClick={() => setIsDropdownOpen(false)}
+              
+              {/* 移动端显示原生选择器 */}
+              <div className="md:hidden mt-[20px] pl-5">
+                <div 
+                  className="w-[180px] h-[44px] rounded-[22px] border border-[#717680] px-4 py-[11px] flex items-center justify-between cursor-pointer"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                >
+                  <span className={`text-[16px] font-inter ${selectedAge ? 'text-[#151B38]' : 'text-[#C3C3C3]'}`}>
+                    {selectedAge || 'Age'}
+                  </span>
+                  <Image 
+                    src="/Vector 2.svg"
+                    alt="dropdown arrow"
+                    width={12}
+                    height={9}
+                    className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
                   />
-                  <div className="fixed bottom-0 left-0 right-0 bg-white z-50 rounded-t-[22px] shadow-[0_-4px_10px_rgba(0,0,0,0.1)]">
-                    <div className="flex justify-between items-center px-5 py-3">
-                      <button 
-                        className="text-[#717680] text-[16px]" 
-                        onClick={() => setIsDropdownOpen(false)}
-                      >
-                        Cancel
-                      </button>
-                      <button 
-                        className="text-[#5777D0] font-semibold text-[16px]" 
-                        onClick={() => setIsDropdownOpen(false)}
-                      >
-                        Save
-                      </button>
-                    </div>
-                    <div className="relative h-[300px] overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <div className="w-full h-[44px] border-t border-b border-[#EFEFEF]" />
-                      </div>
-                      <div 
-                        className="h-full overflow-auto snap-y snap-mandatory"
-                        style={{
-                          WebkitOverflowScrolling: 'touch',
-                          scrollSnapType: 'y mandatory',
-                          paddingTop: '128px',
-                          paddingBottom: '128px'
-                        }}
-                      >
-                        {ageOptions.map((age) => (
-                          <div
-                            key={age}
-                            className="h-[44px] flex items-center justify-center snap-center cursor-pointer text-[20px] text-[#151B38]"
-                            onClick={() => {
-                              handleAgeSelect(age);
-                              setIsDropdownOpen(false);
-                            }}
-                          >
-                            {age}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-            
-            {/* 桌面端显示下拉框 */}
-            <div className="hidden md:block dropdown mt-5">
-              <div 
-                className={`drop-down border ${isDropdownOpen ? 'border-[#FFC542]' : 'border-[#717680]'} 
-                  rounded-[22px] h-[44px] px-3 flex items-center cursor-pointer w-full md:w-[540px] bg-white shadow-[0_4px_10px_rgba(0,0,0,0.1)]`}
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              >
-                <input
-                  type="text"
-                  className="flex-1 outline-none bg-transparent text-[#151B38] placeholder-[#C3C3C3] caret-[#151B38]"
-                  placeholder={!searchTerm ? "Age" : ""}
-                  value={searchTerm || selectedAge}
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value);
-                    if (e.target.value === '') {
-                      setSelectedAge('');
-                      updateAnswer('pet_info', null, 'PetAge', '');
-                    }
-                    setIsDropdownOpen(true);
-                  }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsDropdownOpen(true);
-                  }}
-                />
-                <Image 
-                  src="/Vector 2.svg"
-                  alt="dropdown arrow"
-                  width={10}
-                  height={6}
-                  className={`ml-auto transition-transform ${isDropdownOpen ? 'rotate-180' : ''} text-[#717680]`}
-                />
-              </div>
+                </div>
 
-              {isDropdownOpen && (
-                <div className="relative">
-                  <div className="absolute top-[16px] left-0 w-[180px] h-[150px] bg-white border border-[#717680] rounded-[22px] shadow-[0_20px_40px_rgba(0,0,0,0.1)] p-[6px] z-10">
-                    <div className="relative h-full">
-                      <div 
-                        ref={scrollContainerRef}
-                        className="h-full overflow-y-auto hide-scrollbar"
-                        onScroll={(e) => {
-                          const target = e.target as HTMLDivElement;
-                          const scrollPercentage = target.scrollTop / (target.scrollHeight - target.clientHeight);
-                          const scrollbarElement = target.parentElement?.querySelector('.custom-scrollbar') as HTMLDivElement;
-                          if (scrollbarElement) {
-                            const maxScroll = 150 - 59 - 25;
-                            scrollbarElement.style.transform = `translateY(${scrollPercentage * maxScroll}px)`;
-                          }
-                        }}
-                      >
-                        <div className="flex flex-col gap-[3px]">
-                          {ageOptions.map((age, index) => (
+                {/* 底部弹出的选择器 */}
+                {isDropdownOpen && (
+                  <>
+                    <div 
+                      className="fixed inset-0 bg-black bg-opacity-50 z-40"
+                      onClick={() => setIsDropdownOpen(false)}
+                    />
+                    <div className="fixed bottom-0 left-0 right-0 bg-white z-50 rounded-t-[22px] shadow-[0_-4px_10px_rgba(0,0,0,0.1)]">
+                      <div className="flex justify-between items-center px-5 py-3">
+                        <button 
+                          className="text-[#717680] text-[16px]" 
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          Cancel
+                        </button>
+                        <button 
+                          className="text-[#5777D0] font-semibold text-[16px]" 
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          Save
+                        </button>
+                      </div>
+                      <div className="relative h-[300px] overflow-hidden">
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <div className="w-full h-[44px] border-t border-b border-[#EFEFEF]" />
+                        </div>
+                        <div 
+                          className="h-full overflow-auto snap-y snap-mandatory"
+                          style={{
+                            WebkitOverflowScrolling: 'touch',
+                            scrollSnapType: 'y mandatory',
+                            paddingTop: '128px',
+                            paddingBottom: '128px'
+                          }}
+                        >
+                          {ageOptions.map((age) => (
                             <div
                               key={age}
-                              className={`h-[44px] min-h-[44px] w-full rounded-[22px] flex items-center px-[10px] cursor-pointer
-                                ${searchTerm && getMatchingIndex(searchTerm, [age]) !== -1 ? 'bg-[#F8F8F8]' : ''} 
-                                hover:bg-[#F8F8F8]`}
-                              onClick={(e) => {
-                                e.stopPropagation();
+                              className="h-[44px] flex items-center justify-center snap-center cursor-pointer text-[20px] text-[#151B38]"
+                              onClick={() => {
                                 handleAgeSelect(age);
-                                setSearchTerm('');
                                 setIsDropdownOpen(false);
                               }}
                             >
-                              <span className="text-[#151B38] text-[16px] tracking-[-0.4px]">{age}</span>
+                              {age}
                             </div>
                           ))}
                         </div>
                       </div>
-                      <div 
-                        className="custom-scrollbar absolute right-0 w-[6px] h-[59px] bg-[#7C7C7C] rounded-[4px] transition-transform duration-200"
-                        style={{
-                          top: '6px'
-                        }}
-                      />
+                    </div>
+                  </>
+                )}
+              </div>
+              
+              {/* 桌面端显示下拉框 */}
+              <div className="hidden md:block dropdown mt-5 px-5">
+                <div 
+                  className={`drop-down border ${isDropdownOpen ? 'border-[#FFC542]' : 'border-[#717680]'} 
+                    rounded-[22px] h-[44px] px-3 flex items-center cursor-pointer w-[540px] -ml-5 bg-white shadow-[0_4px_10px_rgba(0,0,0,0.1)]`}
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                >
+                  <input
+                    type="text"
+                    className="flex-1 outline-none bg-transparent text-[#151B38] placeholder-[#C3C3C3] caret-[#151B38]"
+                    placeholder={!searchTerm ? "Age" : ""}
+                    value={searchTerm || selectedAge}
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                      if (e.target.value === '') {
+                        setSelectedAge('');
+                        updateAnswer('pet_info', null, 'PetAge', '');
+                      }
+                      setIsDropdownOpen(true);
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsDropdownOpen(true);
+                    }}
+                  />
+                  <Image 
+                    src="/Vector 2.svg"
+                    alt="dropdown arrow"
+                    width={10}
+                    height={6}
+                    className={`ml-auto transition-transform ${isDropdownOpen ? 'rotate-180' : ''} text-[#717680]`}
+                  />
+                </div>
+
+                {isDropdownOpen && (
+                  <div className="relative">
+                    <div className="absolute top-[16px] left-0 w-[180px] h-[150px] bg-white border border-[#717680] rounded-[22px] shadow-[0_20px_40px_rgba(0,0,0,0.1)] p-[6px] z-10">
+                      <div className="relative h-full">
+                        <div 
+                          ref={scrollContainerRef}
+                          className="h-full overflow-y-auto hide-scrollbar"
+                          onScroll={(e) => {
+                            const target = e.target as HTMLDivElement;
+                            const scrollPercentage = target.scrollTop / (target.scrollHeight - target.clientHeight);
+                            const scrollbarElement = target.parentElement?.querySelector('.custom-scrollbar') as HTMLDivElement;
+                            if (scrollbarElement) {
+                              const maxScroll = 150 - 59 - 25;
+                              scrollbarElement.style.transform = `translateY(${scrollPercentage * maxScroll}px)`;
+                            }
+                          }}
+                        >
+                          <div className="flex flex-col gap-[3px]">
+                            {ageOptions.map((age, index) => (
+                              <div
+                                key={age}
+                                className={`h-[44px] min-h-[44px] w-full rounded-[22px] flex items-center px-[10px] cursor-pointer
+                                  ${searchTerm && getMatchingIndex(searchTerm, [age]) !== -1 ? 'bg-[#F8F8F8]' : ''} 
+                                  hover:bg-[#F8F8F8]`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleAgeSelect(age);
+                                  setSearchTerm('');
+                                  setIsDropdownOpen(false);
+                                }}
+                              >
+                                <span className="text-[#151B38] text-[16px] tracking-[-0.4px]">{age}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div 
+                          className="custom-scrollbar absolute right-0 w-[6px] h-[59px] bg-[#7C7C7C] rounded-[4px] transition-transform duration-200"
+                          style={{
+                            top: '6px'
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="fixed left-5 right-5 bottom-[40px] md:absolute md:top-[393px] md:left-0 md:right-0 flex justify-between">
+              <button 
+                className="w-[44px] h-[44px] rounded-[22px] bg-[#D1D7EF] flex items-center justify-center md:w-[132px] md:p-0"
+                onClick={handleBack}
+              >
+                <span className="hidden md:inline text-white font-semibold">Previous</span>
+                <span className="md:hidden text-white">❮</span>
+              </button>
+              <button 
+                className={`w-[44px] h-[44px] rounded-[22px] flex items-center justify-center md:w-[132px] md:p-0
+                  ${selectedAge ? 'bg-[#5777D0]' : 'bg-[#C3C3C3]'}`}
+                onClick={handleNext}
+              >
+                <span className="hidden md:inline text-white font-semibold">Next</span>
+                <span className="md:hidden text-white">❯</span>
+              </button>
             </div>
           </div>
-
-          {/* Navigation Buttons */}
-          <div className="pb-12 md:absolute md:bottom-0 md:left-0 md:right-0 flex justify-between">
-        <button 
-              className="w-[44px] md:w-[132px] h-[44px] rounded-[22px] bg-[#D1D7EF] flex items-center justify-center"
-          onClick={handleBack}
-        >
-              <span className="hidden md:inline text-white font-semibold">Previous</span>
-              <span className="md:hidden text-white">←</span>
-        </button>
-        <button 
-              className={`w-[44px] md:w-[132px] h-[44px] rounded-[22px] flex items-center justify-center
-                ${selectedAge ? 'bg-[#5777D0]' : 'bg-[#C3C3C3]'}`}
-          onClick={handleNext}
-        >
-              <span className="hidden md:inline text-white font-semibold">Next</span>
-              <span className="md:hidden text-white">→</span>
-        </button>
-          </div>
         </div>
+      </div>
     </div>
-  </div>
   );
 };
 

@@ -11,12 +11,18 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ step }) => {
   const progress = (step / 19) * 100;
   return (
     <div className="
+    fixed 
+    left-0 
+    right-0
     flex 
     items-center
     w-full 
     h-[70px]
-    bg-[#EEF1FA] 
-    mt-[100px]">
+    bg-[#EEF1FA]
+    z-[9]"
+    style={{
+      top: 'var(--header-height)'
+    }}>
         <button className="
             mr-[198.5px]
             text-[#C3C3C3] 
