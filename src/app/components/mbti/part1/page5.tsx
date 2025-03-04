@@ -62,9 +62,9 @@ const Page5: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
     setShowBanner(false);
   }
   return (
-    <div className="mx-auto h-screen max-h-[650px]">
+    <div className="bg-pink-300 mx-auto h-screen max-h-[1440px]">
         {showBanner && (
-        <div className="w-full bg-[#FEF0C7] p-4 flex items-center justify-center">
+        <div className="bg-green-300 w-full bg-[#FEF0C7] p-4 flex items-center justify-center">
           <div className="md:w-[540px] flex items-center justify-between">
             <div className="flex flex-col items-left  ">
               <span className="md:w-[500px] w-[90%] text-sm text-[#27355D]">

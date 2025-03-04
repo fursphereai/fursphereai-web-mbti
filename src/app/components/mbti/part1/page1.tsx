@@ -60,15 +60,16 @@ interface BasicInfoScreenProps {
 const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, setStep, surveyData, updateAnswer  }) => {
   
   return (
-    <div className=" bg-[#F5F5F5] h-screen ">
+    <div className="h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] bg-yellow-500 mt-[0px]">
       
-      <div className="flex flex-col  mx-auto max-w-[1440px] max-h-[720px] items-center h-full ">
+      <div className="bg-red-300 flex flex-col  mx-auto max-w-[1440px] max-h-[531px] md:max-h-[461px] items-center h-full ">
         <label className="
                   mt-[40px]
                   text-[14px]
                   text-[#C3C3C3]
                   font-[400]
                   font-[Inter]
+                  leading-[16.94px]
                       ">This test has two parts.
         </label>
 
@@ -78,6 +79,7 @@ const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
                   text-[#5777D0]
                   font-[600]
                   font-[Inter]
+                  leading-[24.2px]
                       ">Part 1
         </label>
 
@@ -86,6 +88,7 @@ const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
                   text-[#27355D]
                   font-[600]
                   font-[Inter]
+                  leading-[38.73px]
                       ">Basic Info
         </label>
 
@@ -94,37 +97,31 @@ const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
           alt="pet" 
           width={320}
           height={320}
-          className="w-[320px] h-[320px]  mt-[-33px]"
+          className="bg-green-500 w-[320px] h-[320px]  mt-[8px] md:mt-[-33px]"
         />
 
         <label className="
-                  w-[540px]
+                  mt-[12px] md:mt-[0px]
+                  max-w-[300px] md:max-w-[540px]
                   text-[14px]
                   text-[#27355D]
                   font-[400]
                   font-[Inter]
+                  bg-red-500
+                  leading-[16.94px]
                       ">Your pet’s species, breed, age, and gender, which play a crucial role in shaping their personality.
         </label>
-    
-
-       
-          {/* <div className="text-left mt-4 space-y-2">
-            <p>My pet is a</p>
-              <input
-              type="text"
-              placeholder="cat or dog"
-              value={surveyData.pet_info.PetSpecies}
-              onChange={(e) => updateAnswer('pet_info', null, 'PetSpecies', e.target.value)}
-              className="border p-2 w-full mt-2"
-              />
-          </div> */}
-          <div className=" flex flex-col justify-end h-full ">
+        </div>
+        <div className="bg-blue-500  h-[calc(100vh-571px)]
+        flex flex-col items-center justify-end md:justify-start
+          ">
           <button 
             className="
-            flex flex-row items-center justify-center
+            mx-auto flex flex-row items-center justify-center
+            max-md:mb-[48px] 
+            md:mt-[59px]
             w-[150px] h-[44px]
             rounded-[22px]
-            mb-[156px]
             bg-[#5777D0] 
             text-[16px]
             text-white"
@@ -147,11 +144,11 @@ const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
                 />
               </svg>
           </button>
-          </div>
+        </div>
 
       </div>
       
-    </div>
+
  
   );
 };

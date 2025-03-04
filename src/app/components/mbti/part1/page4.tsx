@@ -151,7 +151,7 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
               </div>
               
               {/* 移动端显示原生选择器 */}
-              <div className="md:hidden mt-[20px] pl-5">
+              <div className="md:hidden bg-mt-[20px] pl-5">
                 <div 
                   className="w-[180px] h-[44px] rounded-[22px] border border-[#717680] px-4 py-[11px] flex items-center justify-between cursor-pointer"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}

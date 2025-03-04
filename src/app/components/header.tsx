@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({  className }) => {
             mr-[54px]">
             <Link href="#home" className="text-[16px]  text-[#1A1D1F] font-[Inter] hover:text-[#5676CF] transition-colors">Home</Link>
             <Link href="#product" className="text-[16px] text-[#1A1D1F] font-[Inter] hover:text-[#5676CF] transition-colors">Product</Link>
-            <Link href="#quiz" className="text-[16px]  text-[#1A1D1F] font-[Inter] hover:text-[#5676CF] transition-colors">Quiz</Link>
+            <Link href="/mbti" className="text-[16px]  text-[#1A1D1F] font-[Inter] hover:text-[#5676CF] transition-colors">Quiz</Link>
             <Link href="#about" className="text-[16px]  text-[#1A1D1F] font-[Inter] hover:text-[#5676CF] transition-colors">About</Link>
           </nav>
           <button className="relative 
@@ -70,8 +70,8 @@ const Header: React.FC<HeaderProps> = ({  className }) => {
           <img src="/close.png" alt="Close Menu" className="w-[24px] h-[24px] top-[8px]" />
         </button>
         <Link href="#home" className="text-[16px] py-[8px] text-white hover:text-opacity-75 transition-colors" onClick={closeMenu}>Home</Link>
-        <Link href="#MBTI" className="text-[16px] py-[8px] text-white hover:text-opacity-75 transition-colors" onClick={closeMenu}>MBTI</Link>
-        <Link href="#Partnership" className="text-[16px] py-[8px] text-white hover:text-opacity-75 transition-colors" onClick={closeMenu}>Partnership</Link>
+        <Link href="#product" className="text-[16px] py-[8px] text-white hover:text-opacity-75 transition-colors" onClick={closeMenu}>Product</Link>
+        <Link href="#quiz" className="text-[16px] py-[8px] text-white hover:text-opacity-75 transition-colors" onClick={closeMenu}>Quiz</Link>
         <Link href="#about" className="text-[16px] py-[8px] text-white hover:text-opacity-75 transition-colors" onClick={closeMenu}>About</Link>
       </nav>
     </header>

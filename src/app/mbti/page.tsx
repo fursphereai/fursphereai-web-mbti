@@ -207,8 +207,9 @@ const handleNext3 = () => {
   return (
     
     <div className="w-full min-h-screen flex flex-col">
-    
-    <Header  className="hidden md:flex"/>
+    <div className="hidden md:flex">
+      <Header/>
+    </div>
   
       <ProgressBar step={step}/>
       {step === 0 && loggin === false && <StartScreen handleNext={handleNext} step={step} setStep={setStep} />}
@@ -244,7 +245,7 @@ const handleNext3 = () => {
       }} />}
       {step === 'result' && <ResultScreen mbtiResult={mbtiResult} email={email} setEmail={setEmail} isRegistered={isRegistered} setIsRegistered={setIsRegistered} onNext={() => setStep('pawfectMatch')} />}
       {step === 'pawfectMatch' && <PawfectMatchScreen />} */}
-      <MbtiResult handleNext={handleNext}  step={step}setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      {/* <MbtiResult handleNext={handleNext}  step={step}setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/> */}
     </div>
 
   );
