@@ -1,6 +1,7 @@
 'use client'; 
 import React, { useEffect, useState } from 'react';
 
+
 interface SurveyData {
   user_info: {
     name: string,
@@ -18,8 +19,8 @@ interface SurveyData {
     PetPhoto: string,
   };
   personality_and_behavior: {
-      Routin_Curiosity: {
-          prefer_routine: string,
+      Energy_Socialization: {
+          stranger_enter_territory: string,
       },
   };
 }
@@ -30,13 +31,12 @@ const bubbleSizes = [46, 40, 35, 30, 25, 30, 35, 40, 46]; // 中间最小，越�
 interface Page8Props {
     handleNext: () => void; 
     handleBack: () => void;
-    handleSkip: () => void; 
+    handleSkip: () => void;
     surveyData: SurveyData;
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
     updateAnswer: (category: keyof SurveyData, subCategory: string, field: string, value: string) => void;
 }
-
 
 
 const Page8: React.FC<Page8Props>  = ({ 
@@ -47,22 +47,21 @@ const Page8: React.FC<Page8Props>  = ({
   setStep, 
   surveyData, 
   updateAnswer  
-}) => {
-  const [selectedOption, setSelectedOption] = useState<string>(
-    surveyData.personality_and_behavior.Routin_Curiosity.prefer_routine || "5"
+}) => {const [selectedOption, setSelectedOption] = useState<string>(
+    surveyData.personality_and_behavior.Energy_Socialization.stranger_enter_territory || "5"
     // 默认选5
   );
 
   const handleSelectOption = (option: string) => {
     setSelectedOption(option);
-    updateAnswer("personality_and_behavior", "Routin_Curiosity", "prefer_routine", option);
+    updateAnswer("personality_and_behavior", "Energy_Socialization", "stranger_enter_territory", option);
   };
-  
+
   return (
     <div className="quiz-container">
     {/* Question */}
     <div className="question-container">
-      <h2>How does your pet interact with toys?</h2>
+      <h2>How does your pet typically behave when stranger enters his/her territory?</h2>
     </div>
 
     {/* Likert */}
@@ -107,8 +106,8 @@ const Page8: React.FC<Page8Props>  = ({
       </div>
       {/* 标签行 */}
       <div className="label-row">
-        <span className="option-label">🎮 As expected</span>
-        <span className="option-label">💡 Inventive</span>
+        <span className="option-label">😈 Aggressive</span>
+        <span className="option-label">🥰 Friendly</span>
       </div>
     </div>
 
@@ -132,11 +131,10 @@ const Page8: React.FC<Page8Props>  = ({
         margin: auto;
         padding: 20px;
         text-align: center;
-        margin-top: 0px;
       }
 
       .question-container {
-        margin-top: 85px;
+        margin-top: 157px;
       }
       .question-container h2 {
         color: #101828;
@@ -145,7 +143,7 @@ const Page8: React.FC<Page8Props>  = ({
 
       /* Likert 量表 */
       .slider-container {
-        margin-top: 19px;
+        margin-top: 39px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -165,7 +163,6 @@ const Page8: React.FC<Page8Props>  = ({
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 540px;
       }
 
       .option-circle {
@@ -193,7 +190,7 @@ const Page8: React.FC<Page8Props>  = ({
         display: flex;
         justify-content: center;
         gap: 24px;
-        margin-top: 187px;
+        margin-top: 100px;
       }
 
       .nav-button {
