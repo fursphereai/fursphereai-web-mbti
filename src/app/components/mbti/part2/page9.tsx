@@ -62,7 +62,7 @@ const Page9: React.FC<Page9Props>  = ({
     <div className="quiz-container">
     {/* Question */}
     <div className="question-container">
-      <h2>Does your pet prefer things a certain way (e.g., food, favorite spots)?</h2>
+      <h2>How does your pet typically behave when stranger enters his/her territory?</h2>
     </div>
 
     {/* Likert */}
@@ -107,8 +107,8 @@ const Page9: React.FC<Page9Props>  = ({
       </div>
       {/* 标签行 */}
       <div className="label-row">
-        <span className="option-label">🤖 Strict</span>
-        <span className="option-label">💓 Flexible</span>
+        <span className="option-label">👿 Aggressive</span>
+        <span className="option-label">🥰 Friendly</span>
       </div>
     </div>
 
@@ -132,10 +132,11 @@ const Page9: React.FC<Page9Props>  = ({
         margin: auto;
         padding: 20px;
         text-align: center;
+        margin-top: 0px;
       }
 
       .question-container {
-        margin-top: 157px;
+        margin-top: 85px;
       }
       .question-container h2 {
         color: #101828;
@@ -144,7 +145,7 @@ const Page9: React.FC<Page9Props>  = ({
 
       /* Likert 量表 */
       .slider-container {
-        margin-top: 39px;
+        margin-top: 19px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -164,6 +165,7 @@ const Page9: React.FC<Page9Props>  = ({
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 540px;
       }
 
       .option-circle {
@@ -191,7 +193,7 @@ const Page9: React.FC<Page9Props>  = ({
         display: flex;
         justify-content: center;
         gap: 24px;
-        margin-top: 100px;
+        margin-top: 187px;
       }
 
       .nav-button {

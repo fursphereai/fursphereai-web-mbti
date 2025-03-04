@@ -25,13 +25,14 @@ import Page16 from '../components/mbti/part2/page16';
 import Page17 from '../components/mbti/part2/page17';
 import Page18 from '../components/mbti/part2/page18';
 import Page19 from '../components/mbti/part2/page19';
+import MbtiResult from '../components/mbti/backup/backupfiles-jason/result/MbtiResult';
 
 
 
 
 
 import EmailVerificationScreen from '../components/mbti/backup/backupfiles-jason/email/EmailVerificationScreen'
-import MbtiResult from '../components/mbti/backup/backupfiles-jason/result/MbtiResult';
+
 import StartPawfectMatch from '../components/mbti/backup/backupfiles-jason/match/StartPawfectMatch';
 import PawfectMatch from '../components/mbti/backup/backupfiles-jason/match/PawfectMatch';
 import PawfectMatchResult from '../components/mbti/backup/backupfiles-jason/match/PawfectMatchResult';
@@ -205,9 +206,9 @@ const handleNext3 = () => {
   
   return (
     
-    <div className="p-4">
+    <div className="w-full min-h-screen flex flex-col">
     
-      <Header isFixed={false} />
+    <Header  className="hidden md:flex"/>
   
       <ProgressBar step={step}/>
       {step === 0 && loggin === false && <StartScreen handleNext={handleNext} step={step} setStep={setStep} />}
@@ -243,6 +244,7 @@ const handleNext3 = () => {
       }} />}
       {step === 'result' && <ResultScreen mbtiResult={mbtiResult} email={email} setEmail={setEmail} isRegistered={isRegistered} setIsRegistered={setIsRegistered} onNext={() => setStep('pawfectMatch')} />}
       {step === 'pawfectMatch' && <PawfectMatchScreen />} */}
+      <MbtiResult handleNext={handleNext}  step={step}setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>
     </div>
 
   );

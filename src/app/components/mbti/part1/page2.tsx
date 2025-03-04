@@ -1,5 +1,5 @@
 'use client'; 
-import React, { useEffect, useState,useRef } from 'react';
+import React, { useEffect, useState,useRef, ReactElement } from 'react';
 
 interface SurveyData {
   user_info: {
@@ -84,26 +84,30 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
     setSelected2('');
   }, [selected]);
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   return (
-    <div className="mx-auto max-w-[1440px]   h-screen max-h-[650px]">
+    <div className="mx-auto max-w-[1440px]  h-screen max-h-[650px] flex flex-col items-center justify-center">
 
      
       
           
-        <div className="flex flex-col  w-[540px] mx-auto h-full ">
-          <label className="
-                  mt-[85px]
-                  text-[18px]
-                  font-[Inter]
-                  font-[400]
-                  ml-[10px]
-                      ">My pet is a
-          </label>
+        <div className=" flex flex-col  items-center  w-full mx-auto h-full ">
 
-          <div className="relative flex flex-row w-[540px] h-[44px] mt-[19px]">
+          <div className="  max-w-[540px] flex flex-col items-left  h-full">
+            <label className="
+                    mt-[40px] md:mt-[85px]
+                    text-[16px] md:text-[18px]
+                    font-[Inter]
+                    font-[400]
+                    ml-[10px]
+                        ">My pet is a
+            </label>
+
+          <div className=" flex flex-row w-[320px] md:w-[540px] h-[44px] mt-[19px]">
 
 
-          <div className="relative flex flex-row w-[260px] h-[44px]">
+          <div className=" relative flex flex-row w-[130px] md:w-[260px] h-[44px]">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`
@@ -189,7 +193,7 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
 
           </div>
 
-          <div className="relative flex flex-row ml-[20px] w-[260px] h-[44px]">
+          <div className="relative flex flex-row ml-[20px] w-[180px] md:w-[260px] h-[44px]">
           <button
             onClick={() => setIsOpen2(!isOpen2)}
             className={`
@@ -281,7 +285,10 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
 
 
           <label className="
-                  text-[16px]
+                  
+                  w-[300px] md:w-full
+                  text-[14px] md:text-[16px]
+                  leading-normal
                   font-[Inter]
                   font-[400]
                   text-[#A0A0A0]
@@ -292,36 +299,126 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               type="text"
               placeholder="Please enter a breed / species"
               className="
-              w-[540px] h-[44px]
+              w-[320px] md:w-[540px] 
+              h-[44px]
               mt-[20px]
-              py-[12px] pl-[12px] pr-[130px]
+              py-[12px] pl-[12px] 
               border border-[1px] border-[#717680]
               rounded-[22px]
               bg-white
               font-[Inter]
               text-[#27355D]
-               focus:outline-none
-              placeholder:[#C3C3C3]"
+              focus:outline-none
+              placeholder:[#C3C3C3]
+              text-[16px]"
           />
-           <div className=" flex flex-col justify-end h-full ">
+
+         
           <button 
             className="
-            w-[101px] h-[44px]
-            ml-[439px] mb-[213px]
+            w-[44px] md:w-[101px] 
+            h-[44px]
+            mt-auto md:mt-[120px]
+            mb-[48px] md:mb-auto
+            self-end
             rounded-[22px]
-            px-[32px] 
             bg-[#5777D0] 
             text-[16px]
-            text-white"
+            text-white
+            "
             onClick={handleNext}
             >
-              Next
+              <span className="hidden md:inline">Next</span>
+              <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5432 16.948L6.00057 24.4907L4.11523 22.6054L10.7152 16.0054L4.11523 9.40535L6.00057 7.52002L13.5432 15.0627C13.7932 15.3127 13.9336 15.6518 13.9336 16.0054C13.9336 16.3589 13.7932 16.698 13.5432 16.948Z" fill="white"/>
+              </svg>
           </button>
+
+          {/* <button onClick={() => setIsPopupOpen(true)}>
+            Open Popup
+          </button> */}
+
+          {/* <Popup 
+            isOpen={isPopupOpen}
+            onClose={() => setIsPopupOpen(false)}
+            onSave={() => {
+              // Handle save action
+              setIsPopupOpen(false);
+            }}
+          /> */}
+
+          
+          
           </div>
+           
         </div>
     </div>
 
   );
 };
 
+
+
+interface PopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: () => void;
+}
+
+const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onSave }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50">
+      <div 
+        className="
+          fixed 
+          bottom-0 
+          left-0 
+          right-0 
+          bg-white 
+          rounded-t-[20px]
+          animate-slide-up
+        "
+      >
+        {/* Header */}
+        <div className="flex justify-between px-4 py-3 border-b">
+          <button 
+            onClick={onClose}
+            className="text-[#717680] text-[16px]"
+          >
+            Cancel
+          </button>
+          <button 
+            onClick={onSave}
+            className="text-[#5777D0] text-[16px] font-medium"
+          >
+            Save
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="px-4 py-6">
+          <div className="space-y-4">
+            <div className="py-3 text-center text-[16px] text-[#27355D] active:bg-gray-100">
+              Cat
+            </div>
+            <div className="py-3 text-center text-[16px] text-[#27355D] active:bg-gray-100">
+              Dog
+            </div>
+            <div className="py-3 text-center text-[16px] text-[#27355D] active:bg-gray-100">
+              Other
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 export default Page2;
+
+
+
+

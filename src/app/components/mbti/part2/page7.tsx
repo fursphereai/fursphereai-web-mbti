@@ -18,9 +18,9 @@ interface SurveyData {
     PetPhoto: string,
   };
   personality_and_behavior: {
-      Energy_Socialization: {
-          interact_with_toys: string,
-      }
+      Routin_Curiosity: {
+          prefer_routine: string,
+      },
   };
 }
 
@@ -30,7 +30,7 @@ const bubbleSizes = [46, 40, 35, 30, 25, 30, 35, 40, 46]; // 中间最小，越�
 interface Page7Props {
     handleNext: () => void; 
     handleBack: () => void;
-    handleSkip: () => void;
+    handleSkip: () => void; 
     surveyData: SurveyData;
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -38,28 +38,31 @@ interface Page7Props {
 }
 
 
+
 const Page7: React.FC<Page7Props>  = ({ 
   handleNext, 
   handleBack, 
-  handleSkip,
-  surveyData,
-  updateAnswer,
+  handleSkip, 
+  step, 
+  setStep, 
+  surveyData, 
+  updateAnswer  
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>(
-    surveyData.personality_and_behavior.Energy_Socialization.interact_with_toys || "5"
+    surveyData.personality_and_behavior.Routin_Curiosity.prefer_routine || "5"
     // 默认选5
   );
 
   const handleSelectOption = (option: string) => {
     setSelectedOption(option);
-    updateAnswer("personality_and_behavior", "Energy_Socialization", "interact_with_toys", option);
+    updateAnswer("personality_and_behavior", "Routin_Curiosity", "prefer_routine", option);
   };
-
-return (
-  <div className="quiz-container">
+  
+  return (
+    <div className="quiz-container">
     {/* Question */}
     <div className="question-container">
-      <h2>How does your pet interact with toys?</h2>
+      <h2>How would you describe your pet's need for attention?</h2>
     </div>
 
     {/* Likert */}
@@ -104,8 +107,8 @@ return (
       </div>
       {/* 标签行 */}
       <div className="label-row">
-        <span className="option-label">🎮 As expected</span>
-        <span className="option-label">💡 Inventive</span>
+        <span className="option-label">🍼 Needy</span>
+        <span className="option-label">😏 Independent</span>
       </div>
     </div>
 
@@ -129,10 +132,11 @@ return (
         margin: auto;
         padding: 20px;
         text-align: center;
+        margin-top: 0px;
       }
 
       .question-container {
-        margin-top: 157px;
+        margin-top: 85px;
       }
       .question-container h2 {
         color: #101828;
@@ -141,7 +145,7 @@ return (
 
       /* Likert 量表 */
       .slider-container {
-        margin-top: 39px;
+        margin-top: 19px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -161,6 +165,7 @@ return (
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 540px;
       }
 
       .option-circle {
@@ -188,7 +193,7 @@ return (
         display: flex;
         justify-content: center;
         gap: 24px;
-        margin-top: 100px;
+        margin-top: 187px;
       }
 
       .nav-button {
