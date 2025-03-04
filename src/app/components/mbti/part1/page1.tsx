@@ -60,9 +60,9 @@ interface BasicInfoScreenProps {
 const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, setStep, surveyData, updateAnswer  }) => {
   
   return (
-    <div className="h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] bg-yellow-500 mt-[0px]">
+    <div className="h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] bg-[#F5F5F5] mt-[0px]">
       
-      <div className="bg-red-300 flex flex-col  mx-auto max-w-[1440px] max-h-[531px] md:max-h-[461px] items-center h-full ">
+      <div className="flex flex-col  mx-auto max-w-[1440px] max-h-[531px] md:max-h-[461px] items-center h-full ">
         <label className="
                   mt-[40px]
                   text-[14px]
@@ -97,7 +97,7 @@ const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
           alt="pet" 
           width={320}
           height={320}
-          className="bg-green-500 w-[320px] h-[320px]  mt-[8px] md:mt-[-33px]"
+          className=" w-[320px] h-[320px]  mt-[8px] md:mt-[-33px]"
         />
 
         <label className="
@@ -107,12 +107,11 @@ const Page1: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
                   text-[#27355D]
                   font-[400]
                   font-[Inter]
-                  bg-red-500
                   leading-[16.94px]
                       ">Your pet’s species, breed, age, and gender, which play a crucial role in shaping their personality.
         </label>
         </div>
-        <div className="bg-blue-500  h-[calc(100vh-571px)]
+        <div className="max-w-[1440px] mx-auto h-[calc(100vh-571px)]
         flex flex-col items-center justify-end md:justify-start
           ">
           <button 
