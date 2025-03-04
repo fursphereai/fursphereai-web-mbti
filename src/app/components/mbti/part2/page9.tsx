@@ -66,14 +66,16 @@ const Page9: React.FC<Page9Props> = ({
       {/* 信息提示框 */}
       {showInfo && (
         <div className="info-banner">
-          <p>
-            More information can help us generate a more accurate MBTI result for your pet. But if
-            you are getting tired, here’s the{' '}
-            <a href="#" className="shortcut-link">
-              shortcut to the final step
-            </a>
-          </p>
-          <button className="close-btn" onClick={() => setShowInfo(false)}>✕</button>
+          <div className="content">
+            <p>
+              More information can help us generate a more accurate MBTI result for your pet. But if
+              you are getting tired, here’s the{' '}
+              <a href="#" className="shortcut-link">
+                shortcut to the final step
+              </a>
+            </p>
+            <button className="close-btn" onClick={() => setShowInfo(false)}>✕</button>
+          </div>
         </div>
       )}
 
@@ -195,12 +197,20 @@ const Page9: React.FC<Page9Props> = ({
         </div>
       </div>
 
-       {/* 按钮 */}
-       <div className={`button-container ${isMobile ? 'mobile' : 'desktop'}`}>
+        {/* Desktop 端的按钮 */}
+      <div className="button-container desktop">
         <button className="nav-button previous" onClick={handleBack}>Previous</button>
         <button className="nav-button skip" onClick={handleSkip}>Skip</button>
         <button className="nav-button next" onClick={handleNext}>Next</button>
       </div>
+
+      {/* Mobile 端的按钮 */}
+      <div className="button-container mobile">
+        <button className="nav-button mobile previous" onClick={handleBack}>←</button>
+        <button className="nav-button mobile skip" onClick={handleSkip}>Skip</button>
+        <button className="nav-button mobile next" onClick={handleNext}>→</button>
+      </div>
+
 
       <style jsx>{`
         /* === 基础样式 === */
@@ -242,7 +252,7 @@ const Page9: React.FC<Page9Props> = ({
         .info-banner {
           background-color: #FEF0C7;
           color: #664d03;
-          padding: 20px 20px;
+          padding: 40px 40px;
           font-size: 14px;
           display: flex;
           align-items: center;
@@ -254,13 +264,18 @@ const Page9: React.FC<Page9Props> = ({
         }
         
         .info-banner .content {
-          max-width: 60%; /* 这里设为和 .quiz-container 一致的宽度 */
-          text-align: left; /* 保持文本左对齐 */
+          width: 640px; 
+          text-align: left; 
+          display: flex;
+          justify-content: space-between; /* 让内容和 X 分散排列 */
+          align-items: flex-start; /* 让 X 按钮对齐顶部 */
         }
 
         .info-banner p {
-          margin: ;
-        }
+        margin: 1;
+        flex: 1; /* 让 p 自动填充剩余空间 */
+        margin-right: 100px; /* 增加文字和 X 按钮的距离 */
+}
 
         .shortcut-link {
           font-weight: bold;
@@ -278,6 +293,7 @@ const Page9: React.FC<Page9Props> = ({
           font-size: 18px;
           color: #664d03;
           cursor: pointer;
+          transform: translateY(-10%); 
         }
 
         .close-btn:hover {
@@ -285,9 +301,22 @@ const Page9: React.FC<Page9Props> = ({
         }
 
         @media (max-width: 768px) {
-        .info-banner {
-          margin-bottom: 40px;
+         .info-banner {
+          height: 100px; /* 在移动端变成 360px */
+          align-items: flex-start; /* 让内容靠上对齐 */
+          padding-top: 10px; /* 让文本有一些上边距 */
         }
+
+         .info-banner .content {
+        width: 400px; /* 在移动端变成 400px */
+        }
+
+        .close-btn {
+          right: 16px; /* 确保 X 仍然在最右 */
+          left: 50%; /* ✅ 让 X 按钮在中间 */
+          transform: translateY(100%);
+        }
+
       }
 
         /* === 问题容器 === */
@@ -543,6 +572,7 @@ const Page9: React.FC<Page9Props> = ({
           background: #f5f5f5;
         }
 
+
         /* === 响应式设计 === */
         @media (max-width: 768px) {
           .button-container.desktop {
@@ -566,6 +596,4 @@ const Page9: React.FC<Page9Props> = ({
           );
         };
 
-      
-        
 export default Page9;
