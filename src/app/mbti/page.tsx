@@ -27,6 +27,8 @@ import Page18 from '../components/mbti/part2/page18';
 import Page19 from '../components/mbti/part2/page19';
 import MbtiResult from '../components/mbti/backup/backupfiles-jason/result/MbtiResult';
 
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 
 
@@ -212,15 +214,75 @@ const handleNext3 = () => {
     </div>
   
       <ProgressBar step={step}/>
-      {step === 0 && loggin === false && <StartScreen handleNext={handleNext} step={step} setStep={setStep} />}
-      {step === 0 &&  loggin === true && <StartScreen2 handleNext2={handleNext2} handleNext3={handleNext3}  step={step} setStep={setStep} />}
+      <AnimatePresence mode="wait">
+      {step === 0 && <StartScreen handleNext={handleNext} step={step} setStep={setStep} />}
+      {/* {step === 0 &&  loggin === true && <StartScreen2 handleNext2={handleNext2} handleNext3={handleNext3}  step={step} setStep={setStep} />} */}
       {/* {step === 0 && <StartScreen3 handleNext={handleNext} step={step} setStep={setStep} />} */}
-      {step === 1 && <Page1 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 2 && <Page2 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData={surveyData} updateAnswer={updateAnswer}/>}
-      {step === 3 && <Page3 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 4 && <Page4 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 5 && <Page5 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 6 && <Page6 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
+      {step === 1 && 
+      <motion.div
+        key="page2" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page1 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      } 
+      {step === 2 && 
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page2 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData={surveyData} updateAnswer={updateAnswer}/>
+      </motion.div>
+      } 
+      {step === 3 && 
+      <motion.div
+        key="page3" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page3 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      } 
+      {step === 4 && 
+      <motion.div
+        key="page4" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page4 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      } 
+      {step === 5 && 
+      <motion.div
+        key="page5" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page5 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      } 
+      {step === 6 && 
+      <motion.div
+        key="page6" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page6 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      } 
       {step === 7 && <Page7 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
       {step === 8 && <Page8 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
       {step === 9 && <Page9 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
@@ -246,6 +308,7 @@ const handleNext3 = () => {
       {step === 'result' && <ResultScreen mbtiResult={mbtiResult} email={email} setEmail={setEmail} isRegistered={isRegistered} setIsRegistered={setIsRegistered} onNext={() => setStep('pawfectMatch')} />}
       {step === 'pawfectMatch' && <PawfectMatchScreen />} */}
       {/* <MbtiResult handleNext={handleNext}  step={step}setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/> */}
+      </AnimatePresence>
     </div>
 
   );

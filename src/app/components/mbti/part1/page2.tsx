@@ -87,12 +87,12 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   return (
-    <div className="mx-auto max-w-[1440px]  h-screen max-h-[650px] flex flex-col items-center justify-center">
+    <div className="mx-auto max-w-[1440px]  h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] flex flex-col items-center justify-center">
 
      
       
           
-        <div className=" flex flex-col  items-center  w-full mx-auto h-full ">
+        <div className=" relative flex flex-col  items-center  w-full mx-auto h-full ">
 
           <div className="  max-w-[540px] flex flex-col items-left  h-full">
             <label className="
@@ -104,7 +104,7 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
                         ">My pet is a
             </label>
 
-          <div className=" flex flex-row w-[320px] md:w-[540px] h-[44px] mt-[19px]">
+          <div className="  flex flex-row w-[320px] md:w-[540px] h-[44px] mt-[19px]">
 
 
           <div className=" relative flex flex-row w-[130px] md:w-[260px] h-[44px]">
@@ -119,11 +119,11 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               focus:outline-none focus:border-[#FFC542]
               font-[Inter]
               text-left
-              ${selected ? 'text-[#27355D]' : 'text-[#C3C3C3]'}
+              ${surveyData.pet_info.PetSpecies ? 'text-[#27355D]' : 'text-[#C3C3C3]'}
               text-[16px]
               `}
             >
-          {selected || 'Species'}
+          {surveyData.pet_info.PetSpecies || 'Species'}
         </button>
 
           <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
@@ -169,7 +169,7 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               <div
                 key={option}
                 onClick={() => {
-                  setSelected(option);
+                  updateAnswer('pet_info', null, 'PetSpecies', option);
                   setIsOpen(false);
                 }}
                 className={`
@@ -205,11 +205,11 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               focus:outline-none focus:border-[#FFC542]
               font-[Inter]
               text-left
-             ${selected2 ? 'text-[#27355D]' : 'text-[#C3C3C3]'}
+             ${surveyData.pet_info.PetBreed ? 'text-[#27355D]' : 'text-[#C3C3C3]'}
               text-[16px]
           `}
           >
-          {selected2 || 'Breed'}
+          {surveyData.pet_info.PetBreed || 'Breed'}
         </button>
 
           <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
@@ -255,7 +255,7 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               <div
                 key={option}
                 onClick={() => {
-                  setSelected2(option);
+                  updateAnswer('pet_info', null, 'PetBreed', option);
                   setIsOpen2(false);
                 }}
                 className={`
@@ -311,15 +311,16 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               focus:outline-none
               placeholder:[#C3C3C3]
               text-[16px]"
+              value={surveyData.pet_info.PetBreed}
+              onChange={(e) => updateAnswer('pet_info', null, 'PetBreed', e.target.value)}
           />
 
          
           <button 
             className="
+            absolute max-md:bottom-[48px] top-[393px]
             w-[44px] md:w-[101px] 
             h-[44px]
-            mt-auto md:mt-[120px]
-            mb-[48px] md:mb-auto
             self-end
             rounded-[22px]
             bg-[#5777D0] 
@@ -330,7 +331,7 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
             >
               <span className="hidden md:inline">Next</span>
               <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5432 16.948L6.00057 24.4907L4.11523 22.6054L10.7152 16.0054L4.11523 9.40535L6.00057 7.52002L13.5432 15.0627C13.7932 15.3127 13.9336 15.6518 13.9336 16.0054C13.9336 16.3589 13.7932 16.698 13.5432 16.948Z" fill="white"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M13.5432 16.948L6.00057 24.4907L4.11523 22.6054L10.7152 16.0054L4.11523 9.40535L6.00057 7.52002L13.5432 15.0627C13.7932 15.3127 13.9336 15.6518 13.9336 16.0054C13.9336 16.3589 13.7932 16.698 13.5432 16.948Z" fill="white"/>
               </svg>
           </button>
 
