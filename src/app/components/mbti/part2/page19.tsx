@@ -1,3 +1,4 @@
+
 'use client'; 
 import React, { useEffect, useState } from 'react';
 
@@ -52,87 +53,193 @@ interface Page19Props {
     updateAnswer: (category: keyof SurveyData, subCategory: any | null, field: string, value: string) => void;
 }
 
+const Page19: React.FC<Page19Props> = ({
+  handleNext,
+  handleBack,
+  handleSkip,
+  surveyData,
+  updateAnswer
+}) => {
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-
-const Page19: React.FC<Page19Props>  = ({ handleNext, handleBack, handleSkip, step, setStep, surveyData, updateAnswer  }) => {
   
   return (
     <div className="quiz-container">
       {/* 问题文本 */}
       <div className="question-container">
-        <h2>Anything else you want to tell us?</h2>
-      </div>
-
-      {/* Likert 量表 */}
-      <div className="slider-container">
-        {/* 标签行 */}
-         <input 
-              type="text"
-              placeholder="Tell us more about your pet"
-              className="label-row"
-         />
+        <h2>Anything else you want to tell us? </h2>
         
       </div>
 
-      {/* 按钮区域 */}
-      <div className="button-container">
-        <button className="nav-button previous" onClick={handleBack}>
-          Previous
-        </button>
-        <button className="nav-button skip" onClick={handleSkip}>
-          Skip
-        </button>
-        <button className="nav-button next" onClick={handleNext}>
-          Next
-        </button>
+      {/* 桌面端: Bubble 选择 */}
+      <div className="slider-container desktop" style={{ display: isMobile ? 'none' : 'block' }}>
+      <input
+          type="text"
+          placeholder="Tell us more about your pet"
+          className="slider"
+        />       
       </div>
 
-      {/* 样式 */}
-      <style jsx>{`
-        .quiz-container {
-          max-width: 80%;
-          margin: auto;
-          padding: 20px;
-          text-align: center;
-        }
+      {/* 移动端: Slider 滑动条 */}
+      <div className="slider-container mobile" style={{ display: isMobile ? "block" : "none" }}>
+          <input
+            type="text"
+            placeholder="Tell us more about your pet"
+            className="slider"
+           />
+      </div>
 
-        .question-container {
-          margin-top: 157px;
-        }
-        .question-container h2 {
-          color: #101828;
+      {/* Desktop 端的按钮 */}
+      <div className="button-container desktop">
+        <button className="nav-button previous" onClick={handleBack}>Previous</button>
+        <button className="nav-button skip" onClick={handleSkip}>Skip</button>
+        <button className="nav-button next" onClick={handleNext}>Next</button>
+      </div>
+
+      {/* Mobile 端的按钮 */}
+      <div className="button-container mobile">
+        <button className="nav-button mobile previous" onClick={handleBack}>←</button>
+        <button className="nav-button mobile skip" onClick={handleSkip}>Skip</button>
+        <button className="nav-button mobile next" onClick={handleNext}>→</button>
+      </div>
+
+
+      <style jsx>{`
+        /* === 基础样式 === */
+        body {
           font-size: 18px;
         }
 
-        /* Likert 量表 */
-        .slider-container {
-          margin-top: 39px;
+        @media (max-width: 768px) {
+          body {
+            font-size: 16px;
+            text-align: left !important;
+          }
+        }
+
+        .quiz-container {
+          max-width: 800px;
+          margin: auto;
+          padding: 80px;
+          text-align: left;
+        }
+
+        @media (max-width: 768px) {
+          .quiz-container {
+            margin: auto;
+            padding: 40px 0 40px 0;
+            max-width: 400px;
+            text-align: left;
+          }
+
+          .slider-container.mobile {
+            width: calc(100% - 40px);
+            max-width: 400px; /* 保持和 360px 版本一致 */
+          }
+          .question-container.mobile h2 {
+          text-align: left !important;
+          width: 100%;
+        }   
+        }
+
+        /* === 问题容器 === */
+        .question-container.desktop {
+          width: 540px; /* Fixed width */
+          margin: auto; 
+          text-align: center;
+        }
+
+        .question-container.desktop h2 {
+          font-size: 18px;
+          color: #101828;
+        }
+
+        .question-container.mobile {
+          top: 40px;
+          left: 0%;
+          transform: none;
+          width: 400px;
+        }
+
+        .question-container.mobile h2 {
+          text-align: left !important; /* 确保标题是左对齐 */
+          margin-left: 0;
+          font-size: 16px;
+          color: #101828;
+        }
+
+        @media (max-width: 360px) {
+          .question-container.mobile {
+            width: calc(100% - 40px);
+          }
+        }
+
+        /* === 选择滑块 === */
+        .slider-container.desktop {
+          margin-top: 20px;
           display: flex;
           flex-direction: column;
           align-items: center;
           width: 100%;
-        }
-        .label-row {
-          w-[540px] h-[44px]
-              mt-[20px]
-              py-[12px] pl-[12px] pr-[130px]
-              border border-[1px] border-[#717680]
-              rounded-[22px]
-              bg-white
-              font-[Inter]
-              text-[#27355D]
-               focus:outline-none
-              placeholder:[#C3C3C3]
+          text-align: center;
+          padding: 0 10px;
         }
 
-        /* 按钮部分 */
-        .button-container {
+        .slider-container.mobile {
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          max-width: 400px;
           display: flex;
-          justify-content: center;
-          gap: 24px;
-          margin-top: 100px;
+          flex-direction: column;
+          align-items: center;
+          margin: 20px auto;
+        }
+
+        @media (max-width: 360px) {
+          .slider-container.mobile {
+            width: calc(100% - 40px);
+          }
+        }
+
+               
+        .slider {
+        width: 100%; /* 默认宽度为 100% */
+        appearance: none; /* 移除默认的浏览器样式 */
+        margin-top: 20px; /* 上边距为 20px */
+        padding: 12px 130px 12px 12px; /* 内边距：上 12px，右 130px，下 12px，左 12px */
+        border: 1px solid #717680; /* 1px 的灰色实线边框 */
+        border-radius: 22px; /* 圆角半径为 22px */
+        background-color: white; /* 背景颜色为白色 */
+        font-family: Inter, sans-serif; /* 字体为 Inter，备用字体为 sans-serif */
+        color: #27355D; /* 文字颜色为深蓝色 */
+        outline: none; /* 移除默认的聚焦外边框 */
+        }
+
+        /* 聚焦状态 */
+       .slider:focus {
+        border-color: #FFC542; /* 聚焦时边框颜色变为黄色 */
+       }
+
+       /* 占位符样式 */
+       .slider::placeholder {
+        color: #C3C3C3; /* 占位符文字颜色为浅灰色 */
+       }
+
+        /* === 按钮样式（桌面端） === */
+        .button-container.desktop {
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          margin-top: 160px;
+          width: 100%;
         }
 
         .nav-button {
@@ -147,7 +254,8 @@ const Page19: React.FC<Page19Props>  = ({ handleNext, handleBack, handleSkip, st
           width: 132px;
           height: 44px;
           background: #d1d7ef;
-          color: #1c1c1c;
+          color: white;
+          font-weight: bold !important;
         }
 
         .skip {
@@ -155,6 +263,10 @@ const Page19: React.FC<Page19Props>  = ({ handleNext, handleBack, handleSkip, st
           height: 44px;
           background: transparent;
           border: 1px solid #c3c3c3;
+          font-weight: bold !important;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
         }
 
         .skip:hover {
@@ -167,34 +279,80 @@ const Page19: React.FC<Page19Props>  = ({ handleNext, handleBack, handleSkip, st
           background: #5777d0;
           color: white;
           border: none;
+          font-weight: bold !important;
         }
 
-        /* 小屏幕优化 */
-        @media (max-width: 480px) {
-          .quiz-container {
-            max-width: 90%;
-            padding: 10px;
-          }
+        /* === 按钮样式（移动端） === */
+        .button-container.mobile {
+          position: fixed;
+          bottom: 60px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+          width: calc(100% - 40px);
+          max-width: 400px; /* 允许更大一点的空间 */
+        }
 
-          .label-row {
-            flex-direction: column;
-            text-align: center;
+        @media (max-width: 360px) {
+          .button-container.mobile {
+            width: calc(100% - 40px);
           }
+        }
 
-          .button-container {
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+        .nav-button.mobile {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          font-size: 20px;
+          cursor: pointer;
+          border: none;
+          background: #5777d0;
+          color: white;
+        }
+
+        .previous.mobile {
+          background: #d1d7ef;
+        }
+
+        .skip.mobile {
+          width: 98px;
+          border-radius: 22px;
+          background: white;
+          border: 1px solid #c3c3c3;
+          color: black;
+          font-size: 16px;
+        }
+
+        .skip.mobile:hover {
+          background: #f5f5f5;
+        }
+
+        /* === 响应式设计 === */
+        @media (max-width: 768px) {
+          .button-container.desktop {
+            display: none;
           }
+          .button-container.mobile {
+            display: flex;
+          }
+        }
 
-          .nav-button {
-            width: 100%;
-            font-size: 14px;
+        @media (min-width: 769px) {
+          .button-container.mobile {
+            display: none;
+          }
+          .button-container.desktop {
+            display: flex;
           }
         }
       `}</style>
-    </div>
-  );
-};
+            </div>
+          );
+        };
+
+
 
 export default Page19;
