@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 interface SurveyData {
   personality_and_behavior: {
-    Energy_Socialization: {
-      seek_attention: string;
+    Decision_Making: {
+      react_when_sad: string;
     };
   };
 }
@@ -33,7 +33,7 @@ const Page10: React.FC<Page10Props> = ({
   updateAnswer,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>(
-    surveyData.personality_and_behavior.Energy_Socialization.seek_attention || '5'
+    surveyData.personality_and_behavior.Decision_Making.react_when_sad || '5'
   );
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -46,14 +46,15 @@ const Page10: React.FC<Page10Props> = ({
 
   const handleSelectOption = (option: string) => {
     setSelectedOption(option);
-    updateAnswer('personality_and_behavior', 'Energy_Socialization', 'seek_attention', option);
+    updateAnswer('personality_and_behavior', 'Decision_Making', 'react_when_sad', option);
   };
 
   return (
+    <div className='relative mx-auto w-full max-w-[1440px]  h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] w-full flex justify-center'>
     <div className="quiz-container">
       {/* 问题文本 */}
-      <div className="question-container">
-        <h2>If you don't take care of your pet for 7 days, how would his/her fur or living space look? </h2>
+      <div className="question-container h-[38px] md:h-[44px] leading-[19.36px]">
+        <h2>Does your pet prefer things a certain way (e.g., food, favorite spots)?</h2>
       </div>
 
       {/* 桌面端: Bubble 选择 */}
@@ -64,57 +65,73 @@ const Page10: React.FC<Page10Props> = ({
             const optionValue = parseInt(option);
             const selectedValue = parseInt(selectedOption);
             const isLeft = optionValue < 5;
-            const isMiddle = optionValue === 5;
+            const isMiddle = optionValue === 5; // 🔥 识别中间的 bubble
             const inSelectionRange = isLeft
               ? optionValue >= selectedValue && optionValue <= 5
               : optionValue <= selectedValue && optionValue >= 5;
+    
+          // 🔥 设定中间 bubble 颜色
+          const isMiddleSelected = selectedValue < 5 ? "#FFC542" : "#5777D0";
+    
+          // 🔥 设定中间 bubble 的边框颜色
+          const middleBorderColor = selectedValue < 5 ? "#FEF0C7" : "#D1D7EF";
 
-            const isMiddleSelected = selectedValue < 5 ? "#FFC542" : "#5777D0";
-            const middleBorderColor = selectedValue < 5 ? "#FEF0C7" : "#D1D7EF";
-
-            return (
-              <div key={option} className="option-wrapper">
-                <div
-                  className="option-circle"
-                  onClick={() => handleSelectOption(option)}
-                  style={{
-                    width: `${size}px`,
-                    height: `${size}px`,
-                    background: isMiddle
-                      ? isMiddleSelected
-                      : inSelectionRange
-                      ? isLeft
-                        ? "#FFC542"
-                        : "#5777D0"
+          return (
+            <div key={option} className="option-wrapper">
+              <div
+                className="option-circle"
+                onClick={() => handleSelectOption(option)}
+                style={{
+                  width: `${size}px`,
+                  height: `${size}px`,
+                  background: isMiddle
+                    ? isMiddleSelected // 🔥 确保中间 bubble 颜色正确
+                    : inSelectionRange
+                    ? isLeft
+                      ? "#FFC542"
+                      : "#5777D0"
                       : "#F5F5F5",
-                    border: `${isMiddle || inSelectionRange ? "4px" : "1px"} solid ${
-                      isMiddle
-                        ? middleBorderColor
-                        : inSelectionRange
+                  border: `${isMiddle || inSelectionRange ? "4px" : "1px"} solid ${
+                    isMiddle
+                      ? middleBorderColor // 🔥 中间 bubble 的边框颜色
+                      : inSelectionRange
                         ? isLeft
                           ? "#FEF0C7"
                           : "#D1D7EF"
                         : "#C3C3C3"
                     }`,
                   }}
-                />
+               />
               </div>
             );
-          })}
+         })}
         </div>
-
-        {/* 标签行 */}
-        <div className="label-row">
-          <span className="option-label">🤢Stinky</span>
-          <span className="option-label">✨Tidy and Clean</span>
+        
+         {/* 标签行 */}
+        <div className="label-row ">
+          <span className="option-label text-[14px] text-[#717680]">🤖Strict</span>
+          <span className="option-label text-[14px] text-[#717680]">💓Flexible</span>
         </div>
       </div>
 
-      {/* 移动端: Slider 滑动条 */}
-      <div className="slider-container mobile" style={{ display: isMobile ? "block" : "none" }}>
-        <div className="slider-wrapper">
-          <div className="slider-guide-line"></div>
 
+
+
+
+
+
+      {/* 移动端: Slider 滑动条 */}
+      <div className={`
+            mt-[20px]
+            w-[320px]
+            ${isMobile ? 'block' : 'hidden'}
+            flex flex-col items-center
+            mx-auto
+            mt-0
+             `} >
+        <div className="slider-wrapper">
+         
+         <div className="slider-guide-line"></div>
           <input
             type="range"
             min="1"
@@ -156,25 +173,36 @@ const Page10: React.FC<Page10Props> = ({
         </div>
 
         {/* 底部标签 */}
-        <div className="slider-labels">
-          <span>🤢Stinky</span>
-          <span>✨Tidy and Clean</span>
+        <div className=" slider-labels text-[14px] text-[#717680]">
+          <span>🤖Strict</span>
+          <span>💓Flexible</span>
         </div>
       </div>
 
+ 
       {/* Desktop 端的按钮 */}
-      <div className="button-container desktop">
+      <div className="button-container desktop absolute top-[393px] left-0 right-0 w-[540px] mx-auto flex justify-between">
         <button className="nav-button previous" onClick={handleBack}>Previous</button>
         <button className="nav-button skip" onClick={handleSkip}>Skip</button>
         <button className="nav-button next" onClick={handleNext}>Next</button>
       </div>
 
       {/* Mobile 端的按钮 */}
-      <div className="button-container mobile">
-        <button className="nav-button mobile previous" onClick={handleBack}>←</button>
+      <div className="button-container mobile absolute bottom-[48px] left-0 right-0 w-[320px] mx-auto flex justify-between">
+        <button className="nav-button mobile previous" onClick={handleBack}>
+          <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.45677 16.948L9.99943 24.4907L11.8848 22.6054L5.28477 16.0054L11.8848 9.40535L9.99943 7.52002L2.45677 15.0627C2.20681 15.3127 2.06638 15.6518 2.06638 16.0054C2.06638 16.3589 2.20681 16.698 2.45677 16.948Z" fill="white"/>
+          </svg>
+        </button>
         <button className="nav-button mobile skip" onClick={handleSkip}>Skip</button>
-        <button className="nav-button mobile next" onClick={handleNext}>→</button>
+        <button className="nav-button mobile next" onClick={handleNext}>
+          <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
+          <path fillRule="evenodd" clipRule="evenodd" d="M13.5432 16.948L6.00057 24.4907L4.11523 22.6054L10.7152 16.0054L4.11523 9.40535L6.00057 7.52002L13.5432 15.0627C13.7932 15.3127 13.9336 15.6518 13.9336 16.0054C13.9336 16.3589 13.7932 16.698 13.5432 16.948Z" fill="white"/>
+          </svg>
+        </button>
       </div>
+
+      
 
 
       <style jsx>{`
@@ -191,24 +219,20 @@ const Page10: React.FC<Page10Props> = ({
         }
 
         .quiz-container {
-          max-width: 800px;
+          width: 540px;
           margin: auto;
-          padding: 80px;
-          text-align: left;
+          text-align:left;
+          margin-top: 85px;
         }
 
         @media (max-width: 768px) {
           .quiz-container {
             margin: auto;
-            padding: 40px 0 40px 0;
-            max-width: 400px;
+            width: 320px;
             text-align: left;
+             margin-top: 40px;
           }
 
-          .slider-container.mobile {
-            width: calc(100% - 40px);
-            max-width: 400px; /* 保持和 360px 版本一致 */
-          }
           .question-container.mobile h2 {
           text-align: left !important;
           width: 100%;
@@ -228,10 +252,13 @@ const Page10: React.FC<Page10Props> = ({
         }
 
         .question-container.mobile {
+          position: absolute;
           top: 40px;
           left: 0%;
           transform: none;
           width: 400px;
+          text-align: left !important;
+          padding: 0 20px;
         }
 
         .question-container.mobile h2 {
@@ -255,25 +282,13 @@ const Page10: React.FC<Page10Props> = ({
           align-items: center;
           width: 100%;
           text-align: center;
-          padding: 0 10px;
+        
+          
+
         }
 
-        .slider-container.mobile {
-          position: fixed;
-          left: 50%;
-          transform: translateX(-50%);
-          max-width: 400px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin: 20px auto;
-        }
+      
 
-        @media (max-width: 360px) {
-          .slider-container.mobile {
-            width: calc(100% - 40px);
-          }
-        }
 
         .slider {
           width: 100%;
@@ -297,6 +312,9 @@ const Page10: React.FC<Page10Props> = ({
         .slider-wrapper {
           position: relative;
           width: 100%;
+          z-index: 1;
+       
+       
         }
 
         /* 中间辅助线 */
@@ -304,7 +322,7 @@ const Page10: React.FC<Page10Props> = ({
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 1.5px;
+          width: 2px;
           height: 36px;
           background-color: black;
           transform: translate(-50%, -50%);
@@ -338,7 +356,7 @@ const Page10: React.FC<Page10Props> = ({
           justify-content: space-between;
           width: 100%;
           max-width: 400px;
-          margin-top: 8px;
+          margin-top: 0px;
           padding: 0 5px;
         }
 
@@ -348,7 +366,7 @@ const Page10: React.FC<Page10Props> = ({
           justify-content: space-between;
           align-items: center;
           width: 100%;
-          height: 80px;
+          height: 46px;
           margin: auto;
         }
 
@@ -362,16 +380,12 @@ const Page10: React.FC<Page10Props> = ({
           display: flex;
           justify-content: space-between;
           width: 100%;
-          margin: 10px auto 0;
+          margin-top: 5px;
         }
 
         /* === 按钮样式（桌面端） === */
         .button-container.desktop {
-          position: relative;
-          display: flex;
-          justify-content: space-between;
-          margin-top: 160px;
-          width: 100%;
+      
         }
 
         .nav-button {
@@ -416,23 +430,10 @@ const Page10: React.FC<Page10Props> = ({
 
         /* === 按钮样式（移动端） === */
         .button-container.mobile {
-          position: fixed;
-          bottom: 60px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 16px;
-          width: calc(100% - 40px);
-          max-width: 400px; /* 允许更大一点的空间 */
+         
         }
 
-        @media (max-width: 360px) {
-          .button-container.mobile {
-            width: calc(100% - 40px);
-          }
-        }
+   
 
         .nav-button.mobile {
           width: 44px;
@@ -482,7 +483,8 @@ const Page10: React.FC<Page10Props> = ({
         }
       `}</style>
             </div>
+          </div>
           );
         };
+export default Page10; 
 
-export default Page10;

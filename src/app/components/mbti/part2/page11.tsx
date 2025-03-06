@@ -36,6 +36,13 @@ const Page11: React.FC<Page11Props> = ({
     surveyData.personality_and_behavior.Decision_Making.react_when_sad || '5'
   );
 
+  const [showBanner, setShowBanner] = useState(true);
+  
+  const handleCloseBanner = () => {
+    setShowBanner(false);
+  }
+
+
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -50,10 +57,49 @@ const Page11: React.FC<Page11Props> = ({
   };
 
   return (
-    <div className="quiz-container">
+    <div className='relative  mx-auto w-full max-w-[1440px]  h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] w-full flex flex-col justify-center'>
+      {showBanner && (
+
+        <div className="mx-auto h-[100px] md:h-[80px] w-full bg-[#FEF0C7] flex items-center justify-center">
+          
+          <div className=" mx-auto w-[320px] md:w-[540px] flex flex-row items-center justify-between ">
+            <div className="flex flex-col max-w-[289px] md:max-w-[450px] gap-[10px]">
+              <span className="max-w-[289px] md:max-w-[450px] text-[14px] text-[#717680] leading-[16.94px]">
+                A name and image help us create a more personalized result poster for you, but feel free to skip if you're not comfortable!
+              </span>
+              <a
+                href="#sample" 
+                className=" text-[14px] text-[#5777D0] underline hover:opacity-80 leading-[16.94px]"
+              >
+                View Sample
+              </a>
+            </div>
+
+            <button
+              onClick={handleCloseBanner}
+              className="text-[#27355D] hover:opacity-80 transition-all"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        )}
+    <div className=" quiz-container">
       {/* 问题文本 */}
-      <div className="question-container">
-        <h2>If you show sadness to your pet, how will it react?</h2>
+      <div className="question-container h-[38px] md:h-[44px] leading-[19.36px]">
+        <h2>What does your pet do when your friends visit you?</h2>
       </div>
 
       {/* 桌面端: Bubble 选择 */}
@@ -107,17 +153,30 @@ const Page11: React.FC<Page11Props> = ({
         </div>
         
          {/* 标签行 */}
-        <div className="label-row">
-          <span className="option-label">😒Ignores</span>
-          <span className="option-label">🫶🏻Comforts you</span>
+        <div className="label-row ">
+          <span className="option-label text-[14px] text-[#717680]">🥰Welcomes</span>
+          <span className="option-label text-[14px] text-[#717680]">🫣Hides</span>
         </div>
       </div>
 
-      {/* 移动端: Slider 滑动条 */}
-      <div className="slider-container mobile" style={{ display: isMobile ? "block" : "none" }}>
-        <div className="slider-wrapper">
-          <div className="slider-guide-line"></div>
 
+
+
+
+
+
+      {/* 移动端: Slider 滑动条 */}
+      <div className={`
+            mt-[20px]
+            w-[320px]
+            ${isMobile ? 'block' : 'hidden'}
+            flex flex-col items-center
+            mx-auto
+            mt-0
+             `} >
+        <div className="slider-wrapper">
+         
+         <div className="slider-guide-line"></div>
           <input
             type="range"
             min="1"
@@ -159,26 +218,37 @@ const Page11: React.FC<Page11Props> = ({
         </div>
 
         {/* 底部标签 */}
-        <div className="slider-labels">
-          <span>😒Ignores</span>
-          <span>🫶🏻Comforts you</span>
+        <div className=" slider-labels text-[14px] text-[#717680]">
+          <span>🥰Welcomes</span>
+          <span>🫣Hides</span>
         </div>
       </div>
 
  
       {/* Desktop 端的按钮 */}
-      <div className="button-container desktop">
+      <div className= {`button-container desktop absolute ${showBanner ? 'top-[473px]' : 'top-[393px]'} left-0 right-0 w-[540px] mx-auto flex justify-between
+      `}>
         <button className="nav-button previous" onClick={handleBack}>Previous</button>
         <button className="nav-button skip" onClick={handleSkip}>Skip</button>
         <button className="nav-button next" onClick={handleNext}>Next</button>
       </div>
 
       {/* Mobile 端的按钮 */}
-      <div className="button-container mobile">
-        <button className="nav-button mobile previous" onClick={handleBack}>←</button>
+      <div className="button-container mobile absolute bottom-[48px] left-0 right-0 w-[320px] mx-auto flex justify-between">
+        <button className="nav-button mobile previous" onClick={handleBack}>
+          <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.45677 16.948L9.99943 24.4907L11.8848 22.6054L5.28477 16.0054L11.8848 9.40535L9.99943 7.52002L2.45677 15.0627C2.20681 15.3127 2.06638 15.6518 2.06638 16.0054C2.06638 16.3589 2.20681 16.698 2.45677 16.948Z" fill="white"/>
+          </svg>
+        </button>
         <button className="nav-button mobile skip" onClick={handleSkip}>Skip</button>
-        <button className="nav-button mobile next" onClick={handleNext}>→</button>
+        <button className="nav-button mobile next" onClick={handleNext}>
+          <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
+          <path fillRule="evenodd" clipRule="evenodd" d="M13.5432 16.948L6.00057 24.4907L4.11523 22.6054L10.7152 16.0054L4.11523 9.40535L6.00057 7.52002L13.5432 15.0627C13.7932 15.3127 13.9336 15.6518 13.9336 16.0054C13.9336 16.3589 13.7932 16.698 13.5432 16.948Z" fill="white"/>
+          </svg>
+        </button>
       </div>
+
+      
 
 
       <style jsx>{`
@@ -195,24 +265,20 @@ const Page11: React.FC<Page11Props> = ({
         }
 
         .quiz-container {
-          width: 800px;
-          margin: auto;
-          padding: 80px;
+          width:540px;
+          margin:auto;
           text-align:left;
+          margin-top:85px;
         }
 
         @media (max-width: 768px) {
           .quiz-container {
             margin: auto;
-            padding: 40px 0 40px 0;
-            max-width: 400px;
+            width: 320px;
             text-align: left;
+             margin-top: 40px;
           }
 
-          .slider-container.mobile {
-            width: calc(100% - 40px);
-            max-width: 400px; /* 保持和 360px 版本一致 */
-          }
           .question-container.mobile h2 {
           text-align: left !important;
           width: 100%;
@@ -262,25 +328,13 @@ const Page11: React.FC<Page11Props> = ({
           align-items: center;
           width: 100%;
           text-align: center;
-          padding: 0 10px;
+        
+          
+
         }
 
-        .slider-container.mobile {
-          position: fixed;
-          left: 50%;
-          transform: translateX(-50%);
-          max-width: 400px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin: 20px auto;
-        }
+      
 
-        @media (max-width: 360px) {
-          .slider-container.mobile {
-            width: calc(100% - 40px);
-          }
-        }
 
         .slider {
           width: 100%;
@@ -304,6 +358,9 @@ const Page11: React.FC<Page11Props> = ({
         .slider-wrapper {
           position: relative;
           width: 100%;
+          z-index: 1;
+       
+       
         }
 
         /* 中间辅助线 */
@@ -311,7 +368,7 @@ const Page11: React.FC<Page11Props> = ({
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 1.5px;
+          width: 2px;
           height: 36px;
           background-color: black;
           transform: translate(-50%, -50%);
@@ -345,7 +402,7 @@ const Page11: React.FC<Page11Props> = ({
           justify-content: space-between;
           width: 100%;
           max-width: 400px;
-          margin-top: 8px;
+          margin-top: 0px;
           padding: 0 5px;
         }
 
@@ -355,7 +412,7 @@ const Page11: React.FC<Page11Props> = ({
           justify-content: space-between;
           align-items: center;
           width: 100%;
-          height: 80px;
+          height: 46px;
           margin: auto;
         }
 
@@ -369,16 +426,12 @@ const Page11: React.FC<Page11Props> = ({
           display: flex;
           justify-content: space-between;
           width: 100%;
-          margin: 10px auto 0;
+          margin-top: 5px;
         }
 
         /* === 按钮样式（桌面端） === */
         .button-container.desktop {
-          position: relative;
-          display: flex;
-          justify-content: space-between;
-          margin-top: 160px;
-          width: 100%;
+      
         }
 
         .nav-button {
@@ -423,23 +476,10 @@ const Page11: React.FC<Page11Props> = ({
 
         /* === 按钮样式（移动端） === */
         .button-container.mobile {
-          position: fixed;
-          bottom: 60px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 16px;
-          width: calc(100% - 40px);
-          max-width: 400px; /* 允许更大一点的空间 */
+         
         }
 
-        @media (max-width: 360px) {
-          .button-container.mobile {
-            width: calc(100% - 40px);
-          }
-        }
+   
 
         .nav-button.mobile {
           width: 44px;
@@ -489,8 +529,8 @@ const Page11: React.FC<Page11Props> = ({
         }
       `}</style>
             </div>
+          </div>
           );
         };
-
-export default Page11;
+export default Page11; 
 

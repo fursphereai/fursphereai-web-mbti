@@ -283,20 +283,149 @@ const handleNext3 = () => {
       <Page6 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       } 
-      {step === 7 && <Page7 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 8 && <Page8 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 9 && <Page9 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 10 && <Page10 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 11 && <Page11 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 12 && <Page12 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 13 && <Page13 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 14 && <Page14 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 15 && <Page15 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 16 && <Page16 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 17 && <Page17 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 18 && <Page18 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 19 && <Page19 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {/* {step === 6 && <EmailVerificationScreen handleNext={handleNext} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
+      {step === 7 && 
+      <motion.div
+        key="page7" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page7 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 8 && 
+      <motion.div
+        key="page8" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page8 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 9 && 
+      <motion.div
+        key="page9" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page9 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 10 && 
+      <motion.div
+        key="page10" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page10 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 11 && 
+      <motion.div
+        key="page11" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page11 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 12 && 
+      <motion.div
+        key="page12" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page12 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 13 && 
+      <motion.div
+        key="page13" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page13 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 14 && 
+      <motion.div
+        key="page14" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page14 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 15 && 
+      <motion.div
+        key="page15" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page15 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 16 && 
+      <motion.div
+        key="page16" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page16 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 17 && 
+      <motion.div
+        key="page17" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page17 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 18 && 
+      <motion.div
+        key="page18" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page18 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      }
+      {step === 19 && 
+      <motion.div
+        key="page19" 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+      >
+      <Page19 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      </motion.div>
+      /* {step === 6 && <EmailVerificationScreen handleNext={handleNext} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
       {step === 7 && <MbtiResult handleNext={handleNext}  step={step}setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
       {step === 8 && <StartPawfectMatch handleNext={handleNext} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
       {step === 9 && <PawfectMatch handleNext={handleNext} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
