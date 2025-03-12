@@ -68,7 +68,7 @@ const BasicInfoScreen: React.FC<BasicInfoScreenProps>  = ({ handleNext, step, se
             <input
             type="text"
             placeholder="Is your pet a cat or a dog?"
-            value={surveyData.pet_info.PetKind}
+            value={surveyData.pet_info.PetSpecies}
             onChange={(e) => updateAnswer('pet_info', null, 'PetKind', e.target.value)}
             className="border p-2 w-full mt-2"
             />

@@ -1,120 +1,111 @@
-'use client'; 
-import { useEffect, useState } from "react";
+'use client';
 
-interface SurveyData {
-  user_info: {
-    email: string,
-    ip: string;
-  };
-  pet_info: {
-    PetKind: string;
-    PetName: string,
-    PetBreed: string,
-    PetSex: string,
-    PetAge: string
-  };
-  personality_and_behavior: {
-      Energy_Socialization: {
-          seek_attention: string,
-          react_new_people: string,
-          behave_with_animals: string,
-      },
-      Routin_Curiosity: {
-          prefer_routine: string,
-          react_new_env: string,
-          lost_in_thought: string,
-      },
-      Decision_Making: {
-          react_when_sad: string,
-          face_challenge: string,
-          hold_grudges:string,
-      },
-      Structure_Spontaneity: {
-          prefer_structure:string,
-          react_unexpected_change:string,
-          follow_commands:string,
-      };
-  };
-}
+import { useEffect, useState, useRef } from "react";
 
 interface MbtiResultProps {
-  handleNext: () => void; 
-  surveyData: SurveyData;
-  step: number;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-  updateAnswer: (category: keyof SurveyData, subCategory:any  | null, field: string, value: string) => void;
+  handleNext: () => void;
+  surveyData: any;
 }
 
-const MbtiResult: React.FC<MbtiResultProps>  = ({ handleNext,step, setStep, surveyData, updateAnswer  }) => {
-
-  const [result, setResult] = useState(null);
-
-  // useEffect(() => {
-  //   const ws = new WebSocket("ws://localhost:8765");
-
-
-  //   ws.onmessage = (event) => {
-  //     const data = JSON.parse(event.data);
-  //     console.log("收到处理结果:", data);
-  //     setResult(data);
-  //   };
-
-  //   return () => {
-  //     ws.close();
-  //   };
-  // }, []);
+const MbtiResult: React.FC<MbtiResultProps> = ({ handleNext, surveyData }) => {
+  const [result, setResult] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isConnecting, setIsConnecting] = useState(true);
+  const wsRef = useRef<WebSocket | null>(null);
+  const retryCount = useRef(0);
+  const MAX_RETRIES = 3;
 
   useEffect(() => {
-    const ws = new WebSocket("ws://127.0.0.1:8765/");
+    const connectWebSocket = () => {
+      if (wsRef.current) {
+        wsRef.current.close();
+      }
 
-  
-    ws.onopen = () => {
-      console.log("✅ WebSocket 连接成功");
+      wsRef.current = new WebSocket("ws://localhost:8765");
+
+      wsRef.current.onopen = () => {
+        console.log("✅ WebSocket connected");
+        setIsConnecting(false);
+        setError(null);
+        
+        // Send the survey data to process
+        
+          wsRef.current?.send("2");
+        
+      };
+
+      wsRef.current.onmessage = (event) => {
+        try {
+          // The server sends back a doubled number
+          const processedValue = parseFloat(event.data);
+          console.log("📩 Received result:", processedValue);
+          setResult(processedValue);
+        } catch (err) {
+          console.error("⚠️ Failed to parse data:", err);
+          setError("Failed to process server response");
+        }
+      };
+
+      wsRef.current.onerror = () => {
+        console.error("❌ WebSocket error");
+        setError("Connection error - Please check if the server is running");
+        setIsConnecting(false);
+      };
+
+      wsRef.current.onclose = () => {
+        console.log("⚠️ WebSocket closed");
+        setIsConnecting(false);
+        if (retryCount.current < MAX_RETRIES) {
+          retryCount.current += 1;
+          setTimeout(connectWebSocket, 2000);
+        } else {
+          setError("Failed to connect after multiple attempts. Please refresh the page.");
+        }
+      };
     };
-  
-    ws.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        console.log("📩 解析 WebSocket 数据:", data);
-        setResult(data);
-      } catch (error) {
-        console.error("⚠️ 解析 WebSocket 数据失败:", error);
+
+    connectWebSocket();
+
+    return () => {
+      if (wsRef.current) {
+        wsRef.current.close();
+        wsRef.current = null;
       }
     };
-    
-  
-    ws.onerror = (error) => {
-      console.error("❌ WebSocket 连接错误:", error);
-    };
-  
-    ws.onclose = () => {
-      console.log("⚠️ WebSocket 连接已关闭");
-    };
-  
-    return () => {
-      ws.close();
-    };
-  }, []);
-  
+  }, [surveyData]);
 
   return (
-    <div className="p-4 bg-gray-200 rounded-lg shadow-lg max-w-md mx-auto">
-      <div className="bg-blue-600 text-white text-xl font-bold p-3 rounded-t-lg text-center">
-        Result
+    <div className="p-4 bg-gray-200 rounded-lg shadow-lg max-w-md mx-auto text-center">
+      <div className="bg-blue-600 text-white text-xl font-bold p-3 rounded-t-lg">
+        Processing Results
       </div>
-      <div className="bg-gray-100 p-6 rounded-b-lg text-center">
-       <div className=" text-black text-[40px] font-bold p-3 rounded-t-lg text-center">
-        Picture + Text
-        {result ? (
-        <p>
-         {result}
-        </p>
-      ) : (
-        <p>等待数据处理...</p>
-      )}
-      </div>
+      <div className="bg-gray-100 p-6 rounded-b-lg">
+        {isConnecting ? (
+          <div className="text-blue-600">
+            <p>Connecting to server...</p>
+          </div>
+        ) : error ? (
+          <div className="text-red-500">
+            <p>{error}</p>
+            <p className="text-sm mt-2">Please make sure the WebSocket server is running</p>
+          </div>
+        ) : result !== null ? (
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded-lg shadow">
+              <p className="text-gray-600">Original Value:</p>
+              <p className="text-xl font-bold">{surveyData}</p>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow">
+              <p className="text-gray-600">Processed Result:</p>
+              <p className="text-xl font-bold text-blue-600">{result}</p>
+            </div>
+          </div>
+        ) : (
+          <p className="text-gray-600">Waiting for data...</p>
+        )}
+        
         <button 
-          className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg"
+          className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
           onClick={handleNext}
         >
           Next
