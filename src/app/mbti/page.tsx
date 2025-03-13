@@ -26,8 +26,11 @@ import Page17 from '../components/mbti/part2/page17';
 import Page18 from '../components/mbti/part2/page18';
 import Page19 from '../components/mbti/part2/page19';
 import MbtiResult from '../components/mbti/backup/backupfiles-jason/result/MbtiResult';
+import SubmitResult from '../components/AI-Result/result';
 
 import { motion, AnimatePresence } from 'framer-motion';
+
+
 
 
 
@@ -189,6 +192,11 @@ const handleNext = () => {
   window.history.pushState({ step: nextStep }, '', `?step=${nextStep}`);
   setStep(nextStep);
 };
+const handleSkip = () => {
+  const nextStep = step + 1;
+  window.history.pushState({ step: nextStep }, '', `?step=${nextStep}`);
+  setStep(nextStep);
+};
 
 const handleBack = () => {
   const lastStep = step - 1;
@@ -212,7 +220,6 @@ const handleNext3 = () => {
     <div className="hidden md:flex">
       <Header/>
     </div>
-  
       <ProgressBar step={step}/>
       <AnimatePresence mode="wait">
       {step === 0 && <StartScreen handleNext={handleNext} step={step} setStep={setStep} />}
@@ -335,7 +342,7 @@ const handleNext3 = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-      <Page11 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page11 handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       }
       {step === 12 && 
@@ -346,7 +353,7 @@ const handleNext3 = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-      <Page12 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page12 handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       }
       {step === 13 && 
@@ -357,7 +364,7 @@ const handleNext3 = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-      <Page13 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page13 handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       }
       {step === 14 && 
@@ -368,7 +375,7 @@ const handleNext3 = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-      <Page14 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page14 handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       }
       {step === 15 && 
@@ -379,7 +386,7 @@ const handleNext3 = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-      <Page15 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page15 handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       }
       {step === 16 && 
@@ -390,7 +397,7 @@ const handleNext3 = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-      <Page16 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page16 handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       }
       {step === 17 && 
@@ -401,7 +408,7 @@ const handleNext3 = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-      <Page17 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page17 handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       }
       {step === 18 && 
@@ -412,9 +419,10 @@ const handleNext3 = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-      <Page18 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page18 handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       }
+
       {step === 19 && 
       <motion.div
         key="page19" 
@@ -423,7 +431,7 @@ const handleNext3 = () => {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-      <Page19 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page19 handleNext={handleNext} handleBack={handleBack}  step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       /* {step === 6 && <EmailVerificationScreen handleNext={handleNext} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
       {step === 7 && <MbtiResult handleNext={handleNext}  step={step}setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
@@ -438,6 +446,7 @@ const handleNext3 = () => {
       {step === 'pawfectMatch' && <PawfectMatchScreen />} */}
       {/* <MbtiResult handleNext={handleNext}  step={step}setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/> */}
       </AnimatePresence>
+      <SubmitResult surveyData={surveyData}/>
     </div>
 
   );

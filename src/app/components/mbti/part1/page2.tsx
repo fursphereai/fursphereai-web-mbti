@@ -61,19 +61,20 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
   const [isOpen2, setIsOpen2] = useState(false);
   const [selected2, setSelected2] = useState('');
   const PetSpecies: string[] =  [
-    'Dog', 'Cat', 'Bird', 'Fish', 'Hamster', 
-    'Rabbit', 'Guinea Pig', 'Turtle', 'Other'
+    'Dog', 'Cat', 'Others'
   ];
- 
+  
+  const [customBreed, setCustomBreed] = useState('');
+  const [Breed, setBreed] = useState('');
 
-  const getPetBreed = (petType: string): string[] => {
-    switch (petType) {
+  const getPetBreed = (PetSpecies: string): string[] => {
+    switch (PetSpecies) {
       case 'Dog':
-        return ['Gold', 'Blue'];
+        return ['Labrador Retriever', 'German Shepherd', 'Golden Retriever', 'French Bulldog', 'Poodle', 'Bulldog', 'Beagle', 'Dachshund', 'Siberian Husky', 'Rottweiler'];
       case 'Cat':
-        return ['blue cat', 'green cat', 'red cat', 'yellow cat', 'black cat', 'white cat', 'orange cat', 'gray cat', 'purple cat', 'pink cat', 'brown cat', 'Unknown'];
+        return ['Persian', 'Maine Coon', 'Siamese', 'Bengal', 'British Shorthair', 'Ragdoll', 'Sphynx', 'Scottish Fold', 'Abyssinian', 'American Shorthair'];
       default:
-        return ['Male', 'Female', 'Other'];
+        return ['Others'];
     }
   };
   
@@ -85,6 +86,20 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
   }, [selected]);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleNextPage2 = () => {
+    
+    if (surveyData.pet_info.PetSpecies && surveyData.pet_info.PetBreed) {
+      handleNext(); 
+    } 
+  };
+
+  const getNextButtonColor = () => {
+    return surveyData.pet_info.PetSpecies && surveyData.pet_info.PetBreed
+      ? '#5777D0' // Blue when not 5
+      : '#C3C3C3'; // Gray when 5
+  };
+
 
   return (
     <div className="mx-auto max-w-[1440px]  h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] flex flex-col items-center justify-center">
@@ -171,6 +186,7 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
                 onClick={() => {
                   updateAnswer('pet_info', null, 'PetSpecies', option);
                   setIsOpen(false);
+                  setSelected(option);
                 }}
                 className={`
             
@@ -209,7 +225,8 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               text-[16px]
           `}
           >
-          {surveyData.pet_info.PetBreed || 'Breed'}
+          { Breed || 'Breed'}
+
         </button>
 
           <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none">
@@ -257,9 +274,11 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
                 onClick={() => {
                   updateAnswer('pet_info', null, 'PetBreed', option);
                   setIsOpen2(false);
+                  setSelected2(option);
+                  setBreed(option);
                 }}
                 className={`
-            
+
                   px-[10px]
                   py-[13px]
                   hover:bg-[#F8F8F8]
@@ -311,8 +330,11 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               focus:outline-none
               placeholder:[#C3C3C3]
               text-[16px]"
-              value={surveyData.pet_info.PetBreed}
-              onChange={(e) => updateAnswer('pet_info', null, 'PetBreed', e.target.value)}
+              value={customBreed}
+              onChange={(e) => {
+                setCustomBreed(e.target.value);
+                updateAnswer('pet_info', null, 'PetBreed', e.target.value)}
+              }
           />
 
          
@@ -323,11 +345,11 @@ const Page2: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
             h-[44px]
             self-end
             rounded-[22px]
-            bg-[#5777D0] 
             text-[16px]
             text-white
             "
-            onClick={handleNext}
+            onClick={handleNextPage2}
+            style={{ background: getNextButtonColor() }}
             >
               <span className="hidden md:inline">Next</span>
               <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
