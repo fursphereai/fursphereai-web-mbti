@@ -213,230 +213,68 @@ const handleNext3 = () => {
       <Header/>
     </div>
   
-      <ProgressBar step={step}/>
+      {step > 1 && step !== 6 && <ProgressBar step={step}/>}
       <AnimatePresence mode="wait">
-      {step === 0 && <StartScreen handleNext={handleNext} step={step} setStep={setStep} />}
+      {step === 0 && (
+        <motion.div
+          key="startScreen"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="mt-[76px] min-h-[calc(100vh-116px)]"
+        >
+          <StartScreen handleNext={handleNext} step={step} setStep={setStep} />
+        </motion.div>
+      )}
       {/* {step === 0 &&  loggin === true && <StartScreen2 handleNext2={handleNext2} handleNext3={handleNext3}  step={step} setStep={setStep} />} */}
       {/* {step === 0 && <StartScreen3 handleNext={handleNext} step={step} setStep={setStep} />} */}
       {step === 1 && 
       <motion.div
-        key="page2" 
+        key="page1" 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
+        className="mt-[76px] min-h-[calc(100vh-116px)]"
       >
       <Page1 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       } 
-      {step === 2 && 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page2 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData={surveyData} updateAnswer={updateAnswer}/>
-      </motion.div>
-      } 
-      {step === 3 && 
-      <motion.div
-        key="page3" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page3 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      } 
-      {step === 4 && 
-      <motion.div
-        key="page4" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page4 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      } 
-      {step === 5 && 
-      <motion.div
-        key="page5" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page5 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      } 
       {step === 6 && 
       <motion.div
-        key="page6" 
+        key="page6"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
+        className="mt-[76px] min-h-[calc(100vh-116px)]"
       >
-      <Page6 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
+      <Page6 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>
       </motion.div>
       } 
-      {step === 7 && 
-      <motion.div
-        key="page7" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page7 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 8 && 
-      <motion.div
-        key="page8" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page8 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 9 && 
-      <motion.div
-        key="page9" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page9 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 10 && 
-      <motion.div
-        key="page10" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page10 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 11 && 
-      <motion.div
-        key="page11" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page11 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 12 && 
-      <motion.div
-        key="page12" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page12 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 13 && 
-      <motion.div
-        key="page13" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page13 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 14 && 
-      <motion.div
-        key="page14" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page14 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 15 && 
-      <motion.div
-        key="page15" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page15 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 16 && 
-      <motion.div
-        key="page16" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page16 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 17 && 
-      <motion.div
-        key="page17" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page17 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 18 && 
-      <motion.div
-        key="page18" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page18 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      }
-      {step === 19 && 
-      <motion.div
-        key="page19" 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-      <Page19 handleNext={handleNext} handleBack={handleBack} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>
-      </motion.div>
-      /* {step === 6 && <EmailVerificationScreen handleNext={handleNext} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 7 && <MbtiResult handleNext={handleNext}  step={step}setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 8 && <StartPawfectMatch handleNext={handleNext} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 9 && <PawfectMatch handleNext={handleNext} step={step} setStep={setStep}  surveyData = {surveyData} updateAnswer = {updateAnswer}/>}
-      {step === 10 && <PawfectMatchResult  handleNext={handleNext} step={step} setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/>} */}
-      {/* {step === 'test' && <TestScreen onComplete={() => {
-        setMbtiResult('ESFP');
-        setStep('result');
-      }} />}
-      {step === 'result' && <ResultScreen mbtiResult={mbtiResult} email={email} setEmail={setEmail} isRegistered={isRegistered} setIsRegistered={setIsRegistered} onNext={() => setStep('pawfectMatch')} />}
-      {step === 'pawfectMatch' && <PawfectMatchScreen />} */}
-      {/* <MbtiResult handleNext={handleNext}  step={step}setStep={setStep} surveyData = {surveyData} updateAnswer = {updateAnswer}/> */}
+      {[2,3,4,5,7,8,9,10,11,12,13,14,15,16,17,18,19].map((pageStep) => 
+        step === pageStep && (
+          <motion.div
+            key={`page${pageStep}`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            {(() => {
+              const PageComponent = require(`../components/mbti/part${pageStep <= 5 ? 1 : 2}/page${pageStep}`).default;
+              return <PageComponent 
+                handleNext={handleNext} 
+                handleBack={handleBack} 
+                step={step} 
+                setStep={setStep} 
+                surveyData={surveyData} 
+                updateAnswer={updateAnswer}
+              />;
+            })()}
+          </motion.div>
+        )
+      )}
       </AnimatePresence>
     </div>
 
