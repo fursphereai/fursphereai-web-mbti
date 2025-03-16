@@ -26,8 +26,11 @@ import Page17 from '../components/mbti/part2/page17';
 import Page18 from '../components/mbti/part2/page18';
 import Page19 from '../components/mbti/part2/page19';
 import MbtiResult from '../components/mbti/backup/backupfiles-jason/result/MbtiResult';
+import SubmitResult from '../components/AI-Result/result';
 
 import { motion, AnimatePresence } from 'framer-motion';
+
+
 
 
 
@@ -189,6 +192,11 @@ const handleNext = () => {
   window.history.pushState({ step: nextStep }, '', `?step=${nextStep}`);
   setStep(nextStep);
 };
+const handleSkip = () => {
+  const nextStep = step + 1;
+  window.history.pushState({ step: nextStep }, '', `?step=${nextStep}`);
+  setStep(nextStep);
+};
 
 const handleBack = () => {
   const lastStep = step - 1;
@@ -214,6 +222,7 @@ const handleNext3 = () => {
     </div>
   
       {step > 1 && step !== 6 && <ProgressBar step={step}/>}
+
       <AnimatePresence mode="wait">
       {step === 0 && (
         <motion.div
@@ -275,7 +284,9 @@ const handleNext3 = () => {
           </motion.div>
         )
       )}
+
       </AnimatePresence>
+      <SubmitResult surveyData={surveyData}/>
     </div>
 
   );

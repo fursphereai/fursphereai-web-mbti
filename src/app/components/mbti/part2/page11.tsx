@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 interface SurveyData {
   personality_and_behavior: {
-    Decision_Making: {
-      react_when_sad: string;
+    Routin_Curiosity: {
+      friend_visit_behaviors: string;
     };
   };
 }
@@ -33,7 +33,7 @@ const Page11: React.FC<Page11Props> = ({
   updateAnswer,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>(
-    surveyData.personality_and_behavior.Decision_Making.react_when_sad || '5'
+    surveyData.personality_and_behavior.Routin_Curiosity.friend_visit_behaviors || '5'
   );
 
   const [showBanner, setShowBanner] = useState(true);
@@ -53,11 +53,25 @@ const Page11: React.FC<Page11Props> = ({
 
   const handleSelectOption = (option: string) => {
     setSelectedOption(option);
-    updateAnswer('personality_and_behavior', 'Decision_Making', 'react_when_sad', option);
+    updateAnswer('personality_and_behavior', 'Routin_Curiosity', 'friend_visit_behaviors', option);
+  };
+
+  const handleNextPage11 = () => {
+    
+    if (surveyData.personality_and_behavior.Routin_Curiosity.friend_visit_behaviors !== '5' && surveyData.personality_and_behavior.Routin_Curiosity.friend_visit_behaviors !== '') {
+      handleNext(); 
+    } 
+  };
+
+  const getNextButtonColor = () => {
+    return surveyData.personality_and_behavior.Routin_Curiosity.friend_visit_behaviors !== '5' 
+    && surveyData.personality_and_behavior.Routin_Curiosity.friend_visit_behaviors !== ''
+      ? '#5777D0' // Blue when not 5
+      : '#C3C3C3'; // Gray when 5
   };
 
   return (
-    <div className='relative  mx-auto w-full max-w-[1440px]  h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] w-full flex flex-col justify-center'>
+    <div className='relative  mx-auto w-full   h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] w-full flex flex-col justify-center'>
       {showBanner && (
 
         <div className="mx-auto h-[100px] md:h-[80px] w-full bg-[#FEF0C7] flex items-center justify-center">
@@ -230,18 +244,18 @@ const Page11: React.FC<Page11Props> = ({
       `}>
         <button className="nav-button previous" onClick={handleBack}>Previous</button>
         <button className="nav-button skip" onClick={handleSkip}>Skip</button>
-        <button className="nav-button next" onClick={handleNext}>Next</button>
+        <button className="nav-button next" style={{ background: getNextButtonColor() }} onClick={handleNextPage11}>Next</button>
       </div>
 
       {/* Mobile 端的按钮 */}
       <div className="button-container mobile absolute bottom-[48px] left-0 right-0 w-[320px] mx-auto flex justify-between">
         <button className="nav-button mobile previous" onClick={handleBack}>
           <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.45677 16.948L9.99943 24.4907L11.8848 22.6054L5.28477 16.0054L11.8848 9.40535L9.99943 7.52002L2.45677 15.0627C2.20681 15.3127 2.06638 15.6518 2.06638 16.0054C2.06638 16.3589 2.20681 16.698 2.45677 16.948Z" fill="white"/>
+            <path fillRule="evenodd" clipRule="evenodd" d="M2.45677 16.948L9.99943 24.4907L11.8848 22.6054L5.28477 16.0054L11.8848 9.40535L9.99943 7.52002L2.45677 15.0627C2.20681 15.3127 2.06638 15.6518 2.06638 16.0054C2.06638 16.3589 2.20681 16.698 2.45677 16.948Z" fill="white"/>
           </svg>
         </button>
         <button className="nav-button mobile skip" onClick={handleSkip}>Skip</button>
-        <button className="nav-button mobile next" onClick={handleNext}>
+        <button className="nav-button mobile next" style={{ background: getNextButtonColor() }} onClick={handleNextPage11}>
           <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
           <path fillRule="evenodd" clipRule="evenodd" d="M13.5432 16.948L6.00057 24.4907L4.11523 22.6054L10.7152 16.0054L4.11523 9.40535L6.00057 7.52002L13.5432 15.0627C13.7932 15.3127 13.9336 15.6518 13.9336 16.0054C13.9336 16.3589 13.7932 16.698 13.5432 16.948Z" fill="white"/>
           </svg>

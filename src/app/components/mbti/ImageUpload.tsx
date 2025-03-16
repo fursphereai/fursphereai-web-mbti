@@ -14,7 +14,7 @@ interface SurveyData {
     PetSex: string,
     PetAge: string,
     PetName: string,
-    PetPhoto: string,
+    PetPhoto: string | File;
   };
   personality_and_behavior: {
       Energy_Socialization: {
@@ -41,20 +41,22 @@ interface SurveyData {
 }
 
 interface ImageUploadProps {
-  updateAnswer: (category: keyof SurveyData, subCategory: any | null, field: string, value: string) => void;
+  updateAnswer: (category: keyof SurveyData, subCategory: any | null, field: string, value: string | File) => void;
+  surveyData: SurveyData;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ updateAnswer }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ updateAnswer, surveyData }) => {
   const [image, setImage] = useState<File | null>(null);
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      updateAnswer('pet_info', null, 'PetPhoto', e.target.files[0]);
       setImage(e.target.files[0]);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        updateAnswer('pet_info', null, 'PetPhoto', base64String);
-      };
-      reader.readAsDataURL(e.target.files[0]);
+      // const reader = new FileReader();
+      // reader.onloadend = () => {
+      //   const base64String = reader.result as string;
+
+      // };
+      // reader.readAsDataURL(e.target.files[0]);
     }
   };
 
@@ -66,9 +68,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ updateAnswer }) => {
         font-[Inter] text-[#27355D] hover:border-[#FFC542] hover:bg-[#F9F9F9]
         transition-all duration-200 ease-in-out"
       >
-        {image ? (
+        {surveyData.pet_info.PetPhoto ? (
           <img
-            src={URL.createObjectURL(image)}
+            src={typeof surveyData.pet_info.PetPhoto === 'string' 
+              ? surveyData.pet_info.PetPhoto 
+              : URL.createObjectURL(surveyData.pet_info.PetPhoto)}
             alt="Uploaded preview"
             className="w-full h-full object-cover rounded-[15px]"
           />

@@ -49,7 +49,7 @@ interface BasicInfoScreenProps {
     surveyData: SurveyData;
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
-    updateAnswer: (category: keyof SurveyData, subCategory: any | null, field: string, value: string) => void;
+    updateAnswer: (category: keyof SurveyData, subCategory: any, field: string, value: string | File) => void;
 }
 
 const Page5: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, setStep, surveyData, updateAnswer  }) => {
@@ -155,7 +155,7 @@ const Page5: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
         >
           Please upload her stunning photo
         </label>
-        <ImageUpload updateAnswer = {updateAnswer} />
+        <ImageUpload updateAnswer={updateAnswer} surveyData={surveyData} />
 
       </div>
 
@@ -168,7 +168,7 @@ const Page5: React.FC<BasicInfoScreenProps>  = ({ handleNext, handleBack, step, 
               >
                 <span className="hidden md:inline text-white">Previous</span>
                 <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.45677 16.948L9.99943 24.4907L11.8848 22.6054L5.28477 16.0054L11.8848 9.40535L9.99943 7.52002L2.45677 15.0627C2.20681 15.3127 2.06638 15.6518 2.06638 16.0054C2.06638 16.3589 2.20681 16.698 2.45677 16.948Z" fill="white"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M2.45677 16.948L9.99943 24.4907L11.8848 22.6054L5.28477 16.0054L11.8848 9.40535L9.99943 7.52002L2.45677 15.0627C2.20681 15.3127 2.06638 15.6518 2.06638 16.0054C2.06638 16.3589 2.20681 16.698 2.45677 16.948Z" fill="white"/>
                 </svg>
         </button>
 

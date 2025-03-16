@@ -140,6 +140,13 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
     updateAnswer('pet_info', null, 'PetAge', age);
   };
   
+  const handleNextPage4 = () => {
+    
+    if (surveyData.pet_info.PetAge) {
+      handleNext(); 
+    } 
+  };
+  
   return (
     <div className="  max-w-[1440px] h-[calc(100vh-40px)] md:h-[calc(100vh-140px)] mx-auto w-full flex justify-center">
 
@@ -156,8 +163,8 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
                   className="w-[180px] h-[44px] rounded-[22px] border border-[#717680] px-4 py-[11px] flex items-center justify-between cursor-pointer"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
-                  <span className={`text-[16px] font-inter ${selectedAge ? 'text-[#151B38]' : 'text-[#C3C3C3]'}`}>
-                    {selectedAge || 'Age'}
+                  <span className={`text-[16px] font-inter ${surveyData.pet_info.PetAge ? 'text-[#151B38]' : 'text-[#C3C3C3]'}`}>
+                    {surveyData.pet_info.PetAge || 'Age'}
                   </span>
                   <Image 
                     src="/Vector 2.svg"
@@ -252,7 +259,7 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
                     type="text"
                     className="flex-1 outline-none bg-transparent text-[#151B38] placeholder-[#C3C3C3] caret-[#151B38]"
                     placeholder={!searchTerm ? "Age" : ""}
-                    value={searchTerm || selectedAge}
+                    value={surveyData.pet_info.PetAge || selectedAge}
                     onChange={(e) => {
                       setSearchTerm(e.target.value);
                       if (e.target.value === '') {
@@ -332,18 +339,18 @@ const Page4: React.FC<BasicInfoScreenProps> = ({ handleNext, handleBack, step, s
               >
                 <span className="hidden md:inline text-white">Previous</span>
                 <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.45677 16.948L9.99943 24.4907L11.8848 22.6054L5.28477 16.0054L11.8848 9.40535L9.99943 7.52002L2.45677 15.0627C2.20681 15.3127 2.06638 15.6518 2.06638 16.0054C2.06638 16.3589 2.20681 16.698 2.45677 16.948Z" fill="white"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M2.45677 16.948L9.99943 24.4907L11.8848 22.6054L5.28477 16.0054L11.8848 9.40535L9.99943 7.52002L2.45677 15.0627C2.20681 15.3127 2.06638 15.6518 2.06638 16.0054C2.06638 16.3589 2.20681 16.698 2.45677 16.948Z" fill="white"/>
                 </svg>
               </button>
 
               <button 
                 className={`w-[44px] h-[44px] rounded-[22px] flex items-center justify-center md:w-[101px] md:p-0
-                  ${selectedAge ? 'bg-[#5777D0]' : 'bg-[#C3C3C3]'}`}
-                onClick={handleNext}
+                  ${surveyData.pet_info.PetAge ? 'bg-[#5777D0]' : 'bg-[#C3C3C3]'}`}
+                onClick={handleNextPage4}
               >
                 <span className="hidden md:inline text-white">Next</span>
                <svg className="inline md:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="32" viewBox="0 0 16 32" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5432 16.948L6.00057 24.4907L4.11523 22.6054L10.7152 16.0054L4.11523 9.40535L6.00057 7.52002L13.5432 15.0627C13.7932 15.3127 13.9336 15.6518 13.9336 16.0054C13.9336 16.3589 13.7932 16.698 13.5432 16.948Z" fill="white"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M13.5432 16.948L6.00057 24.4907L4.11523 22.6054L10.7152 16.0054L4.11523 9.40535L6.00057 7.52002L13.5432 15.0627C13.7932 15.3127 13.9336 15.6518 13.9336 16.0054C13.9336 16.3589 13.7932 16.698 13.5432 16.948Z" fill="white"/>
               </svg>
               </button>
 
