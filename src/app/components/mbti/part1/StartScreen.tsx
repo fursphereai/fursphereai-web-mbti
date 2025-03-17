@@ -50,7 +50,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
                 alt="Pet illustration"
                 width={507}
                 height={400}
-                className="object-cover"
+                className="object-cover w-[507px] h-[397px] md：w-full-48"
               />
             </div>
           </div>
@@ -58,20 +58,20 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
           {/* Test Cards Section */}
           <div className="w-full flex flex-col md:flex-row items-center gap-6 md:gap-8 px-5 md:px-0">
             {/* MBTI Petsonality Card */}
-            <div className="w-[calc(100vw-40px)] md:w-full max-w-none md:max-w-[500px] relative rounded-[32px] border border-[#717680] h-[calc((100vw-40px)*0.890)] md:h-[285px]">
-              <div className="absolute top-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 md:gap-4 w-full px-4 md:px-0">
-                <div className="rounded-lg bg-[#D1D7EF] h-8 px-4 flex items-center justify-center">
-                  <span className="font-semibold text-[#27355D]">🎉 100% Free</span>
+            <div className="w-[calc(100vw-40px)] md:w-full max-w-none md:max-w-[500px] relative rounded-[32px] border border-[#717680] h-[calc((100vw-40px)*0.890)] md:h-[285px] max-h-[400px]">
+              <div className="absolute top-12 md:top-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 md:gap-2 w-full px-4 md:px-0">
+                <div className="rounded-lg bg-[#D1D7EF] h-10 md:h-8 px-4 flex items-center justify-center">
+                  <span className="font-semibold text-[#27355D] text-[18px] md:text-base">🎉 100% Free</span>
                 </div>
-                <div className="w-full text-[28px] md:text-[32px] text-[#27355D] font-semibold text-center">
+                <div className="w-full text-[32px] md:text-[32px] text-[#27355D] font-semibold text-center">
                   MBTI Petsonality
                 </div>
-                <div className="w-full text-[14px] md:text-sm text-center text-[#717680] max-w-[280px] md:max-w-[320px]">
+                <div className="w-full text-[16px] md:text-sm text-center text-[#717680] max-w-[280px] md:max-w-[320px]">
                   Only 3 minutes to learn what Petsonality they are and why they do things the way they do.
                 </div>
               </div>
               <button 
-                className="absolute bottom-10 md:bottom-8 left-1/2 -translate-x-1/2 rounded-[32px] bg-[#5777D0] h-11 px-8 text-white border-none cursor-pointer font-semibold flex items-center justify-center"
+                className="absolute bottom-10 md:bottom-8 left-1/2 -translate-x-1/2 rounded-[32px] bg-[#5777D0] h-14 md:h-11 px-12 md:px-8 text-white border-none cursor-pointer font-semibold flex items-center justify-center text-[18px] md:text-base"
                 onClick={handleNext}
               >
                 Start now
@@ -79,9 +79,9 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
             </div>
 
             {/* Pawfect Match Card */}
-            <div className="w-[calc(100vw-40px)] md:w-full max-w-none md:max-w-[500px] relative rounded-[32px] bg-[#F8F8F8] border border-[#717680] h-[calc((100vw-40px)*0.890)] md:h-[285px]">
-              <div className="absolute top-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 md:gap-4 w-full px-4 md:px-0">
-                <div className="rounded-lg bg-[#C3C3C3] h-8 px-4 flex items-center">
+            <div className="w-[calc(100vw-40px)] md:w-full max-w-none md:max-w-[500px] relative rounded-[32px] bg-[#F8F8F8] border border-[#717680] h-[calc((100vw-40px)*0.890)] md:h-[285px] max-h-[400px]">
+              <div className="absolute top-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 md:gap-3 w-full px-4 md:px-0">
+                <div className="rounded-lg bg-[#C3C3C3] h-8 md:h-8 px-4 flex items-center" >
                   <Image 
                     src="lock.svg"
                     alt="Lock icon"
@@ -90,13 +90,13 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
                     className="opacity-70"
                   />
                 </div>
-                <div className="w-full text-[28px] md:text-[32px] text-[#27355D] font-semibold text-center">
+                <div className="w-full text-[32px] md:text-[32px] text-[#27355D] font-semibold text-center">
                   Pawfect Match Test
                 </div>
-                <div className="w-full text-[14px] md:text-sm text-center text-[#27355D] max-w-[280px] md:max-w-[320px]">
+                <div className="w-full text-[16px] md:text-sm text-center text-[#27355D] max-w-[280px] md:max-w-[320px]">
                   In just 1 minute, discover how well you and your pet get along, or how they bond with other pets!
                 </div>
-                <button className="mt-4 rounded-[32px] bg-[#27355D] h-11 px-8 text-white border-none cursor-pointer font-semibold flex items-center justify-center">
+                <button className="mt-4 rounded-[32px] bg-[#27355D] h-14 md:h-11 px-12 md:px-8 text-white border-none cursor-pointer font-semibold flex items-center justify-center text-[18px] md:text-base">
                   Login to unlock
                 </button>
               </div>
