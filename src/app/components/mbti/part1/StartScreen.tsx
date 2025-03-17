@@ -39,7 +39,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
               <div className="w-full md:w-[432px] text-[32px] text-[#27355D] order-1 leading-[40px]">
                 Did you know that your pet has a unique "<span className="font-semibold text-[#5777D0]">Petsonality</span>", just like humans?
               </div>
-              <div className="hidden md:block w-full text-base text-[#101828] md:order-4">
+              <div className="hidden md:block w-full text-base text-[#101828] order-2">
                 <p>Some pets are naturally outgoing, love socializing, and always stay by your side, while others are more independent and prefer their own space.</p>
                 <p className="mt-4">The <span className="font-semibold text-[#5777D0]">FurSphere</span> Team—a group of young pet lovers driven by curiosity and deep affection for their furry family members—has developed a series of AI-powered, engaging tests to help pet owners bridge the language gap, gain deeper insights into their pets' unique traits, and strengthen the bond between them and their furry companions, making this cherished relationship even more meaningful.</p>
               </div>
@@ -52,10 +52,6 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
                 height={400}
                 className="object-cover"
               />
-            </div>
-            <div className="w-full md:hidden text-base text-[#101828] order-3 md:order-4">
-              <p>Some pets are naturally outgoing, love socializing, and always stay by your side, while others are more independent and prefer their own space.</p>
-              <p className="mt-4">The <span className="font-semibold text-[#5777D0]">FurSphere</span> Team—a group of young pet lovers driven by curiosity and deep affection for their furry family members—has developed a series of AI-powered, engaging tests to help pet owners bridge the language gap, gain deeper insights into their pets' unique traits, and strengthen the bond between them and their furry companions, making this cherished relationship even more meaningful.</p>
             </div>
           </div>
 
@@ -107,12 +103,18 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
             </div>
           </div>
 
+          {/* Description Text for Mobile */}
+          <div className="w-full md:hidden text-[18px] text-[#101828]">
+            <p>Some pets are naturally outgoing, love socializing, and always stay by your side, while others are more independent and prefer their own space.</p>
+            <p className="mt-4">The <span className="font-semibold text-[#5777D0]">FurSphere</span> Team—a group of young pet lovers driven by curiosity and deep affection for their furry family members—has developed a series of AI-powered, engaging tests to help pet owners bridge the language gap, gain deeper insights into their pets' unique traits, and strengthen the bond between them and their furry companions, making this cherished relationship even more meaningful.</p>
+          </div>
+
           {/* FAQ Section */}
           <div className="w-full max-w-[1060px]">
             {faqData.map((item, index) => (
               <div key={index} className="w-full border-t border-[#717680] py-8">
                 <div 
-                  className="flex items-center justify-between cursor-pointer"
+                  className="md:px-8 flex items-center justify-between cursor-pointer"
                   onClick={() => {
                     if (expandedIndexes.includes(index)) {
                       setExpandedIndexes(expandedIndexes.filter(i => i !== index));
@@ -145,7 +147,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
                   </div>
                 </div>
                 {expandedIndexes.includes(index) && (
-                  <div className="pt-8 text-base text-[#27355D] leading-6">
+                  <div className="md:px-8 pt-8 text-base text-[#27355D] leading-6">
                     {item.answer}
                   </div>
                 )}
