@@ -44,13 +44,13 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
                 <p className="mt-4">The <span className="font-semibold text-[#5777D0]">FurSphere</span> Team—a group of young pet lovers driven by curiosity and deep affection for their furry family members—has developed a series of AI-powered, engaging tests to help pet owners bridge the language gap, gain deeper insights into their pets' unique traits, and strengthen the bond between them and their furry companions, making this cherished relationship even more meaningful.</p>
               </div>
             </div>
-            <div className="w-full md:w-[507px] order-2 md:order-2">
+            <div className="w-full md:w-[507px] order-2 md:order-2 flex justify-center items-center">
               <Image
                 src="/quizpage_dog_cat.png"
                 alt="Pet illustration"
                 width={507}
                 height={400}
-                className="object-cover w-[507px] h-[397px] md：w-full-48"
+                className="object-cover w-[507px] h-[397px] md:w-full md:h-[397px]"
               />
             </div>
           </div>
@@ -58,20 +58,20 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
           {/* Test Cards Section */}
           <div className="w-full flex flex-col md:flex-row items-center gap-6 md:gap-8 px-5 md:px-0">
             {/* MBTI Petsonality Card */}
-            <div className="w-[calc(100vw-40px)] md:w-full max-w-none md:max-w-[500px] relative rounded-[32px] border border-[#717680] h-[calc((100vw-40px)*0.890)] md:h-[285px] max-h-[400px]">
-              <div className="absolute top-12 md:top-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 md:gap-2 w-full px-4 md:px-0">
-                <div className="rounded-lg bg-[#D1D7EF] h-10 md:h-8 px-4 flex items-center justify-center">
-                  <span className="font-semibold text-[#27355D] text-[18px] md:text-base">🎉 100% Free</span>
+            <div className="w-[calc(100vw-40px)] md:w-full max-w-[500px] md:max-w-[500px] relative rounded-[32px] border border-[#717680] h-[calc((100vw-40px)*0.890)] md:h-[285px]">
+              <div className="absolute top-[calc((100vw-40px)*0.08)] md:top-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-[calc((100vw-40px)*0.06)] md:gap-2 w-full px-4 md:px-0">
+                <div className="rounded-lg bg-[#D1D7EF] h-[calc((100vw-40px)*0.08)] max-h-12 md:h-8 px-4 flex items-center justify-center">
+                  <span className="font-semibold text-[#27355D] text-[calc((100vw-40px)*0.045)] max-text-[20px] md:text-base">🎉 100% Free</span>
                 </div>
-                <div className="w-full text-[32px] md:text-[32px] text-[#27355D] font-semibold text-center">
+                <div className="w-full text-[calc((100vw-40px)*0.07)] max-text-[28px] md:text-[32px] text-[#27355D] font-semibold text-center">
                   MBTI Petsonality
                 </div>
-                <div className="w-full text-[16px] md:text-sm text-center text-[#717680] max-w-[280px] md:max-w-[320px]">
+                <div className="w-full text-[calc((100vw-40px)*0.04)] max-text-[16px] md:text-sm text-center text-[#717680] max-w-[280px] md:max-w-[320px]">
                   Only 3 minutes to learn what Petsonality they are and why they do things the way they do.
                 </div>
               </div>
               <button 
-                className="absolute bottom-10 md:bottom-8 left-1/2 -translate-x-1/2 rounded-[32px] bg-[#5777D0] h-14 md:h-11 px-12 md:px-8 text-white border-none cursor-pointer font-semibold flex items-center justify-center text-[18px] md:text-base"
+                className="absolute bottom-[calc((100vw-40px)*0.14)] md:bottom-8 left-1/2 -translate-x-1/2 rounded-[32px] bg-[#5777D0] h-[calc((100vw-40px)*0.12)] max-h-16 md:h-11 px-[calc((100vw-40px)*0.08)] md:px-8 text-white border-none cursor-pointer font-semibold flex items-center justify-center text-[calc((100vw-40px)*0.045)] max-text-[20px] md:text-base"
                 onClick={handleNext}
               >
                 Start now
@@ -79,24 +79,24 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
             </div>
 
             {/* Pawfect Match Card */}
-            <div className="w-[calc(100vw-40px)] md:w-full max-w-none md:max-w-[500px] relative rounded-[32px] bg-[#F8F8F8] border border-[#717680] h-[calc((100vw-40px)*0.890)] md:h-[285px] max-h-[400px]">
-              <div className="absolute top-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 md:gap-3 w-full px-4 md:px-0">
-                <div className="rounded-lg bg-[#C3C3C3] h-8 md:h-8 px-4 flex items-center" >
+            <div className="w-[calc(100vw-40px)] md:w-full max-w-[500px] md:max-w-[500px] relative rounded-[32px] bg-[#F8F8F8] border border-[#717680] h-[calc((100vw-40px)*0.890)] md:h-[285px]">
+              <div className="absolute top-[calc((100vw-40px)*0.08)] md:top-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-[calc((100vw-40px)*0.04)] md:gap-3 w-full px-4 md:px-0">
+                <div className="rounded-lg bg-[#C3C3C3] h-[calc((100vw-40px)*0.10)] max-h-14 md:h-8 px-4 flex items-center">
                   <Image 
                     src="lock.svg"
                     alt="Lock icon"
                     width={24}
                     height={24}
-                    className="opacity-70"
+                    className="opacity-70 w-[calc((100vw-40px)*0.07)] h-[calc((100vw-40px)*0.07)] max-w-8 max-h-8 md:w-6 md:h-6"
                   />
                 </div>
-                <div className="w-full text-[32px] md:text-[32px] text-[#27355D] font-semibold text-center">
+                <div className="w-full text-[calc((100vw-40px)*0.07)] max-text-[28px] md:text-[32px] text-[#27355D] font-semibold text-center">
                   Pawfect Match Test
                 </div>
-                <div className="w-full text-[16px] md:text-sm text-center text-[#27355D] max-w-[280px] md:max-w-[320px]">
+                <div className="w-full text-[calc((100vw-40px)*0.04)] max-text-[16px] md:text-sm text-center text-[#27355D] max-w-[280px] md:max-w-[320px]">
                   In just 1 minute, discover how well you and your pet get along, or how they bond with other pets!
                 </div>
-                <button className="mt-4 rounded-[32px] bg-[#27355D] h-14 md:h-11 px-12 md:px-8 text-white border-none cursor-pointer font-semibold flex items-center justify-center text-[18px] md:text-base">
+                <button className="mt-3 rounded-[32px] bg-[#27355D] h-[calc((100vw-40px)*0.14)] max-h-16 md:h-11 px-[calc((100vw-40px)*0.08)] md:px-8 text-white border-none cursor-pointer font-semibold flex items-center justify-center text-[calc((100vw-40px)*0.048)] max-text-[20px] md:text-base">
                   Login to unlock
                 </button>
               </div>
@@ -126,7 +126,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
                   <div className="w-[840px] text-[24px] md:text-[28px] font-normal md:font-semibold text-[#27355D] font-inter">
                     {item.question}
                   </div>
-                  <div className="transform transition-transform duration-300">
+                  <div className={`transform transition-transform duration-300 ${expandedIndexes.includes(index) ? 'rotate-180' : ''}`}>
                     {expandedIndexes.includes(index) ? (
                       <Image 
                         src="/minusign.svg"
@@ -146,11 +146,15 @@ const StartScreen: React.FC<StartScreenProps> = ({ handleNext, step, setStep }) 
                     )}
                   </div>
                 </div>
-                {expandedIndexes.includes(index) && (
-                  <div className="md:px-8 pt-8 text-base text-[#27355D] leading-6">
+                <div 
+                  className={`md:px-8 overflow-hidden transition-all duration-300 ease-in-out ${
+                    expandedIndexes.includes(index) ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="pt-8 text-base text-[#27355D] leading-6">
                     {item.answer}
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
